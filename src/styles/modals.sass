@@ -1,0 +1,135 @@
+@import 'variables'
+
+::ng-deep.mat-form-field
+    padding-bottom: 3px
+
+::ng-deep.mat-dialog-container
+    background: rgb(255, 255, 255)
+    border-radius: 0px !important
+    border: 1px solid rgb(151, 151, 151)
+    padding: 37.5px 57px 46px 57px
+    overflow: inherit
+    margin: 30px auto !important
+    .mat-dialog-title-container .close
+        color: #000 !important
+        opacity: 1 !important
+        font-size: 24px !important
+    .mat-dialog-title-container
+      border-bottom: none
+      h1
+        .text
+          font-size: 18px
+          text-align: center
+          color: #000 !important
+        span
+          width: 20px
+          height: 20px
+
+    .mat-dialog-title
+        display: flex
+        align-items: center
+        justify-content: space-between
+        font-family: $font-family !important
+        color: rgb(63, 63, 63)
+        font-size: 25px
+        font-weight: 400 !important
+        letter-spacing: 0.1px
+        padding: 0 21px !important
+        margin-bottom: 7px
+    .mat-dialog-content
+        margin: 0 auto !important
+        margin-top: 58px !important
+        max-width: 597px
+        overflow: hidden
+    .mat-dialog-actions
+      margin-top: 52px
+    .mat-form-field-infix
+        border: 0px !important
+        padding: 4px 0 !important
+    .mat-form-field-label
+        color: rgb(126, 126, 126) !important
+        font-size: 17px
+        font-weight: 300
+        text-transform: uppercase
+        letter-spacing: 0.11px
+        line-height: 20px
+    .mat-input-element
+        font-family: $font-family !important
+        color: rgb(0, 0, 0)
+        font-size: 17px
+        font-weight: 400 !important
+        letter-spacing: 0.11px
+        line-height: 23px
+    .mat-placeholder-required
+        display: none
+    .form-ico
+        width: 26px
+        height: 26px
+        margin-top: 4px
+    .warn
+        margin-right: 7px
+    .mat-error
+        color: #ff0000 !important
+        align-items: center !important
+        display: flex !important
+        font-size: 10px
+        font-weight: 300
+        height: 14px
+        letter-spacing: 0.07px
+    .mat-form-field-subscript-wrapper
+        margin-top: 4px
+    .form-err
+        position: absolute
+        align-items: center !important
+        font-size: 10px
+        font-weight: 300
+        height: 14px
+        letter-spacing: 0.07px
+        display: flex
+        margin-top: 8px
+        color: #ff0000 !important
+::ng-deep.change-password-form
+    mat-form-field:nth-child(1)
+        margin-top: 0px
+    mat-form-field:nth-child(2), mat-form-field:nth-child(3)
+        margin-top: calc(37px - 1.25em)
+
+::ng-deep.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label
+    transform: translateY(-1.28125em) scale(0.59) perspective(100px) translateZ(0.001px) !important
+
+::ng-deep.mat-form-field.mat-form-field-invalid .mat-form-field-label
+    color: rgba(0, 0, 0, 0.54) !important
+
+::ng-deep.mat-form-field.mat-form-field-invalid .mat-form-field-ripple, .mat-form-field.mat-form-field-invalid .mat-form-field-ripple.mat-accent
+    background-color: #ff0000 !important
+::ng-deep.mat-form-field.mat-focused .mat-form-field-label
+    color: $blue !important
+::ng-deep.mat-form-field.mat-form-field-invalid .mat-form-field-label
+    color: rgba(126, 126, 126, 1) !important
+
+.btn-blue
+  max-width: 423px
+  height: 52px
+  font-size: 15px
+  font-weight: bold
+  border-radius: 30px
+  display: flex
+  align-items: center
+  justify-content: center
+  line-height: 15px
+  background-color: #33A4FF
+  color: #FFF
+  width: 100%
+  &.btn-upload
+    margin-bottom: 27px
+    padding: 0px 33px
+    ::ng-deep
+      span
+        width: 100%
+        display: flex !important
+        align-items: center !important
+        justify-content: space-between !important
+  &.btn-rounded
+    color: #33A4FF
+    background-color: #FFF
+    border: 2px solid #33A4FF

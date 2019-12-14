@@ -1,0 +1,85 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css"
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel'
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default'
+@import "~@ng-select/ng-select/themes/default.theme.css"
+@import '~ngx-toastr/toastr'
+@import 'general'
+@import 'variables'
+@import 'toastr'
+
+.toast-container
+  box-shadow: none !important
+
+.btn
+    box-shadow: none !important
+.btn-red
+    background: $delete-red !important
+    color: #FFF !important
+.btn-transparent
+    color: $primary-color !important
+
+.blur
+    width: 100%
+    height: 100%
+    position: absolute
+    z-index: 99
+    filter: blur(3px)
+    -webkit-filter: blur(3px)
+
+.btn-rounded
+  height: 36px !important
+  width: 108px !important
+  border-radius: 28px !important
+  display: flex !important
+  align-items: center !important
+  justify-content: center !important
+
+.btn-blue
+    background: $lart-dark-blue !important
+    display: flex
+    align-items: center
+    justify-content: center
+
+.btn-outline
+  background-color: transparent !important
+  &.btn-blue
+    color: $lart-blue !important
+    border: 2px solid $lart-blue
+
+.btn-bold
+  font-weight: 700 !important
+  line-height: 10px !important
+  font-size: 15px !important
+
+.flat-btn
+    background-color: transparent !important
+    border-radius: 3px !important
+    border: 1px solid $primary-color !important
+    font-size: 15px !important
+    font-weight: 400 !important
+    height: 30px !important
+    width: 165px !important
+    padding: 0 !important
+    span
+        line-height: 26px !important
+        display: flex
+        align-items: center
+        justify-content: center
+    img
+        width: 20px
+        height: 20px
+        margin-right: 7px
+.ellipsis
+  text-overflow: ellipsis
+  white-space: nowrap
+  overflow: hidden
+
+.sticky
+    position: fixed
+    top: 0px
+    right: 420px
+    left: 80px
+    z-index: 99
+    background: whitesmoke
+    // padding-top: 30px
+    border-bottom: 1px solid rgb(169, 169, 169)

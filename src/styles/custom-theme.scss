@@ -1,0 +1,45 @@
+@import '~@angular/material/theming';
+
+$md-mcgpalette0: (
+    50 : #e1eff8,
+    100 : #b5d6ee,
+    200 : #83bbe3,
+    300 : #519fd7,
+    400 : #2c8bcf,
+    500 : #0776c6,
+    600 : #066ec0,
+    700 : #0563b9,
+    800 : #0459b1,
+    900 : #0246a4,
+    A100 : #cee0ff,
+    A200 : #9bbfff,
+    A400 : #689eff,
+    A700 : #4f8dff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+@include mat-core();
+$multiple-board-management-theme-primary: mat-palette($md-mcgpalette0, 500);
+$multiple-board-management-theme-accent:mat-palette($md-mcgpalette0, A200, A100, A400);
+$multiple-board-management-theme-warn: mat-palette($mat-red);
+$multiple-board-management-theme: mat-light-theme($multiple-board-management-theme-primary, $multiple-board-management-theme-accent, $multiple-board-management-theme-warn);
+@include angular-material-theme($multiple-board-management-theme);
+
+.cdk-overlay-dark-backdrop {
+    background: rgba(0, 0, 0, 0.2) !important
+}

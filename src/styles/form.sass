@@ -1,0 +1,83 @@
+@import 'variables'
+
+input, ::ng-deep.ng-select-container
+  border: 1px solid #707070 !important
+  font-size: 14px !important
+  color: #000 !important
+  border-radius: 7px !important
+  height: 39px !important
+  padding: 11px 15px
+  &.ng-invalid.ng-touched.ng-dirty
+    border: 1px solid #FF0000 !important
+    &:focus
+      box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25)
+  &::placeholder
+    font-size: 14px !important
+    color: #000 !important
+textarea
+  border: 1px solid #707070
+  border-radius: 7px
+  height: 87px !important
+  font-size: 11px
+  color: #000
+  max-width: 252px
+  &.ng-invalid.ng-touched.ng-dirty
+    border: 1px solid #FF0000 !important
+    &:focus
+      box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25)
+  &::placeholder
+    font-size: 11px
+    color: #000
+.form-group
+  margin-bottom: 0px !important
+
+.form-row
+  margin-top: 8px
+  &:not(:first-child)
+    margin-top: 23px
+  &:last-child
+    margin-bottom: 8px
+  .title
+    font-weight: 700
+    font-size: 17px
+  .input
+    max-width: 298px
+  label
+    text-transform: uppercase
+    font-size: 11px
+  .custom-input
+    padding-left: 80px !important
+  ::ng-deep
+    .form-err-c
+      font-size: 9px
+      color: #FF0000
+      left: 10px
+      margin-top: 3px
+    .ng-value-container
+      overflow: visible !important
+      margin-right: 5px !important
+      padding: 0px !important
+      .ng-placeholder
+        font-size: 14px
+        color: #000 !important
+  .in-select
+    ::ng-deep
+      *
+        &:not(.form-control)
+          outline: none !important
+          box-shadow: none !important
+      .ng-select
+        position: absolute
+      .ng-value
+        font-size: 0px
+        padding-left: 3px
+        margin-top: 2px
+      .ng-select-container
+        background-color: transparent !important
+        border: 0px !important
+        width: 81px
+      .ng-dropdown-panel
+        width: 250px
+  option
+    heihgt: 50px
+

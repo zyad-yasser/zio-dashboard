@@ -1,0 +1,159 @@
+<div class="login-container d-flex align-items-center justify-content-center">
+  <div class="card d-block">
+    <div class="logo-box mx-auto d-flex align-items-center justify-content-center">
+      <img class="logo" src="/assets/images/logo.svg" />
+    </div>
+    <div class="form-box mx-auto d-flex align-items-center justify-content-center">
+      <form class="w-100" #form="ngForm">
+        <div class="d-flex">
+          <div class="form-ico mr-2">
+            <img
+              *ngIf="
+                !(
+                  emailFormControl.errors &&
+                  ((emailFormControl.touched && emailFormControl.dirty) ||
+                    form.submitted)
+                ) && !emailBlurred
+              "
+              #emailico
+              src="/assets/images/email-hvr.svg"
+              class="form-icon"
+            />
+            <img
+              *ngIf="
+                !(
+                  emailFormControl.errors &&
+                  ((emailFormControl.touched && emailFormControl.dirty) ||
+                    form.submitted)
+                ) && emailBlurred
+              "
+              #emailico
+              src="/assets/images/email.svg"
+              class="form-icon"
+            />
+            <img
+              *ngIf="
+                emailFormControl.errors &&
+                ((emailFormControl.touched && emailFormControl.dirty) ||
+                  form.submitted)
+              "
+              #emailico
+              src="/assets/images/email-err.svg"
+              class="form-icon"
+            />
+          </div>
+          <mat-form-field mat-autosize class="w-100">
+            <input
+              id="email"
+              name="email"
+              matInput
+              (focus)="onFocus('email')"
+              (blur)="onBlur('email')"
+              (input)="errors = []"
+              [placeholder]="'LOGIN.EMAIL' | translate"
+              [formControl]="emailFormControl"
+              [errorStateMatcher]="matcher"
+              [pattern]="emailPattern"
+            />
+            <mat-error
+              *ngIf="
+                (emailFormControl.hasError('email') || emailFormControl.hasError('pattern')) &&
+                !emailFormControl.hasError('required')
+              "
+            >
+              <img class='warn' width='10px' height='10px' src='/assets/images/warn.svg'/>
+              {{ 'LOGIN.INVALID_EMAIL' | translate }}
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              <img class='warn' width='10px' height='10px' src='/assets/images/warn.svg'/>
+              {{ 'LOGIN.EMAIL_REQUIRED' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="d-flex password-input">
+          <div class="form-ico mr-2">
+            <img
+              *ngIf="
+                !(
+                  passwordFormControl.errors &&
+                  ((passwordFormControl.touched && passwordFormControl.dirty) ||
+                    form.submitted)
+                ) && passwordBlurred
+              "
+              #lockico
+              src="/assets/images/lock.svg"
+              class="form-icon"
+            />
+            <img
+              *ngIf="
+                !(
+                  passwordFormControl.errors &&
+                  ((passwordFormControl.touched && passwordFormControl.dirty) ||
+                    form.submitted)
+                ) && !passwordBlurred
+              "
+              #lockico
+              src="/assets/images/lock-hvr.svg"
+              class="form-icon"
+            />
+            <img
+              *ngIf="
+                passwordFormControl.errors &&
+                ((passwordFormControl.touched && passwordFormControl.dirty) ||
+                  form.submitted)
+              "
+              src="/assets/images/lock-err.svg"
+              class="form-icon"
+            />
+          </div>
+          <mat-form-field mat-autosize class="w-100">
+            <input
+              id="password"
+              (focus)="onFocus('password')"
+              (blur)="onBlur('password')"
+              (input)="errors = []"
+              name="password"
+              type="password"
+              class="login-input"
+              matInput
+              [placeholder]="'LOGIN.PASSWORD' | translate"
+              [formControl]="passwordFormControl"
+              [errorStateMatcher]="matcher"
+            />
+            <mat-error *ngIf="online && passwordFormControl.hasError('required')" class='d-flex align-items-center'>
+              <img class='warn' width='10px' height='10px' src='/assets/images/warn.svg'/>
+              {{ 'LOGIN.PASSWORD_REQUIRED' | translate }}
+            </mat-error>
+            <div [@errShowHide]="!online ? 'show' : 'hide'" class='align-items-center form-err'>
+              <img class='warn' width='10px' height='10px' src='/assets/images/warn.svg'/>
+              {{ 'LOGIN.CONNECTION_PROBLEM' | translate }}
+            </div>
+            <div [@errShowHide]="(online && errors.length && !passwordFormControl.errors) ? 'show' : 'hide'" class='align-items-center form-err'>
+              <img class='warn' width='10px' height='10px' src='/assets/images/warn.svg'/>
+              {{errors}}
+            </div>
+          </mat-form-field>
+        </div>
+        <section class="t-checkbox w-100 d-flex justify-content-end">
+          <mat-checkbox
+            id="rememberMe"
+            class="example-margin"
+            [(ngModel)]="rememberMe"
+            name="remember"
+            >{{ 'LOGIN.REMEMBER_ME' | translate }}</mat-checkbox
+          >
+        </section>
+        <button
+          id="loginBtn"
+          [disabled]='passwordFormControl.errors || emailFormControl.errors || isLoggingIn || !online'
+          class="btn d-flex align-items-center justify-content-center mx-auto"
+          mat-raised-button
+          (click)="login()"
+        >
+        {{ 'LOGIN.LOGIN' | translate }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="mat-dialog-title-container">
+  <h1 mat-dialog-title>
+    {{ modalTitle | translate }}
+    <button class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </h1>
+</div>
+<div mat-dialog-content>
+  <div class="w-100">{{ confirmString1 | translate }}</div>
+  <div class="w-100">{{ "MODALS.DELETE_USER_STRING2" | translate }}</div>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+  <button
+    mat-button
+    id="changePasswordCancel"
+    color="primary"
+    class="btn-wrraper btn-cancel btn-transparent text-uppercase"
+    (click)="close()"
+  >
+    {{ "MODALS.CANCEL" | translate }}
+  </button>
+  <button
+    id="deleteUser"
+    mat-raised-button
+    (click)="deleteUser()"
+    class="btn btn-wrraper btn-delete btn-red text-uppercase"
+    *ngIf="this.dialogRef.id === 'deleteUserModal'"
+    [disabled]="isSaving"
+  >
+    {{ "MODALS.DELETE" | translate }}
+  </button>
+  <button
+    id="resetPassword"
+    mat-raised-button
+    (click)="resetPassword()"
+    class="btn btn-wrraper btn-delete btn-red text-uppercase"
+    *ngIf="this.dialogRef.id === 'resetPasswordModal'"
+    [disabled]="isSaving"
+  >
+    {{ "MODALS.RESET" | translate }}
+  </button>
+</div>
