@@ -1,0 +1,54 @@
+<div class="left">
+  <div class="meeting-time d-flex align-items-center">
+    <i class="lni-layers"></i>
+    <div class="board-name">Packmittelboard</div>
+    <div class="info">| Meeting 9:00 am</div>
+  </div>
+</div>
+<div class="right d-flex align-items-center">
+  <div class="search">
+    <div class="search-bar d-flex align-items-center justify-content-center">
+      <div class="icon d-flex align-items-center justify-content-center">
+        <i class="lni-search"></i>
+      </div>
+      <input type="text h-100" />
+    </div>
+  </div>
+  <div class="user d-flex align-items-center justify-content-center">
+    <div class="profile-icon">
+      <button class='user-nav d-flex align-items-center justify-content-center' mat-icon-button [matMenuTriggerFor]="menu">
+        <div class='box-40 rounded-circle text-uppercase d-flex align-items-center' mat-button >
+          <img height="30px" [src]="user.image" />
+        </div>
+      </button>
+      <mat-menu #menu="matMenu" yPosition="below" class="header-menu">
+        <span class="dropdown-menu-arrow"></span>
+        <div class="user-info">
+          <div class="user-name">{{user?.firstName}} {{ user?.lastName }}</div>
+          <div class="user-role">Admin</div>
+        </div>
+        <button mat-menu-item (click)="changePassword()">
+          <img class="user-nav-icon" src="/assets/images/change-password.svg">
+          Change password
+        </button>
+        <button mat-menu-item (click)="logout()" [disabled]='loggingout'>
+          <img class="user-nav-icon" src="/assets/images/log-out.svg">
+          Logout
+        </button>
+      </mat-menu>
+    </div>
+    {{ user?.firstName }} {{ user?.lastName }}
+  </div>
+  <div class="spacer"></div>
+  <div class="icons d-flex align-items-center">
+    <button class='user-nav d-flex align-items-center justify-content-center' mat-icon-button>
+      <i class="lni-cog"></i>
+    </button>
+    <button class='user-nav d-flex align-items-center justify-content-center' mat-icon-button>
+      <i class="lni-user"></i>
+    </button>
+    <button class='user-nav d-flex align-items-center justify-content-center' mat-icon-button>
+      <i class="lni-power-switch"></i>
+    </button>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { LoaderService } from 'src/app/services/loader/loader.service';
 
 @Component({
   selector: 'app-layout-dashboard',
@@ -6,7 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./dashboard.component.sass']
 })
 export class LayoutDashbaordComponent implements OnInit {
-  constructor() { }
+  constructor(private loaderService: LoaderService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loaderService.show();
+  }
 }

@@ -20,3 +20,5 @@ export const toastrConfig = {
 
 export const appLogo = '/assets/images/logo.svg';
 export const appStringName = 'Takeda board';
+
+export const fakeLoaderPeriod = 1000;

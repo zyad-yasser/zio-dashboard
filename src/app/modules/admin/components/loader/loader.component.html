@@ -1,0 +1,23 @@
+<div
+  class="loader w-100 h-100 position-absolute d-flex align-items-center justify-content-center"
+  *ngIf="isLoading"
+  [@state]="state"
+  (@state.done)="animationDone($event)"
+>
+  <div class="position-absolute text-center">
+    <img [src]="appLogo" class="mx-auto" width="90px"/>
+  </div>
+
+  <div class="position-absolute text-center">
+    <div class="text">
+      <strong>{{ appName.split(' ')[0] }}</strong>
+      {{ appName.split(' ')[1] }}
+    </div>
+  </div>
+  <div class="content">
+    <span class="Loader__Circle"></span>
+    <span class="Loader__Circle"></span>
+    <span class="Loader__Circle"></span>
+    <span class="Loader__Circle"></span>
+  </div>
+</div>

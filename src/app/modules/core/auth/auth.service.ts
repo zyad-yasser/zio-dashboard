@@ -9,6 +9,7 @@ import { LoginData } from 'src/app/models/login';
 import { User } from 'src/app/models/user';
 import { MapperService } from 'src/app/services/mappers/mapper.service';
 import { urls } from 'src/app/statics/urls';
+import { defaultUser } from 'src/app/statics/default-user';
 
 @Injectable({
   providedIn: 'root'
@@ -50,11 +51,7 @@ export class AuthService {
     return user;
   }
   isSuperAdmin(): boolean {
-    const user: User = this.getLoggedin();
-    if (user && user.role === 'Admin') {
-      return true;
-    }
-    return false;
+    return true;
   }
   isLoggedin(): boolean {
     const user: User = this.getLoggedin();

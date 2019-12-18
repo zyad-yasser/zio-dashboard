@@ -7,7 +7,6 @@ import { MaterialModule } from './material/material.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValidatorComponent } from './components/validator/validator.component';
-import { LoaderComponent } from './components/loader/loader.component';
 
 
 @NgModule({
@@ -15,8 +14,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     ConfirmationComponent,
     ChangePasswordComponent,
     VersionComponent,
-    ValidatorComponent,
-    LoaderComponent
+    ValidatorComponent
   ],
   imports: [
     FormsModule,
@@ -28,7 +26,6 @@ import { LoaderComponent } from './components/loader/loader.component';
   exports: [
     VersionComponent,
     MaterialModule,
-    LoaderComponent,
     FormsModule,
     ReactiveFormsModule,
     TranslateModule

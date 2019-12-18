@@ -1,48 +1,19 @@
 <div class="side-nav-logo">
-  <img src="../../../../../assets/images/side-nav-logo.svg">
+  <img [src]="appLogo">
+  <strong>{{ appName.split(' ')[0] }}</strong>
+  {{ appName.split(' ')[1] }}
 </div>
 <div class="side-nav">
   <mat-nav-list>
     <mat-list-item
       *ngFor="let item of sidenavItems; let i = index"
       (click)="navigator(i)"
-      [class.tab-active]="activeTab == i"
-      [hidden]= "item.permission !== 'all' && ! helper.isSuperAdmin()"
+      [class.active]="activeTab == i"
     >
       <div class="content w-100">
-        <div mat-list-icon>
-          <img
-            class="tab-icon"
-            width="100%"
-            height="100%"
-            [src]="activeTab == i ? item.activeIcon : item.icon"
-          />
-        </div>
-        <!-- <h4 class="tab-name">{{ item.name | translate }}</h4> -->
+        <i [class]="item.iconGroup + item.icon"></i>
+        <div class="text">{{item.name}}</div>
       </div>
     </mat-list-item>
   </mat-nav-list>
-
-  <div class="profile-icon">
-    <button class='user-nav' mat-icon-button [matMenuTriggerFor]="menu">
-        <div class='box-40 rounded-circle text-uppercase d-flex align-items-center' mat-button >
-            {{user?.profileName}}
-        </div>
-    </button>
-    <mat-menu #menu="matMenu" yPosition="above" class="header-menu">
-      <span class="dropdown-menu-arrow"></span>
-      <div class="user-info">
-        <div class="user-name">{{user?.fullName}}</div>
-        <div class="user-role">{{user?.role}}</div>
-      </div>
-      <button mat-menu-item (click)="changePassword()">
-          <img class="user-nav-icon" src="../../../../../assets/images/change-password.svg">
-          {{ 'HEADER.CHANGE_PASSWORD' | translate }}
-      </button>
-      <button mat-menu-item (click)="logout()" [disabled]='loggingout'>
-          <img class="user-nav-icon" src="../../../../../assets/images/log-out.svg">
-          {{ 'HEADER.LOGOUT' | translate }}
-      </button>
-    </mat-menu>
-  </div>
 </div>

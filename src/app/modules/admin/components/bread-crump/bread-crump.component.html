@@ -1,0 +1,6 @@
+<div class="breadcrump w-100 d-flex align-items-center">
+  <div class="d-flex align-items-center" *ngFor="let item of data; let i = index" >
+    <div class="item" [class.active]="i === (data.length - 1)">{{item}}</div>
+    <div class="separator" *ngIf="i !== (data.length - 1)">></div>
+  </div>
+</div>

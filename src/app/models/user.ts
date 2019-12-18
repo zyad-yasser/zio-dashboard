@@ -6,9 +6,6 @@ export class User {
   firstName: string;
   lastName: string;
   typeId: number;
-  regions: any[];
   token: string;
-  role: string;
-  profileName: string;
-  fullName: string;
+  image: string;
 }

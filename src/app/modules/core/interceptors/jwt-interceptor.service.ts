@@ -31,7 +31,7 @@ export class JWTInterceptorService implements HttpInterceptor {
   private reqCounterDecrease(): void {
     this.reqCounter -= 1;
     if (this.reqCounter === 0) {
-      this.loader.hide();
+      // this.loader.hide();
     }
   }
 

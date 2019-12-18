@@ -1,0 +1,18 @@
+<div class="card-content">
+  <div class="title-bar d-flex align-items-center justify-content-between">
+    <div class="title" *ngIf="withTitle">
+      {{ title }}
+    </div>
+    <div class="buttons" *ngIf="withButtons">
+      <button mat-button class="mr-3" (click)="minimize()">
+        <i class="lni-chevron-down"></i>
+      </button>
+      <button mat-button (click)="close()">
+        <i class="lni-close"></i>
+      </button>
+    </div>
+  </div>
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,24 +1,18 @@
-<mat-drawer-container
-  class="example-container mat-typography"
-  autosize
->
-  <mat-drawer
-    #drawer
-    mode="side"
-    disableClose="true"
-    opened="true"
-  >
-    <app-sidenav
-      class="h-100"
-    ></app-sidenav>
-  </mat-drawer>
+<div class="dashboard-container">
+  <app-loader></app-loader>
+  <mat-drawer-container class="example-container mat-typography" autosize>
+    <mat-drawer #drawer mode="side" disableClose="true" opened="true">
+      <app-sidenav class="h-100"></app-sidenav>
+    </mat-drawer>
 
-  <div class="sidenav-content d-flex">
-    <div class="app-wrapper" id="appWrapper">
-      <app-loader></app-loader>
-      <div class="app-container mx-auto">
-        <router-outlet></router-outlet>
+    <div class="sidenav-content d-flex">
+      <div class="app-wrapper position-relative" id="appWrapper">
+        <app-navbar></app-navbar>
+        <div class="app-container mx-auto">
+          <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
       </div>
     </div>
-  </div>
-</mat-drawer-container>
+  </mat-drawer-container>
+</div>
