@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -6,11 +6,19 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./card.component.sass']
 })
 export class CardComponent implements OnInit {
+  @HostBinding('class.collapsed') public collapsed = false;
   @Input() withTitle: boolean;
   @Input() withButtons: boolean;
   @Input() title: string;
 
   constructor() { }
+
+  public minimize(): void {
+    this.collapsed = !this.collapsed;
+  }
+
+  public close(): void {
+  }
 
   ngOnInit() {
   }

@@ -1,0 +1,13 @@
+<div class="stack d-flex align-items-center h-100">
+  <div>
+    <div *ngFor="let item of data; let i = index;" class="w-100">
+      <div class="title">
+        {{item.title}}
+      </div>
+      <div class="value">
+        {{item.value}}
+      </div>
+      <div class="liner my-3 mx-auto" *ngIf="i !== (data.length - 1)"></div>
+    </div>
+  </div>
+</div>

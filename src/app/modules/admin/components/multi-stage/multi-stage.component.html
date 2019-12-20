@@ -1,0 +1,14 @@
+<div class="multi-stage d-flex">
+  <div class="unit pr-3 mr-3" *ngFor="let item of data; let i = index">
+    <div
+      class="title"
+      [class.colored]="item.color"
+      [style.backgroundColor]="item.color ? item.color : 'transparent'"
+    >
+      {{ item.title }}
+    </div>
+    <div class="value" [style.paddingLeft.px]="item.color ? 10 : 0">
+      {{ item.value }}
+    </div>
+  </div>
+</div>

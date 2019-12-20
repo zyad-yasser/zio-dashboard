@@ -12,5 +12,4 @@ export class BreadCrumpComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

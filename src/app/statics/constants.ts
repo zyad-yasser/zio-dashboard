@@ -22,3 +22,21 @@ export const appLogo = '/assets/images/logo.svg';
 export const appStringName = 'Takeda board';
 
 export const fakeLoaderPeriod = 1000;
+
+export const ehsStages = [
+  {
+    title: 'Accidents',
+    value: '0',
+    color: '#57b955'
+  },
+  {
+    title: 'Observations',
+    value: '0',
+    color: '#db4912'
+  },
+  {
+    title: '5S score',
+    value: '4.5',
+    color: '#f0af03'
+  },
+];

@@ -15,6 +15,9 @@ import { BreadCrumpComponent } from './components/bread-crump/bread-crump.compon
 import { TitleComponent } from './components/title/title.component';
 import { CardComponent } from './components/card/card.component';
 import { TachometerComponent } from './components/tachometer/tachometer.component';
+import { MultiStageComponent } from './components/multi-stage/multi-stage.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { StackComponent } from './components/stack/stack.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +32,15 @@ import { TachometerComponent } from './components/tachometer/tachometer.componen
     BreadCrumpComponent,
     TitleComponent,
     CardComponent,
-    TachometerComponent
+    TachometerComponent,
+    MultiStageComponent,
+    StackComponent
   ],
   imports: [
     AdminRoutingModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+    NgApexchartsModule,
   ],
 })
 export class AdminModule { }

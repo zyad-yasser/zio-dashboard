@@ -5,14 +5,20 @@
   background-color: rgba(0, 0, 0, 0.4)
   padding: 16px
   border-radius: 7px
+  overflow: hidden
+  transition: all 500ms ease
   color: #FFF
+  &.collapsed
+    height: 50px
+    transition: all 500ms ease
+    overflow: hidden
   .card-content
     .title-bar
       .title
         font-size: 20px
       .buttons
         button
-          font-size: 10px
+          font-size: 8px
           line-height: 10px
           padding: 0px !important
           width: 10px
