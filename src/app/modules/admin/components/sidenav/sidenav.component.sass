@@ -20,10 +20,23 @@
     strong
       margin-right: 3px
 .side-nav
-    display: flex
-    flex-direction: column
-    justify-content: space-between
-    height: calc(100% - 110px)
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  height: calc(100% - 64px)
+  ::ng-deep
+    .lower
+      .toggle
+        font-size: 10px
+        color: #FFF
+        border-radius: 50%
+        overflow: hidden
+        span
+          display: flex
+          align-items: center
+          justify-content: center
+        &.collapsed
+          transform: rotate(180deg)
 
 .side-nav-btn
     position: absolute

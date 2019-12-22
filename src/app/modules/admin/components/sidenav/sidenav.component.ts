@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { modalConfig, appLogo, appStringName } from 'src/app/statics/constants';
 import { User } from 'src/app/models/user';
 import { HelperService } from 'src/app/services/helpers/helper.service';
+import { UiService } from 'src/app/services/ui/ui.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -18,10 +19,12 @@ export class SidenavComponent implements OnInit {
   public isExpanded = false;
   public activeTab = 0;
   public sidenavItems: Sidenav[] = sidenavItems;
+  public sideMenuCollapseState = false;
 
   constructor(
     public helper: HelperService,
     private router: Router,
+    private uiService: UiService
   ) {
     this.sidenavItems.some((item, index) => {
       if (item.link === this.helper.sidenav) {
@@ -37,6 +40,18 @@ export class SidenavComponent implements OnInit {
     this.router.navigate([`/${lang}/${this.sidenavItems[index].link}`]);
   }
 
+  public toggleCollapse(): void {
+    this.uiService.sideMenuCollapseState.emit();
+  }
+
+  public attachEvents(): void {
+    this.uiService.sideMenuCollapseState
+      .subscribe((res: boolean) => {
+        this.sideMenuCollapseState = !this.sideMenuCollapseState;
+      });
+  }
+
   ngOnInit() {
+    this.attachEvents();
   }
 }

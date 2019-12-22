@@ -8,6 +8,7 @@ import { User } from 'src/app/models/user';
 import { HelperService } from 'src/app/services/helpers/helper.service';
 import { Router } from '@angular/router';
 import { defaultUser } from 'src/app/statics/default-user';
+import { UiService } from 'src/app/services/ui/ui.service';
 
 @Component({
   selector: 'app-navbar',
@@ -25,7 +26,8 @@ export class NavbarComponent implements OnInit {
     public dialog: MatDialog,
     private authService: AuthService,
     private helper: HelperService,
-    private router: Router
+    private router: Router,
+    private uiService: UiService
   ) {}
 
   public changePassword(): void {
@@ -34,6 +36,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.user = defaultUser;
+  }
+
+  public toggleSideMenu(): void {
+    this.uiService.sideMenuOpenState.emit();
   }
 
   public logout() {

@@ -1,7 +1,9 @@
 <div class="side-nav-logo">
   <img [src]="appLogo">
-  <strong>{{ appName.split(' ')[0] }}</strong>
-  {{ appName.split(' ')[1] }}
+  <span class="text">
+    <strong>{{ appName.split(' ')[0] }}</strong>
+    {{ appName.split(' ')[1] }}
+  </span>
 </div>
 <div class="side-nav">
   <mat-nav-list>
@@ -16,4 +18,9 @@
       </div>
     </mat-list-item>
   </mat-nav-list>
+  <div class="lower d-flex justify-content-end">
+    <button mat-icon-button class="toggle" [class.collapsed]="!sideMenuCollapseState" (click)="toggleCollapse()">
+      <i class="lni-angle-double-right"></i>
+    </button>
+  </div>
 </div>
