@@ -9,14 +9,14 @@
   background-color: transparent !important
   width: 200px
 .side-nav-logo
-    font-size: 16px
+    font-size: 12px
     display: flex
     justify-content: center
     align-items: center
     height: 64px
     img
       margin-right: 10px
-      width: 50px
+      width: 35px
     strong
       margin-right: 3px
 .side-nav
@@ -37,13 +37,6 @@
           justify-content: center
         &.collapsed
           transform: rotate(180deg)
-
-.side-nav-btn
-    position: absolute
-    bottom: 0px
-    margin: auto
-    left: 0
-    right: 0
 
 .profile-icon
     border-radius: 0px
@@ -71,7 +64,6 @@
     border: 1px solid rgb(151, 151, 151)
     box-shadow: none
     border-radius: 0px 4px 4px
-    bottom: 5px !important
     left: 0
     position: absolute
     overflow: visible !important
@@ -112,26 +104,24 @@
         content: ""
         position: absolute
         left: 15px
-        bottom: -5px
+        top: -5px
         width: 0
         height: 0px
         border-style: solid
         border-width: 0 5px 5px 5px
         border-color: transparent transparent #fff transparent
         z-index: 9999
-        transform: rotate(180deg)
     &:after
         content: ""
         position: absolute
         left: 14px
-        bottom: -6px
+        top: -6px
         width: 0
         height: 0
         border-style: solid
         border-width: 0px 6px 6px 6px
         border-color: transparent transparent #979797 transparent
         z-index: 9998
-        transform: rotate(180deg)
 
 mat-nav-list
   padding-top: 0px !important

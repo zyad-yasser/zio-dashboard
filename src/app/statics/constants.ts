@@ -18,8 +18,8 @@ export const toastrConfig = {
   positionClass: 'toast-bottom-center'
 };
 
-export const appLogo = '/assets/images/logo.svg';
-export const appStringName = 'Takeda board';
+export const appLogo = '/assets/images/logo.png';
+export const appStringName = 'LART-QUI-TECTE board';
 
 export const fakeLoaderPeriod = 1000;
 

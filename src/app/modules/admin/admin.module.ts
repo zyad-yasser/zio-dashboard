@@ -18,6 +18,25 @@ import { TachometerComponent } from './components/tachometer/tachometer.componen
 import { MultiStageComponent } from './components/multi-stage/multi-stage.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { StackComponent } from './components/stack/stack.component';
+import { UsersComponent } from './pages/users/users.component';
+import { UploadsComponent } from './pages/uploads/uploads.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { SectionsComponent } from './pages/sections/sections.component';
+import { AccountsComponent } from './pages/accounts/accounts.component';
+import { InformationComponent } from './pages/information/information.component';
+import { ClientsComponent } from './pages/clients/clients.component';
+import { ArticlesComponent } from './pages/articles/articles.component';
+import { PartnersComponent } from './pages/partners/partners.component';
+import { AgentsComponent } from './pages/agents/agents.component';
+import { CountriesComponent } from './pages/countries/countries.component';
+import { SearchResultsComponent } from './pages/search-results/search-results.component';
+import { ErrorComponent } from './pages/error/error.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
+import { ImageListComponent } from './components/image-list/image-list.component';
+import { UploaderComponent } from './components/uploader/uploader.component';
+import { BodyComposerComponent } from './components/body-composer/body-composer.component';
+import { CoreModule } from '../core/core.module';
+import { AddProjectComponent } from './pages/add-project/add-project.component';
 
 @NgModule({
   declarations: [
@@ -34,9 +53,28 @@ import { StackComponent } from './components/stack/stack.component';
     CardComponent,
     TachometerComponent,
     MultiStageComponent,
-    StackComponent
+    StackComponent,
+    UsersComponent,
+    UploadsComponent,
+    ProjectsComponent,
+    SectionsComponent,
+    AccountsComponent,
+    InformationComponent,
+    ClientsComponent,
+    ArticlesComponent,
+    PartnersComponent,
+    AgentsComponent,
+    CountriesComponent,
+    SearchResultsComponent,
+    ErrorComponent,
+    DataTableComponent,
+    ImageListComponent,
+    UploaderComponent,
+    BodyComposerComponent,
+    AddProjectComponent
   ],
   imports: [
+    CoreModule,
     AdminRoutingModule,
     CommonModule,
     SharedModule,
