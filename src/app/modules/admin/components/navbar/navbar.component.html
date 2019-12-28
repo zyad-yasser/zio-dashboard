@@ -1,57 +1,116 @@
-<div class="left d-flex align-items-center justify-content-center">
-  <button (click)="toggleSideMenu()" class="menu-button mr-3" mat-icon-button>
-    <i class="lni-menu"></i>
-  </button>
-  <div class="meeting-time d-flex align-items-center">
-    <i class="lni-layers"></i>
-    <div class="board-name">Packmittelboard</div>
-    <div class="info">| Meeting 9:00 am</div>
+<div class="nav w-100">
+  <div class="left d-flex align-items-center justify-content-center">
+    <button (click)="toggleSideMenu()" class="menu-button mr-3" mat-icon-button>
+      <i class="lni-menu"></i>
+    </button>
+    <div class="meeting-time d-flex align-items-center">
+      <i class="lni-layers"></i>
+      <div class="board-name">Good day</div>
+      <div class="info">| {{ time | date: "hh:mm:ss a" }}</div>
+    </div>
+  </div>
+  <div class="right d-flex align-items-center">
+    <div class="one-input-wrapper text-center">
+      <div class="d-flex one-input justify-content-start">
+        <div
+          class="form-ico mr-2 d-flex align-items-center justify-content-center"
+        >
+          <i class="lni-magnifier"></i>
+        </div>
+        <input
+          id="search"
+          name="search"
+          placeholder="search"
+          class="flex-grow-1"
+        />
+      </div>
+    </div>
+    <div class="user d-flex align-items-center justify-content-center">
+      <div class="profile-icon">
+        <button
+          class="user-nav d-flex align-items-center justify-content-center"
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+        >
+          <div
+            class="box-40 rounded-circle text-uppercase d-flex align-items-center"
+            mat-button
+          >
+            <img
+              height="30px"
+              [src]="user?.image || '/assets/images/user.png'"
+            />
+          </div>
+        </button>
+        <mat-menu
+          #menu="matMenu"
+          yPosition="below"
+          xPosition="after"
+          class="header-menu"
+        >
+          <span class="dropdown-menu-arrow"></span>
+          <div class="user-info">
+            <div class="user-name">
+              {{ user?.firstName }} {{ user?.lastName }}
+            </div>
+            <div class="user-role">Admin</div>
+          </div>
+          <button mat-menu-item (click)="changePassword()">
+            <i class="lni-lock mr-2 icon"></i>
+            Change password
+          </button>
+          <button mat-menu-item (click)="logout()" [disabled]="loggingout">
+            <i class="lni-exit mr-2 icon"></i>
+            Logout
+          </button>
+        </mat-menu>
+      </div>
+      <div class="user-info">{{ user?.firstName }} {{ user?.lastName }}</div>
+    </div>
+    <div class="spacer"></div>
+    <div class="icons d-flex align-items-center">
+      <button
+        class="user-nav d-flex align-items-center justify-content-center"
+        mat-icon-button
+      >
+        <i class="lni-cog"></i>
+      </button>
+      <button
+        class="user-nav d-flex align-items-center justify-content-center"
+        mat-icon-button
+      >
+        <i class="lni-user"></i>
+      </button>
+      <button
+        class="user-nav d-flex align-items-center justify-content-center"
+        mat-icon-button
+      >
+        <i class="lni-power-switch"></i>
+      </button>
+      <button
+        (click)="toggleNavCollapsedMenu()"
+        class="menu-button collapsed-menu-button nav-collapsed-menu-toggle"
+        mat-icon-button
+      >
+        <i [class]="'lni-chevron-' + (navCollapsedMenu ? 'up' : 'down') + '-circle'"></i>
+      </button>
+    </div>
   </div>
 </div>
-<div class="right d-flex align-items-center">
-  <div class="search">
-    <div class="search-bar d-flex align-items-center justify-content-center">
-      <div class="icon d-flex align-items-center justify-content-center">
-        <i class="lni-search"></i>
+<div class="collapsed-nav my-2 mx-2" *ngIf="navCollapsedMenu">
+  <div class="one-input-wrapper text-center w-100">
+    <div class="d-flex one-input justify-content-start">
+      <div
+        class="form-ico mr-2 d-flex align-items-center justify-content-center"
+      >
+        <i class="lni-magnifier"></i>
       </div>
-      <input type="text h-100" />
+      <input
+        id="search"
+        name="search"
+        placeholder="search"
+        class="flex-grow-1"
+      />
     </div>
-  </div>
-  <div class="user d-flex align-items-center justify-content-center">
-    <div class="profile-icon">
-      <button class='user-nav d-flex align-items-center justify-content-center' mat-icon-button [matMenuTriggerFor]="menu">
-        <div class='box-40 rounded-circle text-uppercase d-flex align-items-center' mat-button >
-          <img height="30px" [src]="user.image" />
-        </div>
-      </button>
-      <mat-menu #menu="matMenu" yPosition="below" class="header-menu">
-        <span class="dropdown-menu-arrow"></span>
-        <div class="user-info">
-          <div class="user-name">{{user?.firstName}} {{ user?.lastName }}</div>
-          <div class="user-role">Admin</div>
-        </div>
-        <button mat-menu-item (click)="changePassword()">
-          <img class="user-nav-icon" src="/assets/images/change-password.svg">
-          Change password
-        </button>
-        <button mat-menu-item (click)="logout()" [disabled]='loggingout'>
-          <img class="user-nav-icon" src="/assets/images/log-out.svg">
-          Logout
-        </button>
-      </mat-menu>
-    </div>
-    {{ user?.firstName }} {{ user?.lastName }}
-  </div>
-  <div class="spacer"></div>
-  <div class="icons d-flex align-items-center">
-    <button class='user-nav d-flex align-items-center justify-content-center' mat-icon-button>
-      <i class="lni-cog"></i>
-    </button>
-    <button class='user-nav d-flex align-items-center justify-content-center' mat-icon-button>
-      <i class="lni-user"></i>
-    </button>
-    <button class='user-nav d-flex align-items-center justify-content-center' mat-icon-button>
-      <i class="lni-power-switch"></i>
-    </button>
   </div>
 </div>

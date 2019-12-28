@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { serverip, baseUrl } from 'src/app/statics/constants';
+import { baseUrl } from 'src/app/statics/constants';
 import { LocalStorageService } from 'src/app/services/storage/local-storage.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { SessionStorageService } from 'src/app/services/storage/session-storage.service';
 import { LoginData } from 'src/app/models/login';
 import { User } from 'src/app/models/user';
-import { MapperService } from 'src/app/services/mappers/mapper.service';
 import { urls } from 'src/app/statics/urls';
-import { defaultUser } from 'src/app/statics/default-user';
 
 @Injectable({
   providedIn: 'root'
@@ -17,76 +14,79 @@ import { defaultUser } from 'src/app/statics/default-user';
 
 export class AuthService {
   constructor(
-    private router: Router,
     private http: HttpClient,
-    private mapper: MapperService,
     private localStorageService: LocalStorageService,
     private sessionStorageService: SessionStorageService,
-  ) { }
-  login(loginData: LoginData): Observable<any> {
-    return this.http.post(
-      `${ serverip + baseUrl + urls.auth.login}`,
-      loginData
-      );
+  ) {}
+
+  public login(loginData: LoginData): Observable<any> {
+    return this.http.post(`${ baseUrl + urls.auth.login }`, loginData, { observe: 'response' });
   }
-  getAccount(): Observable<any> {
-    return this.http.get(
-      `${ serverip + baseUrl + urls.auth.account}`,
-      );
+
+  public getAccount(): Observable<any> {
+    return this.http.get(`${ baseUrl + urls.auth.account }`, { observe: 'response' });
   }
-  logout(): Observable<any> {
-    return this.http.post(
-      `${ serverip + baseUrl + urls.auth.logout}`,
-      {}
-      );
+
+  public logout(): Observable<any> {
+    return of(true);
+    // return this.http.post(`${ baseUrl + urls.auth.logout }`, {});
   }
-  changePassword(password: any): Observable<any> {
-    return this.http.put(
-      `${ serverip + baseUrl + urls.auth.changePassword}`, password,
-      );
+
+  public changePassword(password: any): Observable<any> {
+    return this.http.put(`${ baseUrl + urls.auth.changePassword }`, password);
   }
-  getLoggedin(): User {
-    const user: User = this.localStorageService.getData('loggedUser') ?
-      this.localStorageService.getData('loggedUser') : this.sessionStorageService.getData('loggedUser');
+
+  public getLoggedin(): User {
+    const user: User = this.localStorageService.getData('user') || this.sessionStorageService.getData('user');
     return user;
   }
-  isSuperAdmin(): boolean {
-    return true;
+
+  public isSuperAdmin(): boolean {
+    const user = this.getLoggedin();
+    return user && user.isSuperAdmin
+      ? true
+      : false;
   }
-  isLoggedin(): boolean {
+
+  public isLoggedin(): boolean {
     const user: User = this.getLoggedin();
-    if (user) {
-      return true;
-    }
-    return false;
+    return user
+      ? true
+      : false;
   }
-  setCredentials(response: any, remember: boolean, roles: any[]) {
-    const user: User = response;
+
+  public setUserData(response: any, remember: boolean): void {
+    const user: User = response.body;
     if (remember) {
-      this.localStorageService.setData('loggedUser', user);
-      this.localStorageService.setData('access_token', `Bearer ${user.token}`);
+      this.localStorageService.setData('user', user);
     } else {
-      this.sessionStorageService.setData('loggedUser', user);
-      this.sessionStorageService.setData('access_token', `Bearer ${user.token}`);
+      this.sessionStorageService.setData('user', user);
     }
   }
 
-  setToken(response: any, remember: boolean) {
+  public setTokens(response: any, remember: boolean): void {
+    const authToken = response.headers.get('Authorization');
+    const refreshToken = response.headers.get('X-Refresh-Token');
     if (remember) {
-      this.localStorageService.setData('access_token', `Bearer ${response.token}`);
+      this.localStorageService.setData('authToken', authToken);
+      this.localStorageService.setData('refreshToken', refreshToken);
     } else {
-      this.sessionStorageService.setData('access_token', `Bearer ${response.token}`);
+      this.sessionStorageService.setData('authToken', authToken);
+      this.sessionStorageService.setData('refreshToken', refreshToken);
     }
   }
 
-  clearCredentials() {
+  public clearCredentials(): void {
     this.localStorageService.clearAll();
     this.sessionStorageService.clearAll();
   }
 
-  getToken(): string {
-    return this.localStorageService.getData('access_token') ?
-      this.localStorageService.getData('access_token') : this.sessionStorageService.getData('access_token');
+  public getTokens(): any {
+    const authToken = this.localStorageService.getData('authToken') || this.sessionStorageService.getData('authToken');
+    const refreshToken = this.localStorageService.getData('refreshToken') || this.sessionStorageService.getData('refreshToken');
+    return authToken && refreshToken
+      ? { authToken, refreshToken }
+      : null;
   }
 }
 

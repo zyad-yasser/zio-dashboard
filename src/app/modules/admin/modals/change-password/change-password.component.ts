@@ -22,20 +22,6 @@ import { AuthService } from 'src/app/modules/core/auth/auth.service';
 import { HelperService } from 'src/app/services/helpers/helper.service';
 import confirmPassword from 'src/app/validators/confirm-password';
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      ((control.dirty && control.touched) || isSubmitted)
-    );
-  }
-}
-
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
@@ -43,11 +29,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class ChangePasswordComponent {
   public errors: any[] = [];
-  public matcher: MyErrorStateMatcher = new MyErrorStateMatcher();
   public changePasswordForm: FormGroup = this.formConstructor();
   public passwordPattern = passwordPattern;
   public validation = new Validation();
-  isChangingPassword: boolean;
+  public isChangingPassword: boolean;
+  public changePasswordError = false;
 
   constructor(
     public dialogRef: MatDialogRef<ChangePasswordComponent>,
@@ -108,7 +94,7 @@ export class ChangePasswordComponent {
   }
 
   public validate(event: any): void {
-    this.errors = [];
+    this.changePasswordError = false;
     const password = event.target.value;
     this.validation = passwordValidator(password);
   }

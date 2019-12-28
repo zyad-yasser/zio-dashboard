@@ -1,23 +1,11 @@
 @import '../../../../../styles/layouts.sass'
 @import '../../../../../styles/variables.sass'
-::ng-deep
-  .mat-drawer-over
-    background-color: #222 !important
-    color: #FFF !important
 :host
   display: block
+  width: 100vw
+  height: 100vh
   .dashboard-container
     width: 100%
     height: 100%
     background-color: $background-grey !important
     background-image: url(/assets/images/background-overlay.png), linear-gradient(135deg, rgba(82,87,92,1) 0%, rgba(140,146,149,1) 100%)
-  ::ng-deep
-    mat-drawer
-      &.collapsed
-        width: 100px !important
-        .text
-          display: none
-        img
-          margin: 0px !important
-        .lower
-          justify-content: center !important

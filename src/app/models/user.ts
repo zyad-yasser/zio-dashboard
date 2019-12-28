@@ -1,11 +1,9 @@
 export class User {
-  email: string;
-  id: number;
-  isSuper: boolean;
-  isActive: boolean;
+  _id: string;
   firstName: string;
   lastName: string;
-  typeId: number;
-  token: string;
-  image: string;
+  email: number;
+  image?: string;
+  isAdmin?: boolean;
+  isSuperAdmin?: boolean;
 }

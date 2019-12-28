@@ -4,73 +4,85 @@ export const sidenavItems: Sidenav[] = [
   {
     name: 'Dashboard',
     icon: 'dashboard',
-    link: 'uploads',
+    link: 'dashboard',
     iconGroup: 'lni-'
   },
   {
     name: 'Users',
-    icon: 'helmet',
-    link: 'boards',
-    iconGroup: 'lni-'
-  },
-  {
-    name: 'Uploads',
-    icon: 'helmet',
-    link: 'boards',
-    iconGroup: 'lni-'
-  },
-  {
-    name: 'Projects',
-    icon: 'medall',
-    link: 'users',
-    iconGroup: 'lni-'
-  },
-  {
-    name: 'Sections',
-    icon: 'support',
-    link: 'users',
-    iconGroup: 'lni-'
-  },
-  {
-    name: 'Accounts',
-    icon: 'seo-monitoring',
-    link: 'users',
-    iconGroup: 'lni-'
-  },
-  {
-    name: 'Information',
     icon: 'network',
     link: 'users',
     iconGroup: 'lni-'
   },
   {
+    name: 'Media',
+    icon: 'image',
+    link: 'media',
+    iconGroup: 'lni-'
+  },
+  {
+    name: 'Projects',
+    icon: 'school-compass',
+    link: 'projects',
+    iconGroup: 'lni-'
+  },
+  {
+    name: 'Sections',
+    icon: 'postcard',
+    link: 'sections',
+    iconGroup: 'lni-'
+  },
+  {
+    name: 'Accounts',
+    icon: 'twitter-filled',
+    link: 'accounts',
+    iconGroup: 'lni-'
+  },
+  {
+    name: 'Information',
+    icon: 'support',
+    link: 'information',
+    iconGroup: 'lni-'
+  },
+  {
     name: 'Clients',
-    icon: 'rocket',
-    link: 'users',
+    icon: 'briefcase',
+    link: 'clients',
     iconGroup: 'lni-'
   },
   {
     name: 'Articles',
-    icon: 'cog',
-    link: 'users',
+    icon: 'add-file',
+    link: 'articles',
+    iconGroup: 'lni-'
+  },
+  {
+    name: 'Comments',
+    icon: 'comment',
+    link: 'comments',
     iconGroup: 'lni-'
   },
   {
     name: 'Partners',
-    icon: 'cog',
-    link: 'users',
+    icon: 'cloudnetwork',
+    link: 'partners',
     iconGroup: 'lni-'
   },
   {
     name: 'Agents',
-    icon: 'cog',
-    link: 'users',
+    icon: 'customer',
+    link: 'agents',
+    iconGroup: 'lni-'
+  },
+  {
+    name: 'Requests',
+    icon: 'radio-button',
+    link: 'requests',
     iconGroup: 'lni-'
   },
   {
     name: 'Countries',
-    icon: 'cog',
-    link: 'users',
+    icon: 'flag',
+    link: 'countries',
     iconGroup: 'lni-'
   },
 ];

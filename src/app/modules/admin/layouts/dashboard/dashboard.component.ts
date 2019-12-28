@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 import { UiService } from 'src/app/services/ui/ui.service';
 
@@ -10,7 +10,20 @@ import { UiService } from 'src/app/services/ui/ui.service';
 export class LayoutDashbaordComponent implements OnInit {
   public sideMenuOpenState = true;
   public sideMenuCollapseState = false;
+  public mode = 'side';
+
   constructor(private loaderService: LoaderService, private uiService: UiService) { }
+
+  @HostListener('window:resize', ['$event'])
+  public getMenuMode(event?): void {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 590) {
+      this.sideMenuOpenState = false;
+      this.mode = 'over';
+      return;
+    }
+    this.mode = 'side';
+  }
 
   public attachEvents(): void {
     this.uiService.sideMenuOpenState
@@ -23,8 +36,13 @@ export class LayoutDashbaordComponent implements OnInit {
     });
   }
 
+  public close(): void {
+    this.sideMenuOpenState = false;
+  }
+
   ngOnInit() {
     this.loaderService.show();
     this.attachEvents();
+    this.getMenuMode();
   }
 }

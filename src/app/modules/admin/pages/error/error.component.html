@@ -1,1 +1,24 @@
-<p>error works!</p>
+<div class="error-container w-100 h-100 p-5 d-flex align-items-center justify-content-center">
+  <div>
+    <div class="top d-flex align-items-center justify-content-center">
+      <img [src]="appLogo" class="mr-4"/>
+      <div class="head">
+        404
+      </div>
+    </div>
+    <div class="message w-100 text-center">
+      The page you are looking for is <strong>not found</strong>
+    </div>
+    <div class="button">
+      <button
+        id="back"
+        class="one-button d-flex align-items-center justify-content-center mx-auto mt-4"
+        mat-raised-button
+        (click)="back()"
+      >
+        <i class="lni-chevron-left"></i>
+        Take me back
+      </button>
+    </div>
+  </div>
+</div>

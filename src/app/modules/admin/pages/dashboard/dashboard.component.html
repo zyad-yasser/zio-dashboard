@@ -1,62 +1,74 @@
 <app-bread-crump [data]="currentLocation"></app-bread-crump>
 <app-title [data]="pageName"></app-title>
-<div class="row w-100 m-0">
-  <div class="col col-6 px-0">
-    <app-card [withTitle]="true" [withButtons]="true" title="EHS statistics">
-      <div class="d-flex">
-        <i class="lni-helmet mr-4 icon-big color-green"></i>
-        <app-multi-stage [data]="ehsStages"></app-multi-stage>
-      </div>
-    </app-card>
+  <div class="row row-1-cards w-100 m-0">
+    <div class="col col-12 col-md-6 col-lg-4 mb-3 mb-lg-0">
+      <app-card [withTitle]="true" [withButtons]="false" title="Views statistics">
+        <div class="d-flex align-items-center">
+          <i class="lni-laptop-phone mr-4 icon-big one-red"></i>
+          <div class="text">
+            <div class="w-100">Today views:</div>
+            <div class="w-100 count">500</div>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="col col-12 col-md-6 col-lg-4 mb-3 mb-lg-0">
+      <app-card [withTitle]="true" [withButtons]="false" title="Projects statistics">
+        <div class="d-flex align-items-center">
+          <i class="lni-school-compass mr-4 icon-big one-green"></i>
+          <div class="text">
+            <div class="w-100">Total projects:</div>
+            <div class="w-100 count">100</div>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    <div class="col col-12 col-md-6 col-lg-4">
+      <app-card [withTitle]="true" [withButtons]="false" title="Clients statistics">
+        <div class="d-flex align-items-center">
+          <i class="lni-network mr-4 icon-big one-blue"></i>
+          <div class="text">
+            <div class="w-100">Clients count</div>
+            <div class="w-100 count">50</div>
+          </div>
+        </div>
+      </app-card>
+    </div>
   </div>
-  <div class="col col-6 px-0 pl-3">
-    <app-card
-      [withTitle]="true"
-      [withButtons]="true"
-      title="Quality statistics"
-    >
-      Card content
-    </app-card>
+
+  <div class="row mt-5 w-100 m-0 mt-3">
+    <div class="col col-12 col-lg-6 mb-3 mb-lg-0">
+      <app-card
+        [withTitle]="true"
+        [withButtons]="true"
+        title="Latest project"
+      >
+        <div class="card-filler project p-5 one-background-main text-center d-flex align-items-center justify-content-center">
+          Project name goes here
+        </div>
+      </app-card>
+    </div>
+    <div class="col col-12 col-lg-6">
+      <app-card
+        [withTitle]="true"
+        [withButtons]="true"
+        title="Latest comment"
+      >
+        <div class="card-filler comment p-5 one-background-red text-center d-flex align-items-center justify-content-center">
+          Project is awesome, Project is awesome, Project is awesome, Project is awesome
+        </div>
+      </app-card>
+    </div>
   </div>
-</div>
-<div class="row w-100 m-0 mt-3">
-  <div class="col col-6 px-0">
-    <app-card
-      [withTitle]="true"
-      [withButtons]="true"
-      title="Service statistics"
-    >
-      Card content
-    </app-card>
+
+  <div class="row w-100 m-0 mt-5">
+    <div class="col col-12">
+      <app-card
+        [withTitle]="true"
+        [withButtons]="true"
+        title="Latest requests"
+      >
+        Card content
+      </app-card>
+    </div>
   </div>
-  <div class="col col-6 px-0 pl-3">
-    <app-card [withTitle]="true" [withButtons]="true" title="Team statistics">
-      Card content
-    </app-card>
-  </div>
-</div>
-<div class="row w-100 m-0 mt-3">
-  <div class="col col-6 px-0">
-    <app-card [withTitle]="true" [withButtons]="true" title="Productivity">
-      <div class="d-flex">
-        <apx-chart
-          #chartObj
-          class="tachometer"
-          *ngIf="chartEnabled"
-          [chart]="chart"
-          [plotOptions]="plotOptions"
-          [labels]="labels"
-          [stroke]="stroke"
-          [series]="series"
-          [fill]="fill"
-        ></apx-chart>
-        <app-stack [data]="productivityData"></app-stack>
-      </div>
-    </app-card>
-  </div>
-  <div class="col col-6 px-0 pl-3">
-    <app-card [withTitle]="true" [withButtons]="true" title="Server statistics">
-      Card content
-    </app-card>
-  </div>
-</div>

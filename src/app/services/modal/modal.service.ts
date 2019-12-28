@@ -13,14 +13,7 @@ export class ModalService {
       : appContainer.classList.remove('blur');
   }
 
-  public init(componentInstance, modalComponent, modalId, data?, afterClosedCb?, config?): void {
-    componentInstance.modalContainer = modalId;
-    if (data) {
-      config.data = data;
-    } else {
-      config.data = null;
-    }
-    config.id = componentInstance.modalContainer;
+  public init(componentInstance, modalComponent, afterClosedCb?, config?): void {
     componentInstance.dialogRef = componentInstance.dialog.open(modalComponent, config);
     componentInstance.dialogRef
       .afterClosed()

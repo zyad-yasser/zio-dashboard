@@ -18,9 +18,12 @@
       </div>
     </mat-list-item>
   </mat-nav-list>
-  <div class="lower d-flex justify-content-end">
-    <button mat-icon-button class="toggle" [class.collapsed]="!sideMenuCollapseState" (click)="toggleCollapse()">
-      <i class="lni-angle-double-right"></i>
-    </button>
-  </div>
+</div>
+<div class="lower d-flex justify-content-end">
+  <button *ngIf="mode === 'side'" mat-icon-button class="toggle" [class.collapsed]="!sideMenuCollapseState" (click)="toggleCollapse()">
+    <i class="lni-angle-double-right"></i>
+  </button>
+  <button *ngIf="mode === 'over'" mat-icon-button class="toggle" (click)="close()">
+    <i class="lni-close"></i>
+  </button>
 </div>

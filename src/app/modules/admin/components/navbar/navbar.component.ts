@@ -1,14 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ChangePasswordComponent } from 'src/app/modules/shared/modals/change-password/change-password.component';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ModalService } from 'src/app/services/modal/modal.service';
 import { MatDialog } from '@angular/material';
 import { AuthService } from 'src/app/modules/core/auth/auth.service';
 import { modalConfig } from 'src/app/statics/constants';
 import { User } from 'src/app/models/user';
-import { HelperService } from 'src/app/services/helpers/helper.service';
 import { Router } from '@angular/router';
-import { defaultUser } from 'src/app/statics/default-user';
 import { UiService } from 'src/app/services/ui/ui.service';
+import { ChangePasswordComponent } from '../../modals/change-password/change-password.component';
 
 @Component({
   selector: 'app-navbar',
@@ -18,40 +16,70 @@ import { UiService } from 'src/app/services/ui/ui.service';
 export class NavbarComponent implements OnInit {
   public modalConfig = modalConfig;
   public user: User;
-  loggingout: boolean;
-  errors: any[];
+  public time = new Date();
+  public loggingout: boolean;
+  public navCollapsedMenu = false;
 
   constructor(
     private modal: ModalService,
     public dialog: MatDialog,
     private authService: AuthService,
-    private helper: HelperService,
     private router: Router,
-    private uiService: UiService
+    private uiService: UiService,
   ) {}
 
-  public changePassword(): void {
-    this.modal.init(this, ChangePasswordComponent, 'changePasswordModal');
+  @HostListener('window:resize', ['$event'])
+  public getMenuMode(event?): void {
+    const screenWidth = window.innerWidth;
+    if (screenWidth >= 1050) {
+      this.navCollapsedMenu = false;
+    }
   }
 
-  ngOnInit() {
-    this.user = defaultUser;
+
+  public changePassword(): void {
+    const config = {
+      ...modalConfig,
+      id: 'changePasswordModal'
+    };
+    this.modal.init(this, ChangePasswordComponent, null, config);
+  }
+
+  private getUserData(): void {
+    this.user = this.authService.getLoggedin();
+  }
+
+  private setTime(): void {
+    setInterval(
+      () => {
+        this.time = new Date();
+      },
+      1000
+    );
+  }
+
+  public ngOnInit(): void {
+    this.getUserData();
+    this.setTime();
   }
 
   public toggleSideMenu(): void {
     this.uiService.sideMenuOpenState.emit();
   }
 
+  public toggleNavCollapsedMenu(): void {
+    this.navCollapsedMenu = !this.navCollapsedMenu;
+  }
+
   public logout() {
     this.loggingout = true;
     this.authService.logout().subscribe(
-      (response) => {
+      () => {
         this.authService.clearCredentials();
-        this.router.navigate([`${this.helper.lang}/login`]);
+        this.router.navigate([`admin/login`]);
       },
-      (error: any) => {
+      () => {
         this.loggingout = false;
-        this.errors = this.helper.handleError(error.error);
       }
     );
   }

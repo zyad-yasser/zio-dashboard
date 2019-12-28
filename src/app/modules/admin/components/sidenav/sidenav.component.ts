@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, HostListener } from '@angular/core';
 import { Sidenav } from 'src/app/models/sidenav';
 import { sidenavItems } from 'src/app/statics/sidenav';
 import { Router } from '@angular/router';
@@ -14,12 +14,14 @@ import { UiService } from 'src/app/services/ui/ui.service';
 })
 export class SidenavComponent implements OnInit {
   @Output() sideNavToggleEmitter: EventEmitter<any> = new EventEmitter();
+  @Output() sideNavClose: EventEmitter<any> = new EventEmitter();
   public appLogo: string = appLogo;
   public appName: string = appStringName;
   public isExpanded = false;
   public activeTab = 0;
   public sidenavItems: Sidenav[] = sidenavItems;
   public sideMenuCollapseState = false;
+  public mode = 'side';
 
   constructor(
     public helper: HelperService,
@@ -34,14 +36,28 @@ export class SidenavComponent implements OnInit {
     this.activeTab = this.activeTab === undefined ? 0 : this.activeTab;
   }
 
+  @HostListener('window:resize', ['$event'])
+  public getMenuMode(event?): void {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 590) {
+      this.mode = 'over';
+      return;
+    }
+    this.mode = 'side';
+  }
+
   public navigator(index) {
-    const lang = this.helper.lang;
     this.activeTab = index;
-    this.router.navigate([`/${lang}/${this.sidenavItems[index].link}`]);
+    const pageName = this.sidenavItems[index].link;
+    this.router.navigate([`/admin/${pageName}`]);
   }
 
   public toggleCollapse(): void {
     this.uiService.sideMenuCollapseState.emit();
+  }
+
+  public close(): void {
+    this.sideNavClose.emit();
   }
 
   public attachEvents(): void {
@@ -53,5 +69,6 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit() {
     this.attachEvents();
+    this.getMenuMode();
   }
 }

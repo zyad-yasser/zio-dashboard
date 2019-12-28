@@ -4,11 +4,12 @@ import {
   Router,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { LocalStorageService } from 'src/app/services/storage/local-storage.service';
 import { AuthService } from '../auth/auth.service';
 import { HelperService } from 'src/app/services/helpers/helper.service';
 import { SessionStorageService } from 'src/app/services/storage/session-storage.service';
+import { tap, mapTo, catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,26 +18,27 @@ export class AccessGuardService implements CanActivate {
   group: string;
   constructor(
     private router: Router,
-    private helper: HelperService,
+    private authService: AuthService,
     private localStorageService: LocalStorageService,
-    private sessionStorageService: SessionStorageService,
-    private authService: AuthService
-    ) {}
+  ) {}
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    const requiresLogin = route.data.requiresLogin || false;
-    const user = this.helper.getLoggedin();
-    if (requiresLogin) {
-      // Check that the user is logged in...
-      let loggedin;
-      if (this.authService.isLoggedin()) {
-        loggedin = true;
-      } else {
-        this.router.navigate([`/${this.helper.lang}/login`]);
-        loggedin = false;
-      }
-      return loggedin;
-    }
-    return true;
+    const rememberMe = this.localStorageService.getData('user')
+      ? true
+      : false;
+    return this.authService.getAccount()
+    .pipe(
+      tap((res) => {
+        this.authService.setTokens(res, rememberMe);
+        this.authService.setUserData(res, rememberMe);
+      }),
+      mapTo(true),
+      catchError(() => {
+        this.authService.clearCredentials();
+        this.authService.logout();
+        this.router.navigate([`admin/login`]);
+        return of(false);
+      })
+    );
   }
 }
 

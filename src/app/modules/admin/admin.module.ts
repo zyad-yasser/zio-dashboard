@@ -37,10 +37,21 @@ import { UploaderComponent } from './components/uploader/uploader.component';
 import { BodyComposerComponent } from './components/body-composer/body-composer.component';
 import { CoreModule } from '../core/core.module';
 import { AddProjectComponent } from './pages/add-project/add-project.component';
+import { LayoutLoginComponent } from './layouts/login/login.component';
+import { LoginFormComponent } from './components/login/login.component';
+import { ConfirmationComponent } from './modals/confirmation/confirmation.component';
+import { ChangePasswordComponent } from './modals/change-password/change-password.component';
+import { ValidatorComponent } from './components/validator/validator.component';
+import { CommentsComponent } from './pages/comments/comments.component';
+import { RequestsComponent } from './pages/requests/requests.component';
 
 @NgModule({
   declarations: [
+    ValidatorComponent,
+    ConfirmationComponent,
+    ChangePasswordComponent,
     DashboardComponent,
+    LayoutLoginComponent,
     LayoutDashbaordComponent,
     LoginComponent,
     SidenavComponent,
@@ -71,7 +82,10 @@ import { AddProjectComponent } from './pages/add-project/add-project.component';
     ImageListComponent,
     UploaderComponent,
     BodyComposerComponent,
-    AddProjectComponent
+    AddProjectComponent,
+    LoginFormComponent,
+    CommentsComponent,
+    RequestsComponent
   ],
   imports: [
     CoreModule,
@@ -80,5 +94,9 @@ import { AddProjectComponent } from './pages/add-project/add-project.component';
     SharedModule,
     NgApexchartsModule,
   ],
+  entryComponents: [
+    ConfirmationComponent,
+    ChangePasswordComponent
+  ]
 })
 export class AdminModule { }

@@ -1,96 +1,28 @@
 @import '../../../../../styles/variables'
 @import '../../../../../styles/form'
-
-.login-container
-    width: 100%
-    height: 100%
-    background-color: rgb(251, 251, 251)
-    .card
-        background: rgb(255, 255, 255)
+:host
+  width: 100%
+  height: 100%
+  display: flex
+  align-items: center
+  justify-content: center
+  ::ng-deep
+    .login-container
+      width: 100%
+      height: 100%
+      max-width: 800px
+      max-height: 500px
+      background-color: rgba(0, 0, 0, 0.4)
+      padding: 16px
+      border-radius: 10px
+      box-shadow: 0 25px 20px -20px rgba(0,0,0,0.2), 0 0 15px rgba(0,0,0,.1)
+      .logo-area
+        background-color: #000
         border-radius: 10px
-        border: 1px solid rgb(169, 169, 169)
-        box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.05)
-        height: 564px
-        width: 762px
-        .logo-box
-            margin-top: 11px !important
-            height: 179px
-            width: 266px
-            margin-top: 11px
-            .logo
-                height: 47px
-                width: 233px
-        .form-box
-            margin-top: 24px !important
-            width: 384px
-            .form-icon
-                height: 20px
-                width: 20px
-            .password-input
-                margin-top: 38px !important
-            ::ng-deep.mat-form-field-label
-                font-size: 17px !important
-                font-weight: 300 !important
-                height: 21px !important
-                letter-spacing: 0.11px !important
-                line-height: 20px !important
-                text-transform: uppercase !important
-            ::ng-deep.mat-form-field-infix
-                border-top: 0px !important
-            .btn
-                background: $blue !important
-                border-radius: 3px !important
-                height: 28px !important
-                width: 170px !important
-                color: #FFF
-                margin-top: 60px !important
-                font-weight: bold
-                text-transform: uppercase
-                font-size: 15px
-                ::ng-deep.mat-button-wrapper
-                    line-height: 20px !important
-            .form-ico
-                width: 26px
-                height: 26px
-                margin-top: 4px
-            .warn
-                margin-right: 7px
-            ::ng-deep .mat-error
-                color: #ff0000 !important
-                align-items: center !important
-                display: flex !important
-                font-size: 10px
-                font-weight: 300
-                height: 14px
-                letter-spacing: 0.07px
-            ::ng-deep.form-err
-                position: absolute
-                align-items: center !important
-                font-size: 10px
-                font-weight: 300
-                height: 14px
-                letter-spacing: 0.07px
-                display: flex
-                margin-top: 8px
-                color: #ff0000 !important
-            ::ng-deep input
-                font-family: $font-family !important
-                font-size: 17px
-                font-weight: 400 !important
-                letter-spacing: 0.11px
-                line-height: 20px
-
-::ng-deep.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label
-    transform: translateY(-1.28125em) scale(0.6) perspective(100px) translateZ(0.001px) !important
-
-::ng-deep.mat-form-field.mat-form-field-invalid .mat-form-field-label
-    color: rgba(0, 0, 0, 0.54) !important
-
-::ng-deep.mat-form-field.mat-form-field-invalid .mat-form-field-ripple, .mat-form-field.mat-form-field-invalid .mat-form-field-ripple.mat-accent
-    background-color: #ff0000 !important
-
-::ng-deep.mat-form-field.mat-focused .mat-form-field-label
-    color: $blue !important
-
-::ng-deep.mat-form-field.mat-form-field-invalid .mat-form-field-label
-    color: rgba(126, 126, 126, 1) !important
+      .form-area
+        color: #FFF
+        .header
+          font-size: 25px
+@media (max-width: 575.98px)
+  .w-75
+    width: 100% !important

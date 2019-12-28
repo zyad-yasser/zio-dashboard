@@ -1,0 +1,80 @@
+<div class="validator d-flex align-items-center">
+  <div class="one-col">
+    <div
+      [class.solved]="validation.length"
+      [class.warn]="!validation.length && validationTouched"
+      class="one-error d-flex align-items-center"
+    >
+      <i *ngIf="validation.length" class="mr-1 solved lni-check-mark-circle"></i>
+      <i
+        *ngIf="!validation.length && validationTouched"
+        class="mr-1 solved lni-cross-circle"
+      ></i>
+      <div
+        [class.solved]="validation.length"
+        [class.warn]="!validation.length && validationTouched"
+      >
+        Length must be 8 to 15 characters
+      </div>
+    </div>
+    <div
+      [class.solved]="validation.specialChar"
+      [class.warn]="!validation.specialChar && validationTouched"
+      class="one-error d-flex align-items-center"
+    >
+      <i
+        *ngIf="validation.specialChar"
+        class="mr-1 solved lni-check-mark-circle"
+      ></i>
+      <i
+        *ngIf="!validation.specialChar && validationTouched"
+        class="mr-1 solved lni-cross-circle"
+      ></i>
+      <div
+        [class.solved]="validation.specialChar"
+        [class.warn]="!validation.specialChar && validationTouched"
+      >
+        At least 1 special character
+      </div>
+    </div>
+  </div>
+  <div class="one-col">
+    <div
+      [class.solved]="validation.upperCaseChar"
+      [class.warn]="!validation.upperCaseChar && validationTouched"
+      class="one-error d-flex align-items-center"
+    >
+      <i
+        *ngIf="validation.upperCaseChar"
+        class="mr-1 solved lni-check-mark-circle"
+      ></i>
+      <i
+        *ngIf="!validation.upperCaseChar && validationTouched"
+        class="mr-1 solved lni-cross-circle"
+      ></i>
+      <div
+        [class.solved]="validation.upperCaseChar"
+        [class.warn]="!validation.upperCaseChar && validationTouched"
+      >
+        At least 1 upper character
+      </div>
+    </div>
+    <div
+      [class.solved]="validation.digit"
+      [class.warn]="!validation.digit && validationTouched"
+      class="one-error d-flex align-items-center"
+    >
+      <i *ngIf="validation.digit" class="mr-1 solved lni-check-mark-circle"></i>
+      <i
+        *ngIf="!validation.digit && validationTouched"
+        class="mr-1 solved lni-cross-circle"
+      ></i>
+      <div
+        [class.solved]="validation.digit"
+        [class.warn]="!validation.digit && validationTouched"
+      >
+        At least 1 digit
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,8 +12,8 @@ export const urls = {
   auth: {
     login: 'auth/login',
     logout: 'auth/logout',
-    account: 'auth/account',
-    changePassword: 'auth/password/change',
+    account: 'auth/me',
+    changePassword: 'auth/change-password',
   },
   blogs: {
     getOne: 'blog/',

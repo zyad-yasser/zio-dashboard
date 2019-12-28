@@ -1,1 +1,118 @@
-<p>login works!</p>
+<div>
+  <div
+    class="form-box mx-auto d-flex align-items-center justify-content-center"
+  >
+    <form class="w-100" #form="ngForm">
+      <div class="one-input-wrapper text-center">
+        <div
+          class="d-flex one-input justify-content-start"
+          [class.invalid]="
+            emailFormControl.errors &&
+            emailFormControl.touched &&
+            emailFormControl.dirty
+          "
+        >
+          <div
+            class="form-ico mr-2 d-flex align-items-center justify-content-center"
+          >
+            <i class="lni-user"></i>
+          </div>
+          <input
+            (input)="loginError = false"
+            id="email"
+            name="email"
+            placeholder="email"
+            [formControl]="emailFormControl"
+            [pattern]="emailPattern"
+            class="flex-grow-1"
+            required
+          />
+        </div>
+        <div
+          class="message"
+          *ngIf="
+            emailFormControl.errors?.pattern &&
+            emailFormControl.touched &&
+            emailFormControl.dirty
+          "
+        >
+          This is not a valid email address
+        </div>
+        <div
+          class="message"
+          *ngIf="
+            emailFormControl.errors?.required &&
+            emailFormControl.touched &&
+            emailFormControl.dirty
+          "
+        >
+          This field can't be empty
+        </div>
+      </div>
+
+      <div class="one-input-wrapper text-center">
+        <div
+          class="d-flex one-input justify-content-start mt-3"
+          [class.invalid]="
+            (passwordFormControl.errors && !loginError) &&
+            passwordFormControl.touched &&
+            passwordFormControl.dirty
+          "
+        >
+          <div
+            class="form-ico mr-2 d-flex align-items-center justify-content-center"
+          >
+            <i class="lni-unlock"></i>
+          </div>
+          <input
+            (input)="loginError = false"
+            id="password"
+            name="password"
+            type="password"
+            placeholder="password"
+            [formControl]="passwordFormControl"
+            class="flex-grow-1"
+            required
+          />
+        </div>
+        <div
+          class="message"
+          *ngIf="
+            (passwordFormControl.errors?.required && !loginError) &&
+            passwordFormControl.touched &&
+            passwordFormControl.dirty
+          "
+        >
+          This field can't be empty
+        </div>
+        <div
+          class="message"
+          *ngIf="loginError"
+        >
+          Invalid email or password
+        </div>
+      </div>
+      <section class="one-checkbox w-100 d-flex justify-content-end">
+        <mat-checkbox
+          id="rememberMe"
+          [(ngModel)]="rememberMe"
+          name="remember"
+          class="one-checkbox mt-3 mr-auto ml-1"
+        >
+          Remeber me
+        </mat-checkbox>
+      </section>
+      <button
+        id="loginBtn"
+        [disabled]="
+          passwordFormControl.errors || emailFormControl.errors || isLoggingIn
+        "
+        class="one-button d-flex align-items-center justify-content-center mx-auto mt-1"
+        mat-raised-button
+        (click)="login()"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+</div>

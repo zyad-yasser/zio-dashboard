@@ -1,6 +1,7 @@
-export const appName = 'zio-dashboard-frontent-';
+import { environment } from 'src/environments/environment';
+export const appName = 'lartquitecte-dashboard-';
 export const defaultPhoto = '/assets/images/user-photo.png';
-export const baseUrl = '/';
+export const baseUrl = environment.baseUrl;
 export const serverip = '/';
 export const version = '0.0.1';
 export const loadingTimeout = 1000;

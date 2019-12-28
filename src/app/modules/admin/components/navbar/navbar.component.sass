@@ -1,18 +1,49 @@
-:host
-  width: 100%
-  height: 64px
-  display: flex
-  align-items: center
-  justify-content: space-between
-  .left
+@import '../../../../../styles/form'
+
+@media (max-width: 1180px)
+  :host
     ::ng-deep
-      .menu-button
-        color: #FFF
-        font-size: 25px
-        span
-          display: flex
-          align-items: center
-          justify-content: center
+      .user-info
+        display: none !important
+
+@media (max-width: 1050px)
+  :host
+    ::ng-deep
+      .nav
+        .meeting-time, .one-input-wrapper
+          display: none !important
+      .right
+        margin-left: auto
+      .collapsed-menu-button
+        display: block !important
+
+@media (max-width: 370px)
+  ::ng-deep
+    .mat-menu-panel
+      margin-top: 5px
+      margin-left: -5px
+  :host
+    ::ng-deep
+      .mat-icon-button
+        width: 30px
+        height: 30px
+        i
+          font-size: 22px !important
+
+:host
+  ::ng-deep
+    .mat-button-wrapper, .mat-button-ripple
+      margin: 0px !important
+    .nav
+      height: 64px
+    .nav, .collapsed-nav
+      display: flex
+      align-items: center
+      justify-content: space-between
+      .collapsed-menu-button
+        display: none
+    .collapsed-nav
+      min-height: 40px
     .meeting-time
       font-size: 12px
       border-radius: 20px
@@ -20,40 +51,40 @@
       background-color: rgba(0, 0, 0, 0.5)
       height: 24px
       padding: 3px 15px
+
+    button
+      span
+        display: flex
+        align-items: center
+        justify-content: center
+    width: 100%
+    height: 64px
+    .cpllapsed-menu-button
+      margin: 0px !important
+      display: none
+    .menu-button
+      color: #FFF
+      font-size: 25px
+      span
+        display: flex
+        align-items: center
+        justify-content: center
+    .left
       .board-name
         color: #756af8
       *
         margin: 0px 4px
-  .right
-    .search-bar
-      min-width: 150px
-      border-radius: 50px
-      overflow: hidden
-      height: 35px
-      input, .icon
-        background-color: rgba(0, 0, 0, 0.3)
-        border: 0px
+    .right
+      .icons
+        button
+          margin: 0px 4px
         color: #FFF
-        height: 100%
-      .icon
-        width: 60px
-        height: 35px
-        border-right: 1px solid rgba(0, 0, 0, 0.2)
-      input
-        width: 100%
-        padding: 0px 15px
-        &:active, &:focus
-          background-color: rgba(0, 0, 0, 0.5) !important
-    .icons
-      button
-        margin: 0px 4px
-      color: #FFF
-      i
-        font-size: 25px !important
-    .spacer
-      height: 40px
-      width: 1px
-      background: linear-gradient(180deg, rgba(82,87,92,0) 0%, rgba(255,255,255,1) 50%, rgba(140,146,149,0) 100%)
-    .user
-      margin: 0px 15px
-      color: #FFF
+        i
+          font-size: 25px
+      .spacer
+        height: 40px
+        width: 1px
+        background: linear-gradient(180deg, rgba(82,87,92,0) 0%, rgba(255,255,255,1) 50%, rgba(140,146,149,0) 100%)
+      .user
+        margin: 0px 15px
+        color: #FFF

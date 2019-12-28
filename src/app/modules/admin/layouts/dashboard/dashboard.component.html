@@ -1,14 +1,21 @@
 <div class="dashboard-container">
   <app-loader></app-loader>
   <mat-drawer-container [class.collapsed]="sideMenuCollapseState" autosize>
-    <mat-drawer #drawer mode="side" disableClose="true" [opened]="sideMenuOpenState" [class.collapsed]="sideMenuCollapseState">
-      <app-sidenav class="h-100"></app-sidenav>
+    <mat-drawer
+      #drawer
+      disableClose="false"
+      (closed)="close()"
+      [mode]="mode"
+      [opened]="sideMenuOpenState"
+      [class.collapsed]="sideMenuCollapseState"
+    >
+      <app-sidenav (sideNavClose)="close()" class="h-100"></app-sidenav>
     </mat-drawer>
 
     <div class="sidenav-content">
       <div class="app-wrapper position-relative mx-auto" id="appWrapper">
         <app-navbar></app-navbar>
-        <div class="app-container mx-auto">
+        <div class="app-container p-2 mx-auto">
           <router-outlet></router-outlet>
         </div>
         <app-footer></app-footer>
