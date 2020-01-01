@@ -24,6 +24,6 @@ export class CustomMatPaginatorIntl extends MatPaginatorIntl {
       startIndex < editedLength
         ? Math.min(startIndex + pageSize, editedLength)
         : startIndex + pageSize;
-    return `${startIndex + 1} - ${endIndex} out of ${editedLength} ${this.translate.instant('DATA_TABLE.ITEMS')}`;
+    return `${startIndex + 1} - ${endIndex} of ${editedLength} items`;
   }
 }

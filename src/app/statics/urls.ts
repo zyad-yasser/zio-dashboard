@@ -1,13 +1,12 @@
 export const urls = {
   import: '',
   users: {
-    delete: 'users/delete',
-    types: 'users/types',
-    list: 'users/list',
-    create: 'users/create',
-    resetPassword: 'users/password/reset',
-    update: 'users/edit',
-    getOne: 'users'
+    delete: 'user',
+    list: 'user/',
+    create: 'user',
+    resetPassword: 'user/password',
+    update: 'user',
+    toggleActivity: 'user/activity',
   },
   auth: {
     login: 'auth/login',

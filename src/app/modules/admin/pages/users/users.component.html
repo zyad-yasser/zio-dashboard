@@ -1,1 +1,25 @@
-<p>users works!</p>
+<app-card class="table-card" [withTitle]="true" [withButtons]="false" title="User management">
+  <app-data-table
+    class="table-component"
+    [displayedColumns]="displayedColumns"
+    [pageSizeOptions]="pageSizeOptions"
+    [tableType]="tableType"
+    [hasPageSize]="true"
+    [noSort]="false"
+    [hasPagination]="true"
+    [maxPageSize]="maxPageSize"
+    [data]="users"
+    [activeSortColumn]="activeSortColumn"
+    [sortDirection]="sortDirection"
+  ></app-data-table>
+  <div class="actions">
+    <button
+      mat-raised-button
+      (click)="createUser()"
+      class="one-button one-background-green mt-3"
+    >
+      <i class="lni-plus"></i>
+      Create user
+    </button>
+  </div>
+</app-card>

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, HostListener } from '@angular/core';
 import { Sidenav } from 'src/app/models/sidenav';
 import { sidenavItems } from 'src/app/statics/sidenav';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { modalConfig, appLogo, appStringName } from 'src/app/statics/constants';
 import { User } from 'src/app/models/user';
 import { HelperService } from 'src/app/services/helpers/helper.service';
@@ -28,11 +28,17 @@ export class SidenavComponent implements OnInit {
     private router: Router,
     private uiService: UiService
   ) {
-    this.sidenavItems.some((item, index) => {
-      if (item.link === this.helper.sidenav) {
-        return this.activeTab = index;
-      }
-    });
+    this.router.events
+      .subscribe((res) => {
+        if (res instanceof NavigationEnd) {
+          const url = res.url;
+          this.sidenavItems.some((item, index) => {
+            if (url.includes(item.link)) {
+              return this.activeTab = index;
+            }
+          });
+        }
+      });
     this.activeTab = this.activeTab === undefined ? 0 : this.activeTab;
   }
 
@@ -41,6 +47,7 @@ export class SidenavComponent implements OnInit {
     const screenWidth = window.innerWidth;
     if (screenWidth <= 590) {
       this.mode = 'over';
+      this.sideMenuCollapseState = false;
       return;
     }
     this.mode = 'side';

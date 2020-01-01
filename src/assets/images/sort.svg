@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 13" width="9" height="13">
+	<defs>
+		<image width="9" height="13" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAANBAMAAACJLlk1AAAAAXNSR0IB2cksfwAAABVQTFRFqampqampqampqampqampqampqampKv5uPAAAAAd0Uk5TANT/bv356BvlI+AAAAAuSURBVHicY2BgVGAAAiMlIMGspOTAwMCkpKTKwKAEBAkMmAAiDlEDUQ/RCzYHALOgBJ+GnUZ8AAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<use id="Icons-/-Sort-Table copy 7" href="#img1" x="0" y="0" />
+</svg>

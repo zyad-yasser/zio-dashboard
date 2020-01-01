@@ -1,0 +1,161 @@
+<div class="mat-dialog-title-container">
+  <h1 mat-dialog-title>
+    {{ modalTitle }}
+    <button class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </h1>
+</div>
+<div mat-dialog-content>
+  <form
+    class="user-data-form"
+    [formGroup]="userForm"
+    (keyup.enter)="onSubmit()"
+  >
+    <div class="one-input-wrapper text-center">
+      <div
+        class="d-flex one-input justify-content-start"
+        [class.invalid]="
+          userForm.get('firstName').errors &&
+          userForm.get('firstName').touched &&
+          userForm.get('firstName').dirty
+        "
+      >
+        <div
+          class="form-ico mr-2 d-flex align-items-center justify-content-center"
+        >
+          <i class="lni-user"></i>
+        </div>
+        <input
+          (input)="emailExistError = false"
+          id="firstName"
+          name="firstName"
+          placeholder="First name"
+          formControlName="firstName"
+          class="flex-grow-1"
+          required
+        />
+      </div>
+      <div
+        class="message"
+        *ngIf="
+          userForm.get('firstName').errors?.required &&
+          userForm.get('firstName').touched &&
+          userForm.get('firstName').dirty
+        "
+      >
+        This field can't be empty
+      </div>
+    </div>
+
+    <div class="one-input-wrapper text-center mt-3">
+      <div
+        class="d-flex one-input justify-content-start"
+        [class.invalid]="
+          userForm.get('lastName').errors &&
+          userForm.get('lastName').touched &&
+          userForm.get('lastName').dirty
+        "
+      >
+        <div
+          class="form-ico mr-2 d-flex align-items-center justify-content-center"
+        >
+          <i class="lni-user"></i>
+        </div>
+        <input
+          (input)="emailExistError = false"
+          id="lastName"
+          name="lastName"
+          placeholder="Last name"
+          formControlName="lastName"
+          class="flex-grow-1"
+          required
+        />
+      </div>
+      <div
+        class="message"
+        *ngIf="
+          userForm.get('lastName').errors?.required &&
+          userForm.get('lastName').touched &&
+          userForm.get('lastName').dirty
+        "
+      >
+        This field can't be empty
+      </div>
+    </div>
+
+
+    <div class="one-input-wrapper text-center mt-3">
+      <div
+        class="d-flex one-input justify-content-start"
+        [class.invalid]="
+        userForm.get('email').errors &&
+        userForm.get('email').touched &&
+        userForm.get('email').dirty
+        "
+      >
+        <div
+          class="form-ico mr-2 d-flex align-items-center justify-content-center"
+        >
+          <i class="lni-user"></i>
+        </div>
+        <input
+          (input)="emailExistError = false"
+          [pattern]="emailPattern"
+          id="email"
+          name="email"
+          placeholder="Email"
+          formControlName="email"
+          class="flex-grow-1"
+          required
+        />
+      </div>
+      <div
+        class="message"
+        *ngIf="
+        (userForm.get('email').hasError('pattern') &&
+        userForm.get('email').touched &&
+        userForm.get('email').dirty)
+        "
+      >
+        This is not a valid email address
+      </div>
+      <div
+        class="message"
+        *ngIf="
+        userForm.get('email').errors?.required &&
+        userForm.get('email').touched &&
+        userForm.get('email').dirty
+        "
+      >
+        This field can't be empty
+      </div>
+      <div
+        class="message"
+        *ngIf="emailExistError"
+      >
+        This email is already existed
+      </div>
+    </div>
+
+
+
+  </form>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-center">
+  <button
+    mat-button
+    class="one-button one-grey"
+    (click)="close()"
+  >
+    Cancel
+  </button>
+  <button
+    mat-raised-button
+    (click)="onSubmit()"
+    class="one-button"
+    [disabled]="userForm.invalid || isSaving"
+  >
+    {{ modalAction }}
+  </button>
+</div>

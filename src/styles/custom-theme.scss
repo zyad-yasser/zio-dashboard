@@ -1,20 +1,20 @@
 @import '~@angular/material/theming';
 
 $md-mcgpalette0: (
-    50 : #e1eff8,
-    100 : #b5d6ee,
-    200 : #83bbe3,
-    300 : #519fd7,
-    400 : #2c8bcf,
-    500 : #0776c6,
-    600 : #066ec0,
-    700 : #0563b9,
-    800 : #0459b1,
-    900 : #0246a4,
-    A100 : #cee0ff,
-    A200 : #9bbfff,
-    A400 : #689eff,
-    A700 : #4f8dff,
+    50: #eeedfe,
+    100: #d6d2fd,
+    200: #bab5fc,
+    300: #9e97fa,
+    400: #8a80f9,
+    500: #756af8,
+    600: #6d62f7,
+    700: #6257f6,
+    800: #584df5,
+    900: #453cf3,
+    A100: #ffffff,
+    A200: #ffffff,
+    A400: #dad9ff,
+    A700: #c2bfff,
     contrast: (
         50 : #000000,
         100 : #000000,
@@ -43,3 +43,4 @@ $multiple-board-management-theme: mat-light-theme($multiple-board-management-the
 .cdk-overlay-dark-backdrop {
     background: rgba(0, 0, 0, 0.2) !important
 }
+

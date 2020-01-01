@@ -1,1 +1,142 @@
-<p>data-table works!</p>
+<div class="data-table mat-elevation-z8">
+  <div class="table-area">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      [matSortActive]="activeSortColumn"
+      [matSortDirection]="sortDirection"
+      matSortDisableClear
+    >
+      <!-- Position Column -->
+      <ng-container
+        *ngFor="let column of displayedColumns"
+        [matColumnDef]="column"
+      >
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          [disabled]="
+            column === 'Action' ||
+            column === 'Delete' ||
+            column === '#' ||
+            column === 'Details' ||
+            column === 'Stat' ||
+            tableType === 'unsolved-uploads'
+          "
+        >
+          <span>
+            {{ column }}
+          </span>
+        </th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <span
+            *ngIf="
+              column !== 'Actions' && column !== '#' && column !== 'Status'
+            "
+          >
+            {{ element[column] }}
+          </span>
+          <span *ngIf="column === 'Status'">
+            <div
+              class="user-status d-flex align-items-center justify-content-center"
+              [class.active]="element[column] === 'Active'"
+              [class.inactive]="element[column] === 'Inactive'"
+            >
+              {{ element[column] }}
+            </div>
+          </span>
+          <span *ngIf="column === 'Actions'">
+            <div [ngSwitch]="element[column]">
+              <div class="d-flex" *ngSwitchCase="'action:editUser'">
+                <button mat-mini-fab class="action-button one-button mr-2" [matMenuTriggerFor]="menu">
+                  <i class="lni-pencil"></i>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button (click)="resetPassword(element?.id)" mat-menu-item>
+                    <i class="lni-lock mr-2"></i>
+                    Reset password
+                  </button>
+                  <button (click)="editUser(element?.id, i)" mat-menu-item>
+                    <i class="lni-pencil-alt mr-2"></i>
+                    Edit data
+                  </button>
+                  <button (click)="toggleActivity(element?.id, i)" mat-menu-item>
+                    <i class="lni-power-switch mr-2"></i>
+                    Toggle activity
+                  </button>
+                </mat-menu>
+                <button (click)="deleteUser(element?.id)" mat-mini-fab class="action-button one-button one-background-red">
+                  <i class="lni-close"></i>
+                </button>
+              </div>
+              <div *ngSwitchDefault></div>
+            </div>
+          </span>
+          <span *ngIf="column == '#'">
+            {{ i + 1 + paginator.pageIndex * paginator.pageSize }}
+          </span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <div
+    class="d-flex align-items-center justify-content-center no-data-error"
+    *ngIf="!dataSource?.data.length"
+  >
+    No results found
+  </div>
+
+  <div
+    class="pagination-container d-flex align-items-center justify-content-between"
+    [class.d-none]="!hasPagination || !dataSource?.data.length"
+  >
+    <mat-paginator
+      class="mat-paginator-sticky"
+      [pageSizeOptions]="pageSizeOptions"
+      [hidePageSize]="!hasPageSize"
+      (page)="alChangeWord()"
+    ></mat-paginator>
+    <div
+      class="d-flex align-items-center justify-content-center custom-paginator"
+    >
+      <div class="d-flex align-items-center">
+        <button
+          mat-button
+          class="btn p-0 paginator-btn d-flex align-items-center justify-content-center"
+          [disabled]="!paginator.hasPreviousPage()"
+          (click)="paginator.previousPage()"
+        >
+          <i class="lni-chevron-left-circle"></i>
+        </button>
+        <mat-form-field class="paginator-center-input">
+          <input
+            matInput
+            class="paginator-input text-center"
+            [value]="paginator.pageIndex + 1"
+            (input)="paginate($event, 'input')"
+            (blur)="paginate($event, 'revert')"
+            type="number"
+          />
+        </mat-form-field>
+        /
+        {{
+          paginator.getNumberOfPages() === 0 ? 1 : paginator.getNumberOfPages()
+        }}
+        <button
+          mat-button
+          class="btn p-0 paginator-btn d-flex align-items-center justify-content-center"
+          [disabled]="!paginator.hasNextPage()"
+          (click)="paginator.nextPage()"
+        >
+          <i class="lni-chevron-right-circle"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,331 @@
+:host
+  height: 100%
+  display: block
+::ng-deep.mat-elevation-z8
+  box-shadow: none !important
+
+::ng-deep.data-table
+  display: block
+  width: 100%
+  height: 100%
+  margin-top: 21px
+  position: relative
+  border-radius: 10px !important
+  overflow: hidden
+  .mat-paginator
+    align-items: center
+    display: flex
+    height: 28px
+    overflow: hidden
+  .mat-paginator-page-size-label
+    display: none !important
+  mat-select
+    border-radius: 6px
+    border: 1px solid #111
+    height: 25px
+    width: 92px
+    padding: 5px 7px 5px 11px
+  .mat-select-value, .mat-select-value:first-child::after
+    color: #FFF
+    font-size: 12px !important
+    font-weight: 300 !important
+    letter-spacing: 0.08px
+  .mat-paginator-sticky
+    background-color: transparent
+    .mat-form-field-underline
+      display: none !important
+  .mat-paginator-container
+    padding: 0px !important
+  .mat-paginator-navigation-last, .mat-paginator-navigation-first
+    display: none !important
+  table, thead, tbody
+    background-color: transparent !important
+  table
+    tr
+      &:nth-child(even)
+        background-color: rgba(0, 0, 0, 0.4)
+      &:nth-child(odd)
+        background-color: rgba(0, 0, 0, 0.2)
+    thead
+      th
+        background-color: #222 !important
+    th
+      background-color: transparent !important
+    tbody
+      td
+        padding-top: 11px !important
+        padding-bottom: 11px !important
+    width: 100%
+    border-bottom: 0px !important
+    *
+      font-size: 13px !important
+    .mat-row
+      height: 20px
+        border-radius: 3px
+        overflow: hidden
+    thead
+      tr
+        th
+          position: sticky
+          top: 0
+          z-index: 10
+          background-clip: padding-box !important
+          *
+            font-weight: 400 !important
+    td, th
+      padding: 3px 14px 3px 14px !important
+      color: #FFF
+      font-family: 'Roboto', 'Nunito Sans', sans-serif !important
+      font-size: 13px
+      font-weight: 400
+      border: 0px !important
+    th
+      color: rgb(169, 169, 169) !important
+      .mat-sort-header-button
+        text-align: left
+  .table-icon-yes
+    width: 19px
+    height: 14px
+  .table-icon-no
+    width: 19px
+    height: 19px
+
+th.mat-sort-header-sorted
+  color: black
+
+::ng-deep.mat-paginator-sticky
+  bottom: 0px
+  position: sticky
+  z-index: 10
+
+::ng-deep .mat-sort-header-arrow[style]
+  width: 100%
+
+  // Hide default arrow stem
+  .mat-sort-header-stem
+    display: none
+
+  .mat-sort-header-indicator
+    opacity: 1
+    color: black
+    font-weight: bold
+
+    // Hide default arrow as its composed of left, right and middle
+    .mat-sort-header-pointer-left, .mat-sort-header-pointer-right, .mat-sort-header-pointer-middle
+      display: none
+
+// My custom ascending arrow
+[aria-sort="ascending"]
+  ::ng-deep .mat-sort-header-arrow
+    .mat-sort-header-indicator
+      &::before
+        content: ""
+        width: 6px
+        height: 10px
+        background-image: url('/assets/images/sort-up.svg')
+        background-size: 6px 10px
+        left: 9px
+        top: -10px !important
+        position: absolute
+
+// My custom descending arrow
+[aria-sort="descending"]
+  ::ng-deep .mat-sort-header-arrow
+    .mat-sort-header-indicator
+      &::before
+        content: ""
+        width: 6px
+        height: 10px
+        background-image: url('/assets/images/sort-down.svg')
+        background-size: 6px 10px
+        left: 9px
+        top: -10px !important
+        position: absolute
+
+::ng-deep .mat-sort-header-arrow
+  .mat-sort-header-indicator
+    &::before
+      content: ""
+      width: 6px
+      height: 10px
+      background-image: url('/assets/images/sort.svg')
+      background-size: 6px 10px
+      left: 9px
+      top: -10px
+      position: absolute
+
+::ng-deep.mat-sort-header-arrow
+  opacity: 1 !important
+  transform: translateY(6px) !important
+  top: 3px !important
+  width: 9px !important
+  display: flex
+  flex-grow: 1
+
+::ng-deep.mat-sort-header-indicator
+  transform: translateY(0px) !important
+:host ::ng-deep.solve-button
+  color: #FFF !important
+  font-size: 14px !important
+  line-height: 14px !important
+  text-transform: uppercase
+  font-weight: 700
+  border-radius: 4px
+  padding: 0px
+  background-color: #CCC !important
+  height: 23px !important
+  width: 124px
+  span
+    display: flex
+    justify-content: center
+    width: 100%
+
+::ng-deep.mat-select-panel:not(.time-picker-select)
+  border: 1px solid rgb(151, 151, 151)
+  box-shadow: none !important
+  border-radius: 4px
+  overflow: visible !important
+  padding: 6px 0px 6px 0px !important
+  max-height: 320px !important
+  .mat-option:not(.no-all)
+    height: 22px !important
+
+  .mat-option.mat-selected
+    background-color: #444 !important
+    color: #FFF !important
+    padding: 0px 7px 0px 7px !important
+    &::before
+      margin-right: 3px
+      width: 14px
+      height: 11px
+      content: ""
+      background-repeat: no-repeat
+      background-size: cover
+      background-image: url('/assets/images/yes-white.svg')
+::ng-deep.mat-paginator-range-label
+  margin: 0px !important
+::ng-deep.mat-paginator-page-size-select
+  width: 92px !important
+::ng-deep.mat-paginator-page-size
+  margin-right: 21px !important
+::ng-deep.mat-paginator-range-label
+  color: rgb(188, 188, 188)
+  font-size: 13px
+  font-weight: 400
+  letter-spacing: 0.08px
+::ng-deep.mat-paginator-navigation-next, ::ng-deep.mat-paginator-navigation-previous
+  display: none !important
+.custom-paginator
+  height: 25px
+  font-size: 18px !important
+  font-weight: 300 !important
+  ::ng-deep.paginator-btn
+    color: #756af8 !important
+    height: 30px
+    width: 30px
+    min-width: 30px !important
+    span
+      display: flex
+      justify-content: center
+    &:first-of-type
+      margin-right: 8px
+      img
+        transform: rotate(180deg)
+    &:last-of-type
+      margin-left: 8px
+  .paginator-input
+    margin-top: 2px
+    height: 30px
+    width: 70px
+    text-align: left !important
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+  -webkit-appearance: none
+  margin: 0
+
+::ng-deep.paginator-center-input
+  input
+    font-size: 18px !important
+  margin-right: 8px
+  .mat-form-field-wrapper
+    padding: 0px !important
+  .mat-form-field-infix
+    border-top: 0px !important
+    width: 25px !important
+  .mat-form-field-underline
+    top: 35px !important
+    text-align: left !important
+.pagination-container
+  height: 85px
+  bottom: 0px
+  width: 100%
+  overflow: hidden
+  padding: 0px 30px
+  position: absolute
+  background-color: #222
+  border-radius: 0px 0px 7px 7px
+.table-area
+  height: calc(100% - 68px)
+  border-radius: 7px 7px 0px 0px
+  overflow: scroll
+::ng-deep.all-uploads
+  .table-area
+    padding-bottom: 85px
+::ng-deep.all-users
+  .table-area
+    padding-bottom: 85px
+::ng-deep.mat-header-cell
+  background-color: #F5F5F5 !important
+:host
+  ::ng-deep.no-content
+    padding-right: 0px !important
+    padding: 0px !important
+  ::ng-deep.unsolved-uploads
+    *
+      &::before
+        background-image: none !important
+  ::ng-deep.delete-button
+    width: 20px !important
+    height: 20px !important
+    line-height: 20px !important
+    span
+      line-height: 20px !important
+      font-size: 20px !important
+
+:host
+  position: relative
+  min-height: 30px
+  width: 100%
+
+@media (max-width: 770px)
+  .pagination-container
+    padding: 0px 0px
+    flex-wrap: wrap
+    .mat-paginator, .custom-paginator
+      width: 100%
+      display: flex
+      align-items: center
+      justify-content: center
+    .custom-paginator
+      margin-top: -20px
+
+.user-status
+  color: #FFF
+  padding: 3px 10px
+  border-radius: 4px
+  font-size: 11px !important
+  &.active
+    background-color: #58d777
+  &.inactive
+    background-color: #f45722
+.action-button
+  width: 30px !important
+  height: 30px !important
+  ::ng-deep
+    span
+      width: 100%
+      height: 100%
+      display: flex
+      justify-content: center
+      align-items: center

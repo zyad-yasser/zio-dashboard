@@ -44,9 +44,11 @@ import { ChangePasswordComponent } from './modals/change-password/change-passwor
 import { ValidatorComponent } from './components/validator/validator.component';
 import { CommentsComponent } from './pages/comments/comments.component';
 import { RequestsComponent } from './pages/requests/requests.component';
+import { UserDataComponent } from './modals/user-data/user-data.component';
 
 @NgModule({
   declarations: [
+    UserDataComponent,
     ValidatorComponent,
     ConfirmationComponent,
     ChangePasswordComponent,
@@ -95,6 +97,7 @@ import { RequestsComponent } from './pages/requests/requests.component';
     NgApexchartsModule,
   ],
   entryComponents: [
+    UserDataComponent,
     ConfirmationComponent,
     ChangePasswordComponent
   ]

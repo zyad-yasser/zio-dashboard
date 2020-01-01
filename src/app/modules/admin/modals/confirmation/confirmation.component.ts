@@ -16,13 +16,13 @@ import { toastrConfig } from 'src/app/statics/constants';
 export class ConfirmationComponent implements OnInit {
   public confirmString1 = '';
   public modalTitle = '';
+  public buttonAction = '';
   isSaving: boolean;
 
   constructor(
+    private toastrService: ToastrService,
+    private usersService: UsersService,
     public dialogRef: MatDialogRef<ConfirmationComponent>,
-    private translate: TranslateService,
-    private toastr: ToastrService,
-    private users: UsersService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -30,47 +30,50 @@ export class ConfirmationComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  public onSubmit() {}
+
   public deleteUser(): void {
-    const userId = this.data.userId;
+    const userId = this.data.id;
     this.isSaving = true;
-    this.users.delete(userId).subscribe(
-      (response) => {
-        const message = this.translate.instant('TOASTR.SUCCESS_DELETING_USER');
+    this.usersService.delete(userId).subscribe(
+      () => {
         this.dialogRef.close('deleted');
-        this.toastr.success(message, null, toastrConfig);
+        this.toastrService.success('User deleted successfully', null, toastrConfig);
       },
-      (error: any) => {
-        const message = this.translate.instant('TOASTR.ERROR_DELETING_USER');
+      () => {
         this.dialogRef.close();
-        this.toastr.error(message, null, toastrConfig);
+        this.toastrService.error('Problem deleting user', null, toastrConfig);
       }
     );
   }
 
   public resetPassword(): void {
-    const userId = this.data.userId;
+    const userId = this.data.id;
     this.isSaving = true;
-    this.users.resetPassword(userId).subscribe(
-      (response) => {
-        const message = this.translate.instant('TOASTR.SUCCESS_RESET_PASSWORD');
-        this.dialogRef.close();
-        this.toastr.success(message, null, toastrConfig);
+    this.usersService.resetPassword(userId).subscribe(
+      () => {
+        this.dialogRef.close('toggled');
+        this.toastrService.success('User password reseted successfully', null, toastrConfig);
       },
-      (error: any) => {
-        const message = this.translate.instant('TOASTR.ERROR_RESET_PASSWORD');
+      () => {
         this.dialogRef.close();
-        this.toastr.error(message, null, toastrConfig);
+        this.toastrService.error('Error resetting user password', null, toastrConfig);
       }
     );
   }
 
   ngOnInit(): void {
-    if (this.dialogRef.id === 'deleteUserModal') {
-      this.confirmString1 = 'MODALS.DELETE_USER_STRING1';
-      this.modalTitle = 'MODALS.DELETE_USER';
-    } else if (this.dialogRef.id === 'resetPasswordModal') {
+    if (this.data.type === 'deleteUserModal') {
+      this.confirmString1 = 'Are you sure want to delete this user ?';
+      this.buttonAction = 'Delete';
+      this.modalTitle = 'Delete user';
+      this.onSubmit = this.deleteUser;
+    } else if (this.data.type === 'resetPasswordModal') {
       this.modalTitle = 'MODALS.RESET_PASSWORD';
-      this.confirmString1 = 'MODALS.RESET_PASSWORD_STRING1';
+      this.confirmString1 = 'Are you sure want to reset this users password ?';
+      this.buttonAction = 'Reset';
+      this.modalTitle = 'Reset password';
+      this.onSubmit = this.resetPassword;
     }
   }
 }
