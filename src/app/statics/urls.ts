@@ -17,6 +17,13 @@ export const urls = {
     update: 'user',
     toggleActivity: 'user/activity',
   },
+  clients: {
+    delete: 'client',
+    list: 'client/',
+    create: 'client',
+    update: 'client',
+    toggleVisibility: 'client/visibility',
+  },
   auth: {
     login: 'auth/login',
     logout: 'auth/logout',

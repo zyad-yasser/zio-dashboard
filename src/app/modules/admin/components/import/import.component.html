@@ -1,6 +1,7 @@
 <div class="import-content">
   <div
     class="import-area d-flex align-items-center justify-content-center"
+    [class.light]="area === 'inline'"
     (drop)="onDrop($event)"
     (dragover)="onDragOver($event)"
   >

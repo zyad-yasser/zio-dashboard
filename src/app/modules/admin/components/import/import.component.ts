@@ -13,6 +13,7 @@ import { toastrConfig } from 'src/app/statics/constants';
 })
 export class ImportComponent implements OnInit {
   @ViewChild('uploader', { static: false }) uploader: ElementRef;
+  @Input() public area: string;
   public newData: EventEmitter<any> = this.importsService.newData;
   public fileName = 'Select file to upload';
   public readyToUpload: FormData = null;

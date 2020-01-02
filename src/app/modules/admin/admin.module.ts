@@ -47,10 +47,15 @@ import { RequestsComponent } from './pages/requests/requests.component';
 import { UserDataComponent } from './modals/user-data/user-data.component';
 import { ImportComponent } from './components/import/import.component';
 import { ImageCardComponent } from './components/image-card/image-card.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { ClientsDataComponent } from './modals/client-data/client-data.component';
+import { MediaChooseComponent } from './modals/media-choose/media-choose.component';
+import { MediaComponent } from './components/media/media.component';
 
 @NgModule({
   declarations: [
     UserDataComponent,
+    ClientsDataComponent,
     ValidatorComponent,
     ConfirmationComponent,
     ChangePasswordComponent,
@@ -91,7 +96,9 @@ import { ImageCardComponent } from './components/image-card/image-card.component
     CommentsComponent,
     RequestsComponent,
     ImportComponent,
-    ImageCardComponent
+    ImageCardComponent,
+    MediaChooseComponent,
+    MediaComponent
   ],
   imports: [
     CoreModule,
@@ -99,11 +106,14 @@ import { ImageCardComponent } from './components/image-card/image-card.component
     CommonModule,
     SharedModule,
     NgApexchartsModule,
+    AngularEditorModule
   ],
   entryComponents: [
     UserDataComponent,
+    ClientsDataComponent,
     ConfirmationComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    MediaChooseComponent
   ]
 })
 export class AdminModule { }

@@ -33,7 +33,7 @@
         <td mat-cell *matCellDef="let element; let i = index">
           <span
             *ngIf="
-              column !== 'Actions' && column !== '#' && column !== 'Status'
+              column !== 'Actions' && column !== '#' && column !== 'Status' && column !== 'Visibility' && column !== 'Logo'
             "
           >
             {{ element[column] }}
@@ -47,8 +47,29 @@
               {{ element[column] }}
             </div>
           </span>
+          <span *ngIf="column === 'Visibility'">
+            <div
+              class="user-status d-flex align-items-center justify-content-center"
+              [class.active]="element[column] === 'Visible'"
+              [class.inactive]="element[column] === 'Not visible'"
+            >
+              {{ element[column] }}
+            </div>
+          </span>
+          <span *ngIf="column === 'Logo'">
+            <div
+              class="d-flex align-items-center justify-content-center logo"
+              [style]="parseLogo(element[column])"
+            >
+              <div *ngIf="!element[column]" class="text-center">
+                No logo yet
+              </div>
+            </div>
+          </span>
           <span *ngIf="column === 'Actions'">
             <div [ngSwitch]="element[column]">
+
+
               <div class="d-flex" *ngSwitchCase="'action:editUser'">
                 <button mat-mini-fab class="action-button one-button mr-2" [matMenuTriggerFor]="menu">
                   <i class="lni-pencil"></i>
@@ -71,6 +92,27 @@
                   <i class="lni-close"></i>
                 </button>
               </div>
+
+              <div class="d-flex" *ngSwitchCase="'action:editClient'">
+                <button mat-mini-fab class="action-button one-button mr-2" [matMenuTriggerFor]="menu">
+                  <i class="lni-pencil"></i>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button (click)="editClient(element?.id, i)" mat-menu-item>
+                    <i class="lni-pencil-alt mr-2"></i>
+                    Edit data
+                  </button>
+                  <button (click)="toggleClientVisibility(element?.id, i)" mat-menu-item>
+                    <i class="lni-eye mr-2"></i>
+                    Toggle visibility
+                  </button>
+                </mat-menu>
+                <button (click)="deleteClient(element?.id)" mat-mini-fab class="action-button one-button one-background-red">
+                  <i class="lni-close"></i>
+                </button>
+              </div>
+
+
               <div *ngSwitchDefault></div>
             </div>
           </span>

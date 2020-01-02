@@ -1,0 +1,87 @@
+<div class="mat-dialog-title-container">
+  <h1 mat-dialog-title>
+    {{ modalTitle }}
+    <button class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </h1>
+</div>
+<div mat-dialog-content>
+  <form
+    class="client-data-form"
+    [formGroup]="clientForm"
+    (keyup.enter)="onSubmit()"
+  >
+    <div class="one-input-wrapper text-center">
+      <div
+        class="d-flex one-input justify-content-start"
+        [class.invalid]="
+          clientForm.get('name').errors &&
+          clientForm.get('name').touched &&
+          clientForm.get('name').dirty
+        "
+      >
+        <div
+          class="form-ico mr-2 d-flex align-items-center justify-content-center"
+        >
+          <i class="lni-user"></i>
+        </div>
+        <input
+          (input)="emailExistError = false"
+          id="name"
+          name="name"
+          placeholder="Client name"
+          formControlName="name"
+          class="flex-grow-1"
+          required
+        />
+      </div>
+      <div
+        class="message"
+        *ngIf="
+          clientForm.get('name').errors?.required &&
+          clientForm.get('name').touched &&
+          clientForm.get('name').dirty
+        "
+      >
+        This field can't be empty
+      </div>
+    </div>
+  </form>
+  <div class="mt-3">
+    Client logo:
+    <div class="w-100 d-flex align-items-center mt-2">
+      <div class="logo d-flex align-items-center justify-content-center" [style]="parseLogo(logo)">
+        <div *ngIf="!logo" class="text-center">
+          No logo yet
+        </div>
+      </div>
+      <button
+        mat-raised-button
+        (click)="openMedia()"
+        class="one-button mt-3 ml-3"
+      >
+        <i class="lni-image"></i>
+        Open media
+      </button>
+    </div>
+  </div>
+
+</div>
+<div mat-dialog-actions class="d-flex justify-content-center">
+  <button
+    mat-button
+    class="one-button one-grey"
+    (click)="close()"
+  >
+    Cancel
+  </button>
+  <button
+    mat-raised-button
+    (click)="onSubmit()"
+    class="one-button"
+    [disabled]="clientForm.invalid || isSaving"
+  >
+    {{ modalAction }}
+  </button>
+</div>

@@ -13,6 +13,8 @@ import { MatDialog } from '@angular/material';
   styleUrls: ['./users.component.sass']
 })
 export class UsersComponent implements OnInit {
+  public currentLocation: string[] = ['Home', 'Users'];
+  public pageName = 'Users';
   public displayedColumns = usersColumns;
   public pageSizeOptions = [25, 100, 250];
   public tableType = 'users';

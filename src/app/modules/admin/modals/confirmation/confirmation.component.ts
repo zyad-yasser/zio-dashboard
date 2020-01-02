@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { UsersService } from 'src/app/services/users/users.service';
 import { toastrConfig } from 'src/app/statics/constants';
+import { ClientsService } from 'src/app/services/clients/clients.service';
 
 @Component({
   selector: 'app-confirm',
@@ -22,6 +23,7 @@ export class ConfirmationComponent implements OnInit {
   constructor(
     private toastrService: ToastrService,
     private usersService: UsersService,
+    private clientsService: ClientsService,
     public dialogRef: MatDialogRef<ConfirmationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
@@ -47,6 +49,24 @@ export class ConfirmationComponent implements OnInit {
     );
   }
 
+  public deleteClient(): void {
+    const clientId = this.data.id;
+    this.isSaving = true;
+    this.clientsService.delete(clientId).subscribe(
+      () => {
+        this.dialogRef.close('deleted');
+        this.toastrService.success('Client deleted successfully', null, toastrConfig);
+      },
+      () => {
+        this.dialogRef.close();
+        this.toastrService.error('Problem deleting client', null, toastrConfig);
+      },
+      () => {
+        this.isSaving = false;
+      }
+    );
+  }
+
   public resetPassword(): void {
     const userId = this.data.id;
     this.isSaving = true;
@@ -68,6 +88,11 @@ export class ConfirmationComponent implements OnInit {
       this.buttonAction = 'Delete';
       this.modalTitle = 'Delete user';
       this.onSubmit = this.deleteUser;
+    } else if (this.data.type === 'deleteClientModal') {
+      this.confirmString1 = 'Are you sure want to delete this client ?';
+      this.buttonAction = 'Delete';
+      this.modalTitle = 'Delete client';
+      this.onSubmit = this.deleteClient;
     } else if (this.data.type === 'resetPasswordModal') {
       this.modalTitle = 'MODALS.RESET_PASSWORD';
       this.confirmString1 = 'Are you sure want to reset this users password ?';

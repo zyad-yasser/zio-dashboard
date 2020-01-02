@@ -1,7 +1,6 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Input, EventEmitter, Output } from '@angular/core';
 import { MediaService } from 'src/app/services/media/media.service';
 import { ImportService } from 'src/app/services/import/import.service';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-image-list',
@@ -9,6 +8,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./image-list.component.sass']
 })
 export class ImageListComponent implements OnInit {
+  @Input() public area: string;
   public media: any[] = [];
   public isScrolling;
 
@@ -43,6 +43,13 @@ export class ImageListComponent implements OnInit {
     this.importService.newData.subscribe((res) => {
       this.media = [...res, ...this.media];
     });
+  }
+
+  public handleClick(index: number): void {
+    if (this.area === 'inline') {
+      const selectedImage = this.media[index];
+      this.mediaService.selectForInline.emit(selectedImage);
+    }
   }
 
   ngOnInit() {

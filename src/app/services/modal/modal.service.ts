@@ -26,4 +26,18 @@ export class ModalService {
         });
     this.backdropBlur('add');
   }
+
+  public initMedia(componentInstance, modalComponent, afterClosedCb?, config?): void {
+    componentInstance.dialogRefMedia = componentInstance.dialog.open(modalComponent, config);
+    componentInstance.dialogRefMedia
+      .afterClosed()
+      .subscribe(
+        (result) => {
+          this.backdropBlur('remove');
+          if (afterClosedCb) {
+            afterClosedCb.call(componentInstance, result);
+          }
+        });
+    this.backdropBlur('add');
+  }
 }
