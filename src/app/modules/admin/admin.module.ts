@@ -45,6 +45,8 @@ import { ValidatorComponent } from './components/validator/validator.component';
 import { CommentsComponent } from './pages/comments/comments.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { UserDataComponent } from './modals/user-data/user-data.component';
+import { ImportComponent } from './components/import/import.component';
+import { ImageCardComponent } from './components/image-card/image-card.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,9 @@ import { UserDataComponent } from './modals/user-data/user-data.component';
     AddProjectComponent,
     LoginFormComponent,
     CommentsComponent,
-    RequestsComponent
+    RequestsComponent,
+    ImportComponent,
+    ImageCardComponent
   ],
   imports: [
     CoreModule,

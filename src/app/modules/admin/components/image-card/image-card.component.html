@@ -1,0 +1,17 @@
+<div
+  #image
+  class="w-100 one-image d-flex align-items-center"
+  [class.active]="active"
+>
+  <div *ngIf="failed" class="w-100 text-center">No preview available for the file</div>
+</div>
+<div class="info mt-2 d-flex justify-content-between">
+  <div class="file-name pt-1">
+    {{ data.url }}
+  </div>
+  <div class="link-button">
+    <button mat-icon-button (click)="copyLink()">
+      <i class="lni-link"></i>
+    </button>
+  </div>
+</div>

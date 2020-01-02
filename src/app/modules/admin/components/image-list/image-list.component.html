@@ -1,1 +1,16 @@
-<p>image-list works!</p>
+<app-card
+  class="images-card h-100"
+  [withTitle]="true"
+  [withButtons]="false"
+  title="Media gallery"
+>
+  <div class="h-100 media-container" (scroll)="scroll($event)">
+    <div class="row w-100 m-0">
+      <app-image-card
+        *ngFor="let item of media"
+        [data]="item"
+        class="col-12 col-md-6 col-lg-3 mb-3"
+      ></app-image-card>
+    </div>
+  </div>
+</app-card>

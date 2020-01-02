@@ -1,0 +1,75 @@
+@import '../../../../../styles/variables'
+:host
+  color: #FFF !important
+  display: block
+  .icon
+    line-height: 50px
+    font-size: 50px
+  .title
+    font-size: 13px
+    font-weight: 200
+    margin-bottom: 28px
+  .file-info
+    width: 100%
+    margin-top: 6px
+    color: #CCC
+    font-size: 12px
+    font-weight: 300
+    height: 18px
+    letter-spacing: 0.09px
+    .one
+      line-height: 16px
+  .close
+      cursor: pointer
+  .counter
+    color: #FFF
+    font-size: 18px
+    font-weight: 400
+    height: 20px
+  ::ng-deep
+    .import-content
+      height: 100%
+      .import-area
+        height: 100%
+        background-color: transparent
+        margin-bottom: 15px
+        border-radius: 10px
+        border: 4px dashed #222
+        .text
+            font-size: 18px
+            font-weight: 300
+            letter-spacing: 0.07px
+            text-align: center
+            .one-primary
+                cursor: pointer
+                color: $primary-color
+                font-weight: 700
+    .uploader
+      font-size: 16px
+      color: #FFF
+::ng-deep.mat-progress-bar
+    overflow: hidden !important
+    border-radius: 2px !important
+    background-color: #FFF !important
+    box-shadow: 0px 0px 4px 0px rgb(0, 0, 0, 0.5) !important
+::ng-deep.mat-progress-bar-background
+    fill: #FFF !important
+::ng-deep.mat-progress-bar-buffer
+    background-color: #FFF !important
+::ng-deep.mat-progress-bar .mat-progress-bar-background
+    width: 100% !important
+::ng.deep.mat-progress-bar .mat-progress-bar-buffer
+    background: #FFF !important
+::ng-deep.mat-progress-bar-fill::after
+    background: red !important
+    border-radius: 2px !important
+
+@media only screen and (max-width: 1920px)
+  .uploader
+      .no-upload
+          font-size: 10px
+          line-height: 15px
+
+@media only screen and (max-height: 700px)
+  .icon, .available
+    display: none !important

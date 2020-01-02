@@ -1,1 +1,8 @@
-<p>uploads works!</p>
+<div class="w-100" *ngIf="area !== 'inline'">
+  <app-bread-crump [data]="currentLocation"></app-bread-crump>
+  <app-title [data]="pageName"></app-title>
+</div>
+<div class="content d-flex justify-content-between" [class.content-resize]="area !== 'inline'">
+  <app-import (newData)="appendNewData($event)" class="import-section"></app-import>
+  <app-image-list class="image-list"></app-image-list>
+</div>

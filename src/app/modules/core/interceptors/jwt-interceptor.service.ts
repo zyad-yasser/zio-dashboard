@@ -35,9 +35,6 @@ export class JWTInterceptorService implements HttpInterceptor {
 
   private reqCounterDecrease(): void {
     this.reqCounter -= 1;
-    if (this.reqCounter === 0) {
-      this.loader.hide();
-    }
   }
 
   private addToken(req: HttpRequest<any>, tokens: any): HttpRequest<any> {
@@ -62,7 +59,6 @@ export class JWTInterceptorService implements HttpInterceptor {
   > {
     const authService = this.injector.get(AuthService);
     const tokens = authService.getTokens();
-    this.loader.show();
     this.reqCounter += 1;
     if (tokens) {
       const request = this.addToken(req, tokens);

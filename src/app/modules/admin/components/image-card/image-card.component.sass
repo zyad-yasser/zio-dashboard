@@ -1,0 +1,29 @@
+:host
+  display: block
+  font-size: 12px
+  color: #CCC
+  .one-image
+    min-height: 120px
+    background-size: cover
+    background-position: center
+    border-radius: 7px
+    border: 1px solid #CCC
+    &.active
+      border: 2px solid #756af8
+  .info
+    ::ng-deep
+      button
+        width: 30px
+        height: 30px
+        color: #756af8
+        span
+          width: 30px !important
+          height: 30px !important
+          display: flex !important
+          align-items: center
+          justify-content: center
+    .file-name
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+      width: calc(100% - 50px)

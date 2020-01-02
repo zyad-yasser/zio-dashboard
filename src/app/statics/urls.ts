@@ -1,5 +1,14 @@
 export const urls = {
   import: '',
+  media: {
+    list: 'media/',
+    oneId: 'media/id/',
+    oneUrl: 'media/store/',
+    deleteOne: 'media/id/',
+    deleteMany: 'media/multi',
+    uploadOne: 'media',
+    uploadMany: 'media/multi',
+  },
   users: {
     delete: 'user',
     list: 'user/',

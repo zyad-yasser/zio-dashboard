@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MultiStage } from 'src/app/models/multi-stage';
-import { ehsStages } from 'src/app/statics/constants';
 import { ApexFill, ApexStroke, ApexPlotOptions, ApexChart, ChartComponent } from 'ng-apexcharts';
 import { Stack } from 'src/app/models/stack';
 import { productivityData } from 'src/app/statics/productivity-data';
@@ -14,7 +13,6 @@ export class DashboardComponent implements OnInit {
   @ViewChild('chartObj', { static: false }) chartObj: ChartComponent;
   public currentLocation: string[] = ['Home', 'Dashboard'];
   public pageName = 'Dashboard';
-  public ehsStages: MultiStage[] = ehsStages;
   public productivityData: Stack[] = productivityData;
   chartEnabled = false;
   chart: ApexChart = {

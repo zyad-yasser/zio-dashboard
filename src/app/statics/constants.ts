@@ -7,7 +7,7 @@ export const version = '0.0.1';
 export const loadingTimeout = 1000;
 export const debug = false;
 export const tableDateFormat = 'DD.MM.YYYY';
-export const uploadFileSize = 20 * 1024 * 1024;
+export const uploadFileSize = 7 * 1024 * 1024;
 export const modalConfig = {
   width: '550px',
   disableClose: false,
@@ -23,21 +23,3 @@ export const appLogo = '/assets/images/logo.png';
 export const appStringName = 'LART-QUI-TECTE board';
 
 export const fakeLoaderPeriod = 1000;
-
-export const ehsStages = [
-  {
-    title: 'Accidents',
-    value: '0',
-    color: '#57b955'
-  },
-  {
-    title: 'Observations',
-    value: '0',
-    color: '#db4912'
-  },
-  {
-    title: '5S score',
-    value: '4.5',
-    color: '#f0af03'
-  },
-];
