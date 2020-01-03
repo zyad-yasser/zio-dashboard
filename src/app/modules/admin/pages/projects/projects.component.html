@@ -1,1 +1,27 @@
-<p>projects works!</p>
+<app-bread-crump [data]="currentLocation"></app-bread-crump>
+<app-title [data]="pageName"></app-title>
+<app-card class="table-card" [withTitle]="true" [withButtons]="false" title="Clients management">
+  <app-data-table
+    class="table-component"
+    [displayedColumns]="displayedColumns"
+    [pageSizeOptions]="pageSizeOptions"
+    [tableType]="tableType"
+    [hasPageSize]="true"
+    [noSort]="false"
+    [hasPagination]="true"
+    [maxPageSize]="maxPageSize"
+    [data]="projects"
+    [activeSortColumn]="activeSortColumn"
+    [sortDirection]="sortDirection"
+  ></app-data-table>
+  <div class="actions">
+    <button
+      mat-raised-button
+      (click)="createProject()"
+      class="one-button one-background-green mt-3"
+    >
+      <i class="lni-plus"></i>
+      Create project
+    </button>
+  </div>
+</app-card>

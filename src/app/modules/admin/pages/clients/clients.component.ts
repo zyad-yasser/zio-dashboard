@@ -27,14 +27,14 @@ export class ClientsComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private clientsService: ClientsService,
-    private maperService: MapperService,
+    private mapperService: MapperService,
     private modalService: ModalService,
   ) {}
 
   public listClients(): void {
     this.clientsService.list()
       .subscribe((res) => {
-        this.clients = this.maperService.clients(res);
+        this.clients = this.mapperService.clients(res);
       });
   }
 

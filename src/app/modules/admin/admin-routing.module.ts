@@ -20,6 +20,7 @@ import { PartnersComponent } from './pages/partners/partners.component';
 import { AgentsComponent } from './pages/agents/agents.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { CountriesComponent } from './pages/countries/countries.component';
+import { ProjectComponent } from './pages/project/project.component';
 
 const routes: Routes = [
   {
@@ -95,6 +96,15 @@ const routes: Routes = [
         data: {
           path: 'projects',
           title: 'Projects',
+          layout: 'dashboard'
+        },
+      },
+      {
+        path: 'project/:slug',
+        component: ProjectComponent,
+        data: {
+          path: 'project',
+          title: 'Project editor',
           layout: 'dashboard'
         },
       },

@@ -36,7 +36,6 @@ import { ImageListComponent } from './components/image-list/image-list.component
 import { UploaderComponent } from './components/uploader/uploader.component';
 import { BodyComposerComponent } from './components/body-composer/body-composer.component';
 import { CoreModule } from '../core/core.module';
-import { AddProjectComponent } from './pages/add-project/add-project.component';
 import { LayoutLoginComponent } from './layouts/login/login.component';
 import { LoginFormComponent } from './components/login/login.component';
 import { ConfirmationComponent } from './modals/confirmation/confirmation.component';
@@ -47,10 +46,11 @@ import { RequestsComponent } from './pages/requests/requests.component';
 import { UserDataComponent } from './modals/user-data/user-data.component';
 import { ImportComponent } from './components/import/import.component';
 import { ImageCardComponent } from './components/image-card/image-card.component';
-import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ClientsDataComponent } from './modals/client-data/client-data.component';
 import { MediaChooseComponent } from './modals/media-choose/media-choose.component';
 import { MediaComponent } from './components/media/media.component';
+import { ProjectComponent } from './pages/project/project.component';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 @NgModule({
   declarations: [
@@ -91,14 +91,14 @@ import { MediaComponent } from './components/media/media.component';
     ImageListComponent,
     UploaderComponent,
     BodyComposerComponent,
-    AddProjectComponent,
     LoginFormComponent,
     CommentsComponent,
     RequestsComponent,
     ImportComponent,
     ImageCardComponent,
     MediaChooseComponent,
-    MediaComponent
+    MediaComponent,
+    ProjectComponent
   ],
   imports: [
     CoreModule,
@@ -106,7 +106,7 @@ import { MediaComponent } from './components/media/media.component';
     CommonModule,
     SharedModule,
     NgApexchartsModule,
-    AngularEditorModule
+    CKEditorModule
   ],
   entryComponents: [
     UserDataComponent,

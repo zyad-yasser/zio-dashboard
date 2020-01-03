@@ -1,0 +1,37 @@
+<app-bread-crump [data]="currentLocation"></app-bread-crump>
+<app-title [data]="pageName"></app-title>
+<div class="content d-flex justify-content-between">
+  <div class="project-editor">
+    Basic info:
+    <hr>
+    Content:
+    <ckeditor [(ngModel)]="project.body" (ready)="ready($event)" [config]="config" class="m-2"></ckeditor>
+    <hr>
+  </div>
+  <div class="project-footer d-flex align-items-center justify-content-end">
+    <button
+      mat-raised-button
+      (click)="saveDraft()"
+      class="one-button mr-3"
+    >
+    <i class="lni-save"></i>
+      Save draft
+    </button>
+    <button
+      mat-raised-button
+      (click)="saveDraft()"
+      class="one-button mr-3"
+    >
+    <i class="lni-eye"></i>
+      Preview
+    </button>
+    <button
+      mat-raised-button
+      (click)="publish()"
+      class="one-button one-background-green"
+    >
+      <i class="lni-bolt"></i>
+      Publish project
+    </button>
+  </div>
+</div>

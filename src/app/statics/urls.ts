@@ -42,7 +42,12 @@ export const urls = {
     list: 'instagram'
   },
   projects: {
-    list: ''
+    delete: 'project',
+    list: 'project',
+    create: 'project',
+    update: 'project',
+    toggleVisibility: 'project/visibility',
+    getOneBySlug: 'project'
   },
   agents: {
     contactAgent: '',
