@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UsersService } from 'src/app/services/users/users.service';
 import { toastrConfig } from 'src/app/statics/constants';
 import { ClientsService } from 'src/app/services/clients/clients.service';
+import { ProjectsService } from 'src/app/services/projects/projects.service';
 
 @Component({
   selector: 'app-confirm',
@@ -23,6 +24,7 @@ export class ConfirmationComponent implements OnInit {
   constructor(
     private toastrService: ToastrService,
     private usersService: UsersService,
+    private projectsService: ProjectsService,
     private clientsService: ClientsService,
     public dialogRef: MatDialogRef<ConfirmationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -67,6 +69,24 @@ export class ConfirmationComponent implements OnInit {
     );
   }
 
+  public deleteProject(): void {
+    const projectId = this.data.id;
+    this.isSaving = true;
+    this.projectsService.delete(projectId).subscribe(
+      () => {
+        this.dialogRef.close('deleted');
+        this.toastrService.success('Project deleted successfully', null, toastrConfig);
+      },
+      () => {
+        this.dialogRef.close();
+        this.toastrService.error('Problem deleting project', null, toastrConfig);
+      },
+      () => {
+        this.isSaving = false;
+      }
+    );
+  }
+
   public resetPassword(): void {
     const userId = this.data.id;
     this.isSaving = true;
@@ -93,6 +113,11 @@ export class ConfirmationComponent implements OnInit {
       this.buttonAction = 'Delete';
       this.modalTitle = 'Delete client';
       this.onSubmit = this.deleteClient;
+    } else if (this.data.type === 'deleteProjectModal') {
+      this.confirmString1 = 'Are you sure want to delete this project ?';
+      this.buttonAction = 'Delete';
+      this.modalTitle = 'Delete project';
+      this.onSubmit = this.deleteProject;
     } else if (this.data.type === 'resetPasswordModal') {
       this.modalTitle = 'MODALS.RESET_PASSWORD';
       this.confirmString1 = 'Are you sure want to reset this users password ?';

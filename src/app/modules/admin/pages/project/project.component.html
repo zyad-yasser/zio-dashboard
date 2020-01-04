@@ -168,14 +168,45 @@
         </div>
 
         <div class="one-input-wrapper mt-2">
+          <div class="mb-1">Type:</div>
+          <div
+            class="d-flex one-input justify-content-start"
+          >
+            <div
+              class="form-ico mr-2 d-flex align-items-center justify-content-center"
+            >
+              <i class="lni-user"></i>
+            </div>
+            <mat-form-field>
+              <mat-select
+                (openedChange)="filterTypes()"
+                formControlName="type"
+                placeholder="Type"
+                #singleSelect
+              >
+                <mat-option>
+                  <ngx-mat-select-search
+                    [placeholderLabel]="'Search ...'"
+                    [noEntriesFoundLabel]="'No results found'"
+                    [formControl]="typeSearchCtrl"
+                    (input)="filterTypes($event)"
+                  ></ngx-mat-select-search>
+                </mat-option>
+                <mat-option
+                  *ngFor="let type of filteredTypes"
+                  [value]="type._id"
+                >
+                  {{ type.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="one-input-wrapper mt-2">
           <div class="mb-1">Client:</div>
           <div
             class="d-flex one-input justify-content-start"
-            [class.invalid]="
-              projectForm.get('name').errors &&
-              projectForm.get('name').touched &&
-              projectForm.get('name').dirty
-            "
           >
             <div
               class="form-ico mr-2 d-flex align-items-center justify-content-center"
@@ -193,7 +224,7 @@
                   <ngx-mat-select-search
                     [placeholderLabel]="'Search ...'"
                     [noEntriesFoundLabel]="'No results found'"
-                    [formControl]="bankFilterCtrl"
+                    [formControl]="clientSearchCtrl"
                     (input)="filterClients($event)"
                   ></ngx-mat-select-search>
                 </mat-option>
@@ -218,7 +249,7 @@
             </div>
             <mat-chip-list #chipList aria-label="Fruit selection">
               <mat-chip
-                *ngFor="let tag of project.tags"
+                *ngFor="let tag of project?.tags"
                 [selectable]="true"
                 [removable]="true"
                 (removed)="removeTag(tag)"
@@ -242,7 +273,7 @@
           <div class="mb-1">Visibility:</div>
           <div class="slider d-flex align-items-center">
             <span>Draft</span>
-            <mat-slide-toggle (change)="setVisibility($event)" [checked]="project.visibility" class="mx-2"></mat-slide-toggle>
+            <mat-slide-toggle (change)="setVisibility($event)" [checked]="project?.visibility" class="mx-2"></mat-slide-toggle>
             <span>Published</span>
           </div>
         </div>
@@ -259,10 +290,10 @@
     <hr />
     Cover image(s):
     <div class="cover-images w-100 text-center mt-2">
-      <div class="w-100 text-center my-4" *ngIf="!project.coverImages?.length">
+      <div class="w-100 text-center my-4" *ngIf="!project?.coverImages?.length">
         No photos yet
       </div>
-      <div *ngIf="project.coverImages?.length" class="w-100">
+      <div *ngIf="project?.coverImages?.length" class="w-100">
         <div class="row w-100 m-0 images-container">
           <app-image-card
             *ngFor="let item of project?.coverImages; let i = index"
@@ -287,11 +318,11 @@
     <div class="branding-images w-100 text-center mt-2">
       <div
         class="w-100 text-center my-4"
-        *ngIf="!project.brandingImages?.length"
+        *ngIf="!project?.brandingImages?.length"
       >
         No photos yet
       </div>
-      <div *ngIf="project.brandingImages?.length" class="w-100">
+      <div *ngIf="project?.brandingImages?.length" class="w-100">
         <div class="row w-100 m-0 images-container">
           <app-image-card
             *ngFor="let item of project?.brandingImages; let i = index"

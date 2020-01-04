@@ -72,12 +72,12 @@ export class MapperService {
       .map((item, index) => {
         const mappedItem: any = {};
         mappedItem['#'] = index + 1;
-        mappedItem['Logo'] = item.image;
-        mappedItem['Client name'] = item.name || '-';
-        mappedItem['Last name'] = item.lastName || '-';
+        mappedItem['Project name'] = item.name || '-';
+        mappedItem['Place'] = item.place || '-';
+        mappedItem['Design date'] = item.designDate ? moment(item.designDate).format(tableDateFormat) : '-';
         mappedItem['Creation date'] = item.createdAt ? moment(item.createdAt).format(tableDateFormat) : '-';
-        mappedItem['Visibility'] = item.visible ? 'Visible' : 'Not visible';
-        mappedItem['Actions'] = 'action:editClient';
+        mappedItem['Visibility'] = item.visibility ? 'Published' : 'Draft';
+        mappedItem['Actions'] = 'action:editProject';
         mappedItem['id'] = item._id;
         mappedItem.defaultData = item;
         return mappedItem;

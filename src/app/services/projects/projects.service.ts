@@ -18,6 +18,10 @@ export class  ProjectsService {
     return this.http.get(`${ baseUrl + urls.projects.getOneBySlug }/${slug}`);
   }
 
+  public getOneById(id: string): Observable<any> {
+    return this.http.get(`${ baseUrl + urls.projects.getOneById }/${id}`);
+  }
+
   public delete(id: string): Observable<any> {
     return this.http.delete(`${ baseUrl + urls.projects.delete }/${id}`);
   }

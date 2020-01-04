@@ -26,6 +26,7 @@ import { UserDataComponent } from '../../modals/user-data/user-data.component';
 import { ClientsService } from 'src/app/services/clients/clients.service';
 import { ClientsDataComponent } from '../../modals/client-data/client-data.component';
 import { urls } from 'src/app/statics/urls';
+import { ProjectsService } from 'src/app/services/projects/projects.service';
 
 @Component({
   selector: 'app-data-table',
@@ -60,7 +61,8 @@ export class DataTableComponent implements OnInit, OnChanges {
     private usersService: UsersService,
     private clientsService: ClientsService,
     private toastrService: ToastrService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private projectService: ProjectsService
   ) {}
 
   public dataInit(data = this.data): void {
@@ -163,6 +165,36 @@ export class DataTableComponent implements OnInit, OnChanges {
         },
         (err) => {
           this.toastrService.error('Error toggling client visibility', null, toastrConfig);
+        }
+      );
+  }
+
+  public editProject(id: number): void {
+    this.router.navigate([`/admin/project/${id}`]);
+  }
+
+  public deleteProject(id: string): void {
+    const type = 'deleteProjectModal';
+    const cb = (res: any) => {
+      if (res === 'deleted') {
+        this.data = this.dataSource.data.filter(item => item.id !== id);
+        this.dataInit();
+      }
+    };
+    const config = { ...modalConfig, data: { id, type } };
+    this.modalService.init(this, ConfirmationComponent, cb, config);
+  }
+
+  public toggleProjectVisibility(id: string, index: number): void {
+    this.projectService.toggleVisibility(id)
+      .subscribe(
+        (res) => {
+          this.data[index]['Visibility'] = this.data[index]['Visibility'] === 'Published' ? 'Draft' : 'Published';
+          this.dataInit();
+          this.toastrService.success('Project visibility toggled successfully', null, toastrConfig);
+        },
+        (err) => {
+          this.toastrService.error('Error toggling project visibility', null, toastrConfig);
         }
       );
   }

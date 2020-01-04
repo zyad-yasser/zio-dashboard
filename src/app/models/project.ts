@@ -1,5 +1,5 @@
-import { Tag } from './tag';
 import { Client } from './client';
+import { Type } from './type';
 
 export class Project {
   _id?;
@@ -14,6 +14,7 @@ export class Project {
   body = '';
   slug = '';
   client: Client = new Client();
+  type: Type = new Type();
   visibility = false;
   coverImages: string[] = [];
   brandingImages: string[] = [];

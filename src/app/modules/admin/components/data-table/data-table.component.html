@@ -33,7 +33,11 @@
         <td mat-cell *matCellDef="let element; let i = index">
           <span
             *ngIf="
-              column !== 'Actions' && column !== '#' && column !== 'Status' && column !== 'Visibility' && column !== 'Logo'
+              column !== 'Actions' &&
+              column !== '#' &&
+              column !== 'Status' &&
+              column !== 'Visibility' &&
+              column !== 'Logo'
             "
           >
             {{ element[column] }}
@@ -50,8 +54,12 @@
           <span *ngIf="column === 'Visibility'">
             <div
               class="user-status d-flex align-items-center justify-content-center"
-              [class.active]="element[column] === 'Visible'"
-              [class.inactive]="element[column] === 'Not visible'"
+              [class.active]="
+                element[column] === 'Visible' || element[column] === 'Published'
+              "
+              [class.inactive]="
+                element[column] === 'Not visible' || element[column] === 'Draft'
+              "
             >
               {{ element[column] }}
             </div>
@@ -68,10 +76,12 @@
           </span>
           <span *ngIf="column === 'Actions'">
             <div [ngSwitch]="element[column]">
-
-
               <div class="d-flex" *ngSwitchCase="'action:editUser'">
-                <button mat-mini-fab class="action-button one-button mr-2" [matMenuTriggerFor]="menu">
+                <button
+                  mat-mini-fab
+                  class="action-button one-button mr-2"
+                  [matMenuTriggerFor]="menu"
+                >
                   <i class="lni-pencil"></i>
                 </button>
                 <mat-menu #menu="matMenu">
@@ -83,18 +93,29 @@
                     <i class="lni-pencil-alt mr-2"></i>
                     Edit data
                   </button>
-                  <button (click)="toggleActivity(element?.id, i)" mat-menu-item>
+                  <button
+                    (click)="toggleActivity(element?.id, i)"
+                    mat-menu-item
+                  >
                     <i class="lni-power-switch mr-2"></i>
                     Toggle activity
                   </button>
                 </mat-menu>
-                <button (click)="deleteUser(element?.id)" mat-mini-fab class="action-button one-button one-background-red">
+                <button
+                  (click)="deleteUser(element?.id)"
+                  mat-mini-fab
+                  class="action-button one-button one-background-red"
+                >
                   <i class="lni-close"></i>
                 </button>
               </div>
 
               <div class="d-flex" *ngSwitchCase="'action:editClient'">
-                <button mat-mini-fab class="action-button one-button mr-2" [matMenuTriggerFor]="menu">
+                <button
+                  mat-mini-fab
+                  class="action-button one-button mr-2"
+                  [matMenuTriggerFor]="menu"
+                >
                   <i class="lni-pencil"></i>
                 </button>
                 <mat-menu #menu="matMenu">
@@ -102,16 +123,52 @@
                     <i class="lni-pencil-alt mr-2"></i>
                     Edit data
                   </button>
-                  <button (click)="toggleClientVisibility(element?.id, i)" mat-menu-item>
+                  <button
+                    (click)="toggleClientVisibility(element?.id, i)"
+                    mat-menu-item
+                  >
                     <i class="lni-eye mr-2"></i>
                     Toggle visibility
                   </button>
                 </mat-menu>
-                <button (click)="deleteClient(element?.id)" mat-mini-fab class="action-button one-button one-background-red">
+                <button
+                  (click)="deleteClient(element?.id)"
+                  mat-mini-fab
+                  class="action-button one-button one-background-red"
+                >
                   <i class="lni-close"></i>
                 </button>
               </div>
 
+              <div class="d-flex" *ngSwitchCase="'action:editProject'">
+                <button
+                  mat-mini-fab
+                  class="action-button one-button mr-2"
+                  [matMenuTriggerFor]="menu"
+                >
+                  <i class="lni-pencil"></i>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button (click)="editProject(element?.id)" mat-menu-item>
+                    <i class="lni-pencil-alt mr-2"></i>
+                    Edit data
+                  </button>
+                  <button
+                    (click)="toggleProjectVisibility(element?.id, i)"
+                    mat-menu-item
+                  >
+                    <i class="lni-eye mr-2"></i>
+                    Toggle visibility
+                  </button>
+                </mat-menu>
+                <button
+                  (click)="deleteProject(element?.id)"
+                  mat-mini-fab
+                  class="action-button one-button one-background-red"
+                >
+                  <i class="lni-close"></i>
+                </button>
+              </div>
 
               <div *ngSwitchDefault></div>
             </div>

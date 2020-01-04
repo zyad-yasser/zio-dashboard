@@ -51,6 +51,8 @@ import { MediaChooseComponent } from './modals/media-choose/media-choose.compone
 import { MediaComponent } from './components/media/media.component';
 import { ProjectComponent } from './pages/project/project.component';
 import { CKEditorModule } from 'ckeditor4-angular';
+import { ProjectTypesComponent } from './pages/project-types/project-types.component';
+import { ProjectTypeComponent } from './pages/project-type/project-type.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +100,9 @@ import { CKEditorModule } from 'ckeditor4-angular';
     ImageCardComponent,
     MediaChooseComponent,
     MediaComponent,
-    ProjectComponent
+    ProjectComponent,
+    ProjectTypesComponent,
+    ProjectTypeComponent
   ],
   imports: [
     CoreModule,

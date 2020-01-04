@@ -24,6 +24,13 @@ export const urls = {
     update: 'client',
     toggleVisibility: 'client/visibility',
   },
+  types: {
+    delete: 'type',
+    list: 'type/',
+    create: 'type',
+    update: 'type',
+    toggleVisibility: 'type/visibility',
+  },
   auth: {
     login: 'auth/login',
     logout: 'auth/logout',
@@ -47,8 +54,9 @@ export const urls = {
     create: 'project',
     update: 'project',
     toggleVisibility: 'project/visibility',
-    getOneBySlug: 'project',
-    slugCheck: 'project/slug',
+    getOneBySlug: 'project/slug',
+    slugCheck: 'project/slug/check',
+    getOneById: 'project/id',
   },
   agents: {
     contactAgent: '',

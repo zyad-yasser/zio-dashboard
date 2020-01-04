@@ -21,6 +21,7 @@ import { AgentsComponent } from './pages/agents/agents.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { CountriesComponent } from './pages/countries/countries.component';
 import { ProjectComponent } from './pages/project/project.component';
+import { ProjectTypesComponent } from './pages/project-types/project-types.component';
 
 const routes: Routes = [
   {
@@ -100,7 +101,7 @@ const routes: Routes = [
         },
       },
       {
-        path: 'project/:slug',
+        path: 'project/:id',
         component: ProjectComponent,
         data: {
           path: 'project',
@@ -123,6 +124,15 @@ const routes: Routes = [
         data: {
           path: 'accounts',
           title: 'Accounts',
+          layout: 'dashboard'
+        },
+      },
+      {
+        path: 'project-types',
+        component: ProjectTypesComponent,
+        data: {
+          path: 'project-types',
+          title: 'Project types',
           layout: 'dashboard'
         },
       },

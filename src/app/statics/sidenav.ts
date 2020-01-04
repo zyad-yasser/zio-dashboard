@@ -26,6 +26,12 @@ export const sidenavItems: Sidenav[] = [
     iconGroup: 'lni-'
   },
   {
+    name: 'Project types',
+    icon: 'list',
+    link: 'project-types',
+    iconGroup: 'lni-'
+  },
+  {
     name: 'Sections',
     icon: 'postcard',
     link: 'sections',

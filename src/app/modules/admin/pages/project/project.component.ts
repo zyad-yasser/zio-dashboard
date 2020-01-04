@@ -12,6 +12,8 @@ import { ClientsService } from 'src/app/services/clients/clients.service';
 import { Client } from 'src/app/models/client';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { Type } from 'src/app/models/type';
+import { TypesService } from 'src/app/services/types/types.service';
 
 @Component({
   selector: 'app-project',
@@ -19,13 +21,18 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./project.component.sass']
 })
 export class ProjectComponent implements OnInit {
+  public project: Project = new Project();
   @ViewChild('tagsInput', { static: false }) tagsInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
   public currentLocation: string[] = ['Home', 'Projects', ''];
+  public clientSearchCtrl = new FormControl();
+  public typeSearchCtrl = new FormControl();
+  public projectForm: FormGroup = this.formConstructor();
   public pageName = '';
-  public project: Project = new Project();
   public clients: Client[] = [];
+  public types: Type[] = [];
   public filteredClients: Client[] = [];
+  public filteredTypes: Type[] = [];
   public config = { height: 300 };
   public slugError = false;
   public separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -38,10 +45,9 @@ export class ProjectComponent implements OnInit {
     private router: Router,
     private modalService: ModalService,
     private clientsService: ClientsService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private typesService: TypesService
   ) {}
-  public bankFilterCtrl = new FormControl();
-  public projectForm: FormGroup = this.formConstructor();
 
   public onSubmit(): void {
     const projectId = this.project._id;
@@ -62,8 +68,6 @@ export class ProjectComponent implements OnInit {
   private processProject(): Observable<any> {
     const projectId = this.project._id;
     const projectData = { ...this.project };
-    projectData.coverImages = projectData.coverImages.map((item: any) => item.url);
-    projectData.brandingImages = projectData.brandingImages.map((item: any) => item.url);
     if (projectId) {
       return this.projectService.update(projectData, projectId);
     }
@@ -110,11 +114,30 @@ export class ProjectComponent implements OnInit {
     }
   }
 
+  public filterTypes(event?): void {
+    if (!event) {
+      this.filteredTypes = [...this.types];
+      return;
+    }
+    const value = event.target.value.toLowerCase();
+    if (value !== '') {
+      this.filteredTypes = [...this.types]
+        .map((item) => {
+          item.compareName = item.name.toLowerCase();
+          return item;
+        })
+        .filter(item => item.compareName.includes(value));
+    } else {
+      this.filteredTypes = [...this.types];
+    }
+  }
+
   public formConstructor(): FormGroup {
     const form: any = {
       name: new FormControl(this.project.name, []),
       slug: new FormControl(this.project.slug, []),
       client: new FormControl(this.project.client._id, []),
+      type: new FormControl(this.project.type._id, []),
       description: new FormControl(this.project.description, []),
       designDate: new FormControl(this.project.designDate, []),
       place: new FormControl(this.project.place, []),
@@ -124,12 +147,12 @@ export class ProjectComponent implements OnInit {
   }
 
   public initializePageInfo(): void {
-    const slug = this.route.snapshot.params['slug'];
-    if (slug === 'new') {
+    const id = this.route.snapshot.params['id'];
+    if (id === 'new') {
       this.pageName = 'Create project';
       this.currentLocation[2] = 'Create project';
     } else {
-      this.projectService.getOneBySlug(slug).subscribe(
+      this.projectService.getOneById(id).subscribe(
         (res) => {
           this.project = res;
           this.pageName = 'Edit project';
@@ -137,6 +160,9 @@ export class ProjectComponent implements OnInit {
         },
         (err) => {
           this.router.navigate(['admin/projects']);
+        },
+        () => {
+          this.projectForm = this.formConstructor();
         }
       );
     }
@@ -197,8 +223,13 @@ export class ProjectComponent implements OnInit {
   }
 
   public ready(event) {
-    event.editor.document.getBody().setStyle('background-color', '#000');
-    event.editor.document.getBody().setStyle('color', '#FFF');
+    setTimeout(
+      () => {
+        event.editor.document.getBody().setStyle('background-color', '#000');
+        event.editor.document.getBody().setStyle('color', '#FFF');
+      },
+      0
+    );
   }
 
   public setVisibility(event): void {
@@ -209,6 +240,7 @@ export class ProjectComponent implements OnInit {
     this.project.name = this.projectForm.get('name').value;
     this.project.slug = this.projectForm.get('slug').value;
     this.project.client = this.projectForm.get('client').value;
+    this.project.type = this.projectForm.get('type').value;
     this.project.description = this.projectForm.get('description').value;
     this.project.designDate = this.projectForm.get('designDate').value;
     this.project.place = this.projectForm.get('place').value;
@@ -237,8 +269,19 @@ export class ProjectComponent implements OnInit {
       );
   }
 
+  private getTypes(): void {
+    this.typesService.list()
+      .subscribe(
+        (res) => {
+          this.types = res;
+          this.filteredTypes = [...this.types];
+        }
+      );
+  }
+
   public ngOnInit(): void {
     this.initializePageInfo();
     this.getClients();
+    this.getTypes();
   }
 }
