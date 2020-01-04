@@ -14,7 +14,8 @@ import { MediaService } from 'src/app/services/media/media.service';
   styleUrls: ['./media-choose.component.sass']
 })
 export class MediaChooseComponent implements OnInit {
-  @Input() public area: string;
+  public mode: string;
+  public multiplePhotos: string[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<MediaChooseComponent>,
@@ -25,18 +26,40 @@ export class MediaChooseComponent implements OnInit {
 
   public attachEvents(): void {
     this.mediaService.selectForInline
-      .subscribe(
-        (res) => {
+    .subscribe(
+      (res) => {
+        if (this.mode === 'single') {
           this.dialogRef.close(res);
+        } else {
+          this.uniqueTogglePush(res);
         }
-      );
+      }
+    );
+  }
+
+  public uniqueTogglePush(url) {
+    const index = this.multiplePhotos.indexOf(url);
+    if (index < 0) {
+      this.multiplePhotos.push(url);
+    } else {
+      this.multiplePhotos.splice(index, 1);
+    }
   }
 
   public close(): void {
     this.dialogRef.close();
   }
 
+  public done(): void {
+    this.dialogRef.close(this.multiplePhotos);
+  }
+
+  public initMode(): void {
+    this.mode = this.data.mode;
+  }
+
   public ngOnInit(): void {
     this.attachEvents();
+    this.initMode();
   }
 }

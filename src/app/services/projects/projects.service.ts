@@ -33,4 +33,8 @@ export class  ProjectsService {
   public toggleVisibility(id: string): Observable<any> {
     return this.http.put(`${ baseUrl + urls.projects.toggleVisibility }/${id}`, {});
   }
+
+  public slugCheck(slug: string): Observable<any> {
+    return this.http.get(`${ baseUrl + urls.projects.slugCheck }/${slug}`, {});
+  }
 }

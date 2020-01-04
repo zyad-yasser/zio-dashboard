@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, AfterViewInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer, SafeStyle, SafeUrl } from '@angular/platform-browser';
 import { baseUrl } from 'src/app/statics/constants';
 import { urls } from 'src/app/statics/urls';
@@ -13,7 +13,9 @@ import { Observable, of } from 'rxjs';
 })
 export class ImageCardComponent implements OnInit {
   @Input() public data: any;
+  @Input() public option: string;
   @Input() public active: boolean;
+  @Output() public deleteEvent : EventEmitter<any> = new EventEmitter();
   @ViewChild('image', { static: false }) image: ElementRef;
   public imageUrl = '/assets/images/logo.png';
   public failed = false;
@@ -41,6 +43,10 @@ export class ImageCardComponent implements OnInit {
 
   public activate(): void {
     this.active = true;
+  }
+
+  public delete(): void {
+    this.deleteEvent.emit();
   }
 
   public ngOnInit(): void {

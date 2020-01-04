@@ -1,14 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import {
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-  MatDialog
-} from '@angular/material';
-import {
-  FormControl,
-  Validators,
-  FormGroup
-} from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { toastrConfig, modalConfig, baseUrl } from 'src/app/statics/constants';
 import { emailPattern } from 'src/app/statics/patterns';
@@ -22,7 +14,7 @@ import { urls } from 'src/app/statics/urls';
 @Component({
   selector: 'app-client-data',
   templateUrl: './client-data.component.html',
-  styleUrls: ['./client-data.component.sass'],
+  styleUrls: ['./client-data.component.sass']
 })
 export class ClientsDataComponent implements OnInit {
   public client: any = {};
@@ -73,23 +65,37 @@ export class ClientsDataComponent implements OnInit {
 
   public onSubmit() {
     this.client.name = this.clientForm.get('name').value;
-    this.observable = this.data.type === 'createClientModal'
-      ? this.clientsService.create(this.client)
-      : this.clientsService.update(this.client, this.clientId);
-    this.observable
-      .subscribe(
-        (res) => {
-          this.dialogRef.close(this.client);
-          this.toastrService.success('Operation done successfully', null, toastrConfig);
-        },
-        (err) => {
-          this.toastrService.success('Error in the operation', null, toastrConfig);
-        }
-      );
+    this.observable =
+      this.data.type === 'createClientModal'
+        ? this.clientsService.create(this.client)
+        : this.clientsService.update(this.client, this.clientId);
+    this.observable.subscribe(
+      (res) => {
+        this.dialogRef.close(this.client);
+        this.toastrService.success(
+          'Operation done successfully',
+          null,
+          toastrConfig
+        );
+      },
+      (err) => {
+        this.toastrService.success(
+          'Error in the operation',
+          null,
+          toastrConfig
+        );
+      }
+    );
   }
 
   public openMedia(): void {
-    const config = { ...modalConfig, width: '90%', height: '90%', id: 'mediaChooseModal', data: { type: 'mediaChooseModal' } };
+    const config = {
+      ...modalConfig,
+      width: '90%',
+      height: '90%',
+      id: 'mediaChooseModal',
+      data: { type: 'mediaChooseModal', mode: 'single' }
+    };
     const cb = (res) => {
       if (res) {
         const url = res.url;

@@ -7,11 +7,20 @@
       color: #d21111
     .one-input
       height: 40px
+      &.extend-height
+        min-height: 40px
+        height: auto !important
       padding: 5px
       background-color: rgba(0, 0, 0, 0.3)
       border-radius: 20px
+      .mat-chip-input
+        height: 30px !important
+      .mat-standard-chip
+        min-height: 30px !important
       &.invalid
         border: 1px solid #d21111
+      &.valid
+        border: 1px solid #58d777
       .form-ico
         height: 30px
         width: 30px
@@ -19,12 +28,39 @@
         background-color: rgba(0, 0, 0, 0.4)
         border-radius: 50%
         color: #FFF
+      .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-appearance-legacy.mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label
+        opacity: 0 !important
+      .mat-form-field-type-mat-select .mat-form-field-label
+        color: #747474 !important
+        font-size: 13px
+        position: relative !important
+        top: 0px !important
+        margin: 0px !important
+        display: flex !important
+        align-items: center !important
+      .mat-form-field
+        display: flex
+        align-items: center
+        justify-content: center
+        .mat-select-value-text
+          color: #FFF
+        .mat-form-field-subscript-wrapper
+          display: none !important
+        .mat-form-field-wrapper
+          padding: 0px
+          flex-grow: 1
+        flex-grow: 1
+        .mat-form-field-infix
+          border: 0 !important
+          padding: 0 !important
+        .mat-form-field-underline
+          display: none
       input
         background-color: transparent !important
         border: 0px
-        color: #FFF
-        &:placeholder
-          color: #CCC
+        color: #FFF !important
+        &::placeholder
+          color: #747474 !important
   .one-button
     width: 150px
     height: 40px

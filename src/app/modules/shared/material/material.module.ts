@@ -15,7 +15,8 @@ import {
   MatPaginatorIntl,
   MatSelectModule,
   MatRadioModule,
-  MatButtonToggleModule
+  MatButtonToggleModule,
+  MatChipsModule
 } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -25,6 +26,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CustomMatPaginatorIntl } from './custom-mat-paginator-intl';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [],
@@ -49,7 +52,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatProgressBarModule,
     MatSelectModule,
     MatRadioModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatSlideToggleModule,
+    NgxMatSelectSearchModule,
+    MatChipsModule
   ],
   exports: [
     MatSidenavModule,
@@ -71,7 +77,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatProgressBarModule,
     MatSelectModule,
     MatRadioModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatSlideToggleModule,
+    NgxMatSelectSearchModule,
+    MatChipsModule
   ],
   providers: [{
     provide: MatPaginatorIntl,

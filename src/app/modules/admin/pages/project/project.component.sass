@@ -1,6 +1,10 @@
 :host
   ::ng-deep
-    #cke_editor1
+    .one-input-wrapper
+      font-size: 12px
+      input
+        font-size: 14px
+    .cke
       overflow: hidden
       border: 0
       border-radius: 7px
@@ -15,6 +19,8 @@
     .cke_top, .cke_bottom
       *
         color: #FFF
+        &:hover, &:active
+          color: #222
       background-color: #444
       border: 0
   color: #FFF
@@ -30,3 +36,6 @@
         display: block
     .project-footer
       height: 40px
+    .images-container
+      height: 200px
+      overflow-y: scroll

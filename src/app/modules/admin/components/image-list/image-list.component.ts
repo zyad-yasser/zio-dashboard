@@ -46,6 +46,9 @@ export class ImageListComponent implements OnInit {
   }
 
   public handleClick(index: number): void {
+    this.media[index].active = this.media[index].active
+      ? false
+      : true;
     if (this.area === 'inline') {
       const selectedImage = this.media[index];
       this.mediaService.selectForInline.emit(selectedImage);

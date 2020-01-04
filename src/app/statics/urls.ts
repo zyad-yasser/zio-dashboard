@@ -47,7 +47,8 @@ export const urls = {
     create: 'project',
     update: 'project',
     toggleVisibility: 'project/visibility',
-    getOneBySlug: 'project'
+    getOneBySlug: 'project',
+    slugCheck: 'project/slug',
   },
   agents: {
     contactAgent: '',

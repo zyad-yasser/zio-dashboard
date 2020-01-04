@@ -30,9 +30,7 @@
             "styles": [
               "src/styles/styles.sass",
               "src/styles/custom-theme.scss",
-              "src/styles/bootstrap.sass",
-              "./node_modules/froala-editor/css/froala_editor.pkgd.min.css",
-              "./node_modules/froala-editor/css/froala_style.min.css"
+              "src/styles/bootstrap.sass"
             ],
             "scripts": [
               "node_modules/apexcharts/dist/apexcharts.min.js"

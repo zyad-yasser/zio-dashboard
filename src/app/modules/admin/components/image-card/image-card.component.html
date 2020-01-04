@@ -6,12 +6,15 @@
   <div *ngIf="failed" class="w-100 text-center">No preview available for the file</div>
 </div>
 <div class="info mt-2 d-flex justify-content-between">
-  <div class="file-name pt-1">
+  <div class="file-name text-left pt-1">
     {{ data.url }}
   </div>
   <div class="link-button">
-    <button mat-icon-button (click)="copyLink()">
+    <button *ngIf="!option" mat-icon-button (click)="copyLink()">
       <i class="lni-link"></i>
+    </button>
+    <button class="delete" *ngIf="option === 'delete'" mat-icon-button (click)="delete()">
+      <i class="lni-close"></i>
     </button>
   </div>
 </div>

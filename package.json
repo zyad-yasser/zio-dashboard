@@ -36,6 +36,7 @@
     "moment": "^2.24.0",
     "ng-apexcharts": "^1.1.1",
     "ngx-bootstrap": "^5.1.1",
+    "ngx-mat-select-search": "^2.1.0",
     "ngx-moment": "^3.4.0",
     "ngx-owl-carousel-o": "^2.0.1",
     "ngx-socket-io": "^3.0.1",
