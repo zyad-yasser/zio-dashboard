@@ -26,6 +26,7 @@ export const urls = {
   },
   types: {
     delete: 'type',
+    oneId: 'type',
     list: 'type/',
     create: 'type',
     update: 'type',

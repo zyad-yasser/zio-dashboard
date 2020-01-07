@@ -1,7 +1,8 @@
 export class Type {
-  name: string;
-  images?: any[];
+  name  = '';
+  images?: any[] = [];
   id: string;
   _id?: string;
   compareName?: string;
+  visibility: boolean;
 }

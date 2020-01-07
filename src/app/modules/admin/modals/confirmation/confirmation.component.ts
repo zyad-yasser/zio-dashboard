@@ -9,6 +9,7 @@ import { UsersService } from 'src/app/services/users/users.service';
 import { toastrConfig } from 'src/app/statics/constants';
 import { ClientsService } from 'src/app/services/clients/clients.service';
 import { ProjectsService } from 'src/app/services/projects/projects.service';
+import { TypesService } from 'src/app/services/types/types.service';
 
 @Component({
   selector: 'app-confirm',
@@ -27,6 +28,7 @@ export class ConfirmationComponent implements OnInit {
     private projectsService: ProjectsService,
     private clientsService: ClientsService,
     public dialogRef: MatDialogRef<ConfirmationComponent>,
+    private typeService: TypesService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -55,6 +57,24 @@ export class ConfirmationComponent implements OnInit {
     const clientId = this.data.id;
     this.isSaving = true;
     this.clientsService.delete(clientId).subscribe(
+      () => {
+        this.dialogRef.close('deleted');
+        this.toastrService.success('Client deleted successfully', null, toastrConfig);
+      },
+      () => {
+        this.dialogRef.close();
+        this.toastrService.error('Problem deleting client', null, toastrConfig);
+      },
+      () => {
+        this.isSaving = false;
+      }
+    );
+  }
+
+  public deleteType(): void {
+    const typeId = this.data.id;
+    this.isSaving = true;
+    this.typeService.delete(typeId).subscribe(
       () => {
         this.dialogRef.close('deleted');
         this.toastrService.success('Client deleted successfully', null, toastrConfig);
@@ -113,6 +133,11 @@ export class ConfirmationComponent implements OnInit {
       this.buttonAction = 'Delete';
       this.modalTitle = 'Delete client';
       this.onSubmit = this.deleteClient;
+    } else if (this.data.type === 'deleteTypeModal') {
+      this.confirmString1 = 'Are you sure want to delete this type ?';
+      this.buttonAction = 'Delete';
+      this.modalTitle = 'Delete type';
+      this.onSubmit = this.deleteType;
     } else if (this.data.type === 'deleteProjectModal') {
       this.confirmString1 = 'Are you sure want to delete this project ?';
       this.buttonAction = 'Delete';

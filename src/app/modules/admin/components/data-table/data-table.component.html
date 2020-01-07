@@ -170,6 +170,36 @@
                 </button>
               </div>
 
+              <div class="d-flex" *ngSwitchCase="'action:editType'">
+                <button
+                  mat-mini-fab
+                  class="action-button one-button mr-2"
+                  [matMenuTriggerFor]="menu"
+                >
+                  <i class="lni-pencil"></i>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button (click)="editType(element?.id)" mat-menu-item>
+                    <i class="lni-pencil-alt mr-2"></i>
+                    Edit data
+                  </button>
+                  <button
+                    (click)="toggleTypeVisibility(element?.id, i)"
+                    mat-menu-item
+                  >
+                    <i class="lni-eye mr-2"></i>
+                    Toggle visibility
+                  </button>
+                </mat-menu>
+                <button
+                  (click)="deleteType(element?.id)"
+                  mat-mini-fab
+                  class="action-button one-button one-background-red"
+                >
+                  <i class="lni-close"></i>
+                </button>
+              </div>
+
               <div *ngSwitchDefault></div>
             </div>
           </span>

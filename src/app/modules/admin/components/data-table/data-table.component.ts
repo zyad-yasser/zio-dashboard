@@ -27,6 +27,7 @@ import { ClientsService } from 'src/app/services/clients/clients.service';
 import { ClientsDataComponent } from '../../modals/client-data/client-data.component';
 import { urls } from 'src/app/statics/urls';
 import { ProjectsService } from 'src/app/services/projects/projects.service';
+import { TypesService } from 'src/app/services/types/types.service';
 
 @Component({
   selector: 'app-data-table',
@@ -62,7 +63,8 @@ export class DataTableComponent implements OnInit, OnChanges {
     private clientsService: ClientsService,
     private toastrService: ToastrService,
     private sanitizer: DomSanitizer,
-    private projectService: ProjectsService
+    private projectService: ProjectsService,
+    private typesService: TypesService,
   ) {}
 
   public dataInit(data = this.data): void {
@@ -173,6 +175,10 @@ export class DataTableComponent implements OnInit, OnChanges {
     this.router.navigate([`/admin/project/${id}`]);
   }
 
+  public editType(id: number): void {
+    this.router.navigate([`/admin/project-type/${id}`]);
+  }
+
   public deleteProject(id: string): void {
     const type = 'deleteProjectModal';
     const cb = (res: any) => {
@@ -183,6 +189,32 @@ export class DataTableComponent implements OnInit, OnChanges {
     };
     const config = { ...modalConfig, data: { id, type } };
     this.modalService.init(this, ConfirmationComponent, cb, config);
+  }
+
+  public deleteType(id: string): void {
+    const type = 'deleteTypeModal';
+    const cb = (res: any) => {
+      if (res === 'deleted') {
+        this.data = this.dataSource.data.filter(item => item.id !== id);
+        this.dataInit();
+      }
+    };
+    const config = { ...modalConfig, data: { id, type } };
+    this.modalService.init(this, ConfirmationComponent, cb, config);
+  }
+
+  public toggleTypeVisibility(id: string, index: number): void {
+    this.typesService.toggleVisibility(id)
+      .subscribe(
+        (res) => {
+          this.data[index]['Visibility'] = this.data[index]['Visibility'] === 'Visible' ? 'Not visible' : 'Visible';
+          this.dataInit();
+          this.toastrService.success('Type visibility toggled successfully', null, toastrConfig);
+        },
+        (err) => {
+          this.toastrService.error('Error toggling type visibility', null, toastrConfig);
+        }
+      );
   }
 
   public toggleProjectVisibility(id: string, index: number): void {

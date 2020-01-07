@@ -1,1 +1,82 @@
-<p>project-type works!</p>
+<app-bread-crump [data]="currentLocation"></app-bread-crump>
+<app-title [data]="pageName"></app-title>
+<div class="content d-flex justify-content-between">
+  <div class="project-editor">
+    Basic info:
+    <div class="col col-12 col-md-6 px-0 pl-2">
+      <form
+        class="change-name-form"
+        [formGroup]="projectTypeForm"
+      >
+        <div class="one-input-wrapper mt-2">
+          <div class="mb-1">Type name:</div>
+          <div
+            class="d-flex one-input justify-content-start"
+            [class.invalid]="
+              projectTypeForm.get('name').errors &&
+              projectTypeForm.get('name').touched &&
+              projectTypeForm.get('name').dirty
+            "
+          >
+            <div
+              class="form-ico mr-2 d-flex align-items-center justify-content-center"
+            >
+              <i class="lni-user"></i>
+            </div>
+            <input
+              type="name"
+              id="name"
+              name="name"
+              placeholder="Type name"
+              formControlName="name"
+              class="flex-grow-1"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="one-input-wrapper mt-2">
+          <div class="mb-1">Visibility:</div>
+          <div class="slider d-flex align-items-center">
+            <span>Not visible</span>
+            <mat-slide-toggle (change)="setVisibility($event)" [checked]="type?.visibility" class="mx-2"></mat-slide-toggle>
+            <span>Visible</span>
+          </div>
+        </div>
+      </form>
+    </div>
+    <hr />
+    Image(s):
+    <div class="cover-images w-100 text-center mt-2">
+      <div class="w-100 text-center my-4" *ngIf="!type?.images?.length">
+        No photos yet
+      </div>
+      <div *ngIf="type?.images?.length" class="w-100">
+        <div class="row w-100 m-0 images-container">
+          <app-image-card
+            *ngFor="let item of type?.images; let i = index"
+            [data]="item"
+            class="col-12 col-md-6 col-lg-3 mb-3"
+            option="delete"
+            (deleteEvent)="deleteImage(i)"
+          ></app-image-card>
+        </div>
+      </div>
+      <button
+        mat-raised-button
+        (click)="openMediaImages()"
+        class="one-button mx-auto"
+      >
+        <i class="lni-image"></i>
+        Open media
+      </button>
+    </div>
+  </div>
+  <hr class="w-100" />
+  <div class="project-footer d-flex align-items-center justify-content-end">
+    <button mat-raised-button (click)="save()" class="one-button mr-3">
+      <i class="lni-save"></i>
+      Save
+    </button>
+  </div>
+</div>

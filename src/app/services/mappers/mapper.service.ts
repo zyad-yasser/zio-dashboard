@@ -61,6 +61,29 @@ export class MapperService {
     return [];
   }
 
+  public projectTypes(data) {
+    if (data && data.length) {
+      return data
+      .sort((b, a) => {
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+        if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+        return 0;
+      })
+      .map((item, index) => {
+        const mappedItem: any = {};
+        mappedItem['#'] = index + 1;
+        mappedItem['Type name'] = item.name;
+        mappedItem['Creation date'] = item.createdAt ? moment(item.createdAt).format(tableDateFormat) : '-';
+        mappedItem['Visibility'] = item.visibility ? 'Visible' : 'Not visible';
+        mappedItem['Actions'] = 'action:editType';
+        mappedItem['id'] = item._id;
+        mappedItem.defaultData = item;
+        return mappedItem;
+      });
+    }
+    return [];
+  }
+
   public projects(data) {
     if (data && data.length) {
       return data

@@ -10,6 +10,10 @@ import { Observable } from 'rxjs';
 export class  TypesService {
   constructor(private http: HttpClient) { }
 
+  public getOneById(id: string): Observable<any> {
+    return this.http.get(`${ baseUrl + urls.types.oneId }/${id}`);
+  }
+
   public list(): Observable<any> {
     return this.http.get(`${ baseUrl + urls.types.list }`);
   }
