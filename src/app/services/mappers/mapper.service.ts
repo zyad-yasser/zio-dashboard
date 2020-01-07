@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { tableDateFormat } from 'src/app/statics/constants';
+import { sections } from 'src/app/statics/sections';
 
 @Injectable({
   providedIn: 'root'
@@ -107,5 +108,35 @@ export class MapperService {
       });
     }
     return [];
+  }
+
+  private sectionFiller(data: any[]): any[] {
+    return sections.map((mockSection) => {
+      const sectionType = mockSection.type;
+      const filteredSections = data.filter(realSection => realSection.type === sectionType);
+      return filteredSections.length > 0
+        ? filteredSections[0]
+        : mockSection;
+    });
+  }
+
+  public sections(data) {
+    return this
+      .sectionFiller(data)
+      .sort((b, a) => {
+        if (a.page.toLowerCase() > b.page.toLowerCase()) return -1;
+        if (a.page.toLowerCase() < b.page.toLowerCase()) return 1;
+        return 0;
+      })
+      .map((item, index) => {
+        const mappedItem: any = {};
+        mappedItem['#'] = index + 1;
+        mappedItem['Section type'] = item.type || '-';
+        mappedItem['Page'] = item.page || '-';
+        mappedItem['Actions'] = 'action:editSection';
+        mappedItem['id'] = item._id;
+        mappedItem.defaultData = item;
+        return mappedItem;
+      });
   }
 }

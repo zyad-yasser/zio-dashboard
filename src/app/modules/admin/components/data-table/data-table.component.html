@@ -170,6 +170,16 @@
                 </button>
               </div>
 
+              <div class="d-flex" *ngSwitchCase="'action:editSection'">
+                <button
+                  mat-mini-fab
+                  class="action-button one-button mr-2"
+                  (click)="editSection(element['Section type'])"
+                >
+                  <i class="lni-pencil"></i>
+                </button>
+              </div>
+
               <div class="d-flex" *ngSwitchCase="'action:editType'">
                 <button
                   mat-mini-fab

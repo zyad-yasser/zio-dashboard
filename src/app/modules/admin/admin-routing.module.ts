@@ -23,6 +23,7 @@ import { CountriesComponent } from './pages/countries/countries.component';
 import { ProjectComponent } from './pages/project/project.component';
 import { ProjectTypesComponent } from './pages/project-types/project-types.component';
 import { ProjectTypeComponent } from './pages/project-type/project-type.component';
+import { SectionComponent } from './pages/section/section.component';
 
 const routes: Routes = [
   {
@@ -134,6 +135,15 @@ const routes: Routes = [
         data: {
           path: 'project-type',
           title: 'Project type',
+          layout: 'dashboard'
+        },
+      },
+      {
+        path: 'section/:type',
+        component: SectionComponent,
+        data: {
+          path: 'section',
+          title: 'Section',
           layout: 'dashboard'
         },
       },

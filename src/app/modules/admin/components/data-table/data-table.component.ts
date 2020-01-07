@@ -179,6 +179,10 @@ export class DataTableComponent implements OnInit, OnChanges {
     this.router.navigate([`/admin/project-type/${id}`]);
   }
 
+  public editSection(type): void {
+    this.router.navigate([`/admin/section/${type}`]);
+  }
+
   public deleteProject(id: string): void {
     const type = 'deleteProjectModal';
     const cb = (res: any) => {

@@ -46,6 +46,11 @@ export const urls = {
     getMostViewed: 'blogs/viewed',
     getRelatedArticles: 'blogs/related'
   },
+  sections: {
+    oneType: 'section',
+    findCreateOrUpdate: 'section',
+    list: 'section',
+  },
   instagram: {
     list: 'instagram'
   },

@@ -1,0 +1,47 @@
+:host
+  ::ng-deep
+    .one-input-wrapper
+      font-size: 12px
+      input
+        font-size: 14px
+      .one-input
+        min-height: 120px
+        textarea
+          border: 0
+          background-color: transparent
+          color: #FFF
+    .cke
+      overflow: hidden
+      border: 0
+      border-radius: 7px
+    .cke_button
+      background-color: #CCC
+      border-radius: 3px
+      margin: 0px 3px
+      &.cke_button_disabled
+        opacity: 0.5
+        &:hover
+          background-color: #CCC !important
+    .cke_top, .cke_bottom
+      *
+        color: #FFF
+        &:hover, &:active
+          color: #222
+      background-color: #444
+      border: 0
+  color: #FFF
+  display: block
+  height: 100%
+  .content
+    height: calc(100% - 132px)
+    flex-direction: column
+    .project-editor
+      height: calc(100% - 55px)
+      overflow-y: scroll
+      ckeditor
+        display: block
+    .project-footer
+      height: 40px
+    .images-container
+      height: 200px
+      overflow-y: scroll

@@ -53,6 +53,7 @@ import { ProjectComponent } from './pages/project/project.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { ProjectTypesComponent } from './pages/project-types/project-types.component';
 import { ProjectTypeComponent } from './pages/project-type/project-type.component';
+import { SectionComponent } from './pages/section/section.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { ProjectTypeComponent } from './pages/project-type/project-type.componen
     MediaComponent,
     ProjectComponent,
     ProjectTypesComponent,
-    ProjectTypeComponent
+    ProjectTypeComponent,
+    SectionComponent
   ],
   imports: [
     CoreModule,

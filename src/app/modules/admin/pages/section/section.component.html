@@ -1,0 +1,272 @@
+<app-bread-crump [data]="currentLocation"></app-bread-crump>
+<app-title [data]="pageName"></app-title>
+<div class="content d-flex justify-content-between">
+  <div class="project-editor">
+    <div [ngSwitch]="section.type">
+      <div *ngSwitchCase="'Footer'">
+        <div class="col col-12 col-md-6 px-0 pl-2">
+          <div class="one-input-wrapper mt-2">
+            <div class="mb-1">Footer text:</div>
+            <div class="d-flex one-input justify-content-start">
+              <div
+                class="form-ico mr-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="lni-text-align-left"></i>
+              </div>
+              <input
+                name="singleText"
+                placeholder="Footer text"
+                [(ngModel)]="section.singleText"
+                #ctrl="ngModel"
+                class="flex-grow-1"
+                required
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div *ngSwitchCase="'CreateConceptContent'">
+        <div class="mb-1">Text:</div>
+        <ckeditor
+          [(ngModel)]="section.singleText"
+          (ready)="ready($event)"
+          [config]="config"
+          class="mr-2 mt-2"
+        ></ckeditor>
+        <hr />
+        Image:
+        <div class="cover-images w-100 text-center mt-2">
+          <div
+            class="w-100 text-center my-4"
+            *ngIf="!section?.singleImage"
+          >
+            No photo yet
+          </div>
+          <div *ngIf="section?.singleImage" class="w-100">
+            <div class="row w-100 m-0 images-container">
+              <app-image-card
+                [data]="singleImage()"
+                class="col-12 col-md-6 col-lg-3 mb-3"
+              ></app-image-card>
+            </div>
+          </div>
+          <button
+            mat-raised-button
+            (click)="openMediaImagesSingle()"
+            class="one-button mx-auto mb-2"
+          >
+            <i class="lni-image"></i>
+            Open media
+          </button>
+        </div>
+      </div>
+
+
+      <div *ngSwitchCase="'HouseDesignContent'">
+        <div class="mb-1">Text:</div>
+        <ckeditor
+          [(ngModel)]="section.singleText"
+          (ready)="ready($event)"
+          [config]="config"
+          class="mr-2 mt-2"
+        ></ckeditor>
+        <hr />
+        Image:
+        <div class="cover-images w-100 text-center mt-2">
+          <div
+            class="w-100 text-center my-4"
+            *ngIf="!section?.singleImage"
+          >
+            No photo yet
+          </div>
+          <div *ngIf="section?.singleImage" class="w-100">
+            <div class="row w-100 m-0 images-container">
+              <app-image-card
+                [data]="singleImage()"
+                class="col-12 col-md-6 col-lg-3 mb-3"
+              ></app-image-card>
+            </div>
+          </div>
+          <button
+            mat-raised-button
+            (click)="openMediaImagesSingle()"
+            class="one-button mx-auto mb-2"
+          >
+            <i class="lni-image"></i>
+            Open media
+          </button>
+        </div>
+      </div>
+
+
+      <div *ngSwitchCase="'BecomeAgent'">
+        Image:
+        <div class="cover-images w-100 text-center mt-2">
+          <div
+            class="w-100 text-center my-4"
+            *ngIf="!section?.singleImage"
+          >
+            No photo yet
+          </div>
+          <div *ngIf="section?.singleImage" class="w-100">
+            <div class="row w-100 m-0 images-container">
+              <app-image-card
+                [data]="singleImage()"
+                class="col-12 col-md-6 col-lg-3 mb-3"
+              ></app-image-card>
+            </div>
+          </div>
+          <button
+            mat-raised-button
+            (click)="openMediaImagesSingle()"
+            class="one-button mx-auto mb-2"
+          >
+            <i class="lni-image"></i>
+            Open media
+          </button>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'HomeDreamHouse'">
+        <div class="col col-12 col-md-6 px-0 pl-2">
+          <div class="one-input-wrapper mt-2">
+            <div class="mb-1">Text:</div>
+            <div class="d-flex one-input justify-content-start">
+              <div
+                class="form-ico mr-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="lni-text-align-left"></i>
+              </div>
+              <input
+                name="singleText"
+                placeholder="Footer text"
+                [(ngModel)]="section.singleText"
+                #ctrl="ngModel"
+                class="flex-grow-1"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <hr />
+        Image:
+        <div class="cover-images w-100 text-center mt-2">
+          <div
+            class="w-100 text-center my-4"
+            *ngIf="!section?.singleImage"
+          >
+            No photo yet
+          </div>
+          <div *ngIf="section?.singleImage" class="w-100">
+            <div class="row w-100 m-0 images-container">
+              <app-image-card
+                [data]="singleImage()"
+                class="col-12 col-md-6 col-lg-3 mb-3"
+              ></app-image-card>
+            </div>
+          </div>
+          <button
+            mat-raised-button
+            (click)="openMediaImagesSingle()"
+            class="one-button mx-auto mb-2"
+          >
+            <i class="lni-image"></i>
+            Open media
+          </button>
+        </div>
+      </div>
+
+
+      <div *ngSwitchCase="'HomeConceptDesign'">
+        <div class="col col-12 col-md-6 px-0 pl-2">
+          <div class="one-input-wrapper mt-2">
+            <div class="mb-1">Text:</div>
+            <div class="d-flex one-input justify-content-start">
+              <div
+                class="form-ico mr-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="lni-text-align-left"></i>
+              </div>
+              <input
+                name="singleText"
+                placeholder="Footer text"
+                [(ngModel)]="section.singleText"
+                #ctrl="ngModel"
+                class="flex-grow-1"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <hr />
+        Image:
+        <div class="cover-images w-100 text-center mt-2">
+          <div
+            class="w-100 text-center my-4"
+            *ngIf="!section?.singleImage"
+          >
+            No photo yet
+          </div>
+          <div *ngIf="section?.singleImage" class="w-100">
+            <div class="row w-100 m-0 images-container">
+              <app-image-card
+                [data]="singleImage()"
+                class="col-12 col-md-6 col-lg-3 mb-3"
+              ></app-image-card>
+            </div>
+          </div>
+          <button
+            mat-raised-button
+            (click)="openMediaImagesSingle()"
+            class="one-button mx-auto mb-2"
+          >
+            <i class="lni-image"></i>
+            Open media
+          </button>
+        </div>
+      </div>
+
+
+      <div *ngSwitchCase="'MainText'">
+        <div class="col col-12 pl-2">
+          <div class="one-input-wrapper">
+            <div class="mb-1">Text(s):</div>
+              <div class="d-flex w-100 mt-2" *ngFor="let item of section.multipleText; let i = index; let isLast = last; trackBy:customTrackBy">
+                <div class="d-flex flex-grow-1 one-input justify-content-start mr-2">
+                  <div
+                    class="form-ico mr-2 d-flex align-items-center justify-content-center"
+                  >
+                    <i class="lni-text-align-left"></i>
+                  </div>
+                <textarea
+                  [name]="'singleText' + i"
+                  placeholder="Text"
+                  [(ngModel)]="section.multipleText[i]"
+                  class="flex-grow-1"
+                  required
+                ></textarea>
+                </div>
+                <button mat-icon-button (click)="section.multipleText.splice(i, 1)" *ngIf="i !== 0">
+                  <i class="lni-close"></i>
+                </button>
+                <button mat-icon-button class="mr-2" (click)="section.multipleText.push('')" *ngIf="isLast">
+                  <i class="lni-plus"></i>
+                </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <hr class="w-100" />
+  <div class="project-footer d-flex align-items-center justify-content-end">
+    <button mat-raised-button (click)="save()" class="one-button mr-3">
+      <i class="lni-save"></i>
+      Save
+    </button>
+  </div>
+</div>
+
