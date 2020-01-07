@@ -10,6 +10,9 @@ import { toastrConfig } from 'src/app/statics/constants';
 import { ClientsService } from 'src/app/services/clients/clients.service';
 import { ProjectsService } from 'src/app/services/projects/projects.service';
 import { TypesService } from 'src/app/services/types/types.service';
+import { PartnersService } from 'src/app/services/partners/partners.service';
+import { CategoriesService } from 'src/app/services/categories/categories.service';
+import { AgentsService } from 'src/app/services/agents/agents.service';
 
 @Component({
   selector: 'app-confirm',
@@ -29,6 +32,9 @@ export class ConfirmationComponent implements OnInit {
     private clientsService: ClientsService,
     public dialogRef: MatDialogRef<ConfirmationComponent>,
     private typeService: TypesService,
+    private partnersService: PartnersService,
+    private categoriesService: CategoriesService,
+    private agentsService: AgentsService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -64,6 +70,60 @@ export class ConfirmationComponent implements OnInit {
       () => {
         this.dialogRef.close();
         this.toastrService.error('Problem deleting client', null, toastrConfig);
+      },
+      () => {
+        this.isSaving = false;
+      }
+    );
+  }
+
+  public deleteAgent(): void {
+    const agentId = this.data.id;
+    this.isSaving = true;
+    this.agentsService.delete(agentId).subscribe(
+      () => {
+        this.dialogRef.close('deleted');
+        this.toastrService.success('Agent deleted successfully', null, toastrConfig);
+      },
+      () => {
+        this.dialogRef.close();
+        this.toastrService.error('Problem deleting agent', null, toastrConfig);
+      },
+      () => {
+        this.isSaving = false;
+      }
+    );
+  }
+
+  public deleteCategory(): void {
+    const categoryId = this.data.id;
+    this.isSaving = true;
+    this.categoriesService.delete(categoryId).subscribe(
+      () => {
+        this.dialogRef.close('deleted');
+        this.toastrService.success('Category deleted successfully', null, toastrConfig);
+      },
+      () => {
+        this.dialogRef.close();
+        this.toastrService.error('Problem deleting category', null, toastrConfig);
+      },
+      () => {
+        this.isSaving = false;
+      }
+    );
+  }
+
+  public deletePartner(): void {
+    const partnerId = this.data.id;
+    this.isSaving = true;
+    this.partnersService.delete(partnerId).subscribe(
+      () => {
+        this.dialogRef.close('deleted');
+        this.toastrService.success('Partner deleted successfully', null, toastrConfig);
+      },
+      () => {
+        this.dialogRef.close();
+        this.toastrService.error('Problem deleting partner', null, toastrConfig);
       },
       () => {
         this.isSaving = false;
@@ -133,6 +193,21 @@ export class ConfirmationComponent implements OnInit {
       this.buttonAction = 'Delete';
       this.modalTitle = 'Delete client';
       this.onSubmit = this.deleteClient;
+    } else if (this.data.type === 'deleteAgentModal') {
+      this.confirmString1 = 'Are you sure want to delete this agent ?';
+      this.buttonAction = 'Delete';
+      this.modalTitle = 'Delete agent';
+      this.onSubmit = this.deleteAgent;
+    } else if (this.data.type === 'deleteCategoryModal') {
+      this.confirmString1 = 'Are you sure want to delete this category ?';
+      this.buttonAction = 'Delete';
+      this.modalTitle = 'Delete category';
+      this.onSubmit = this.deleteCategory;
+    } else if (this.data.type === 'deletePartnerModal') {
+      this.confirmString1 = 'Are you sure want to delete this partner ?';
+      this.buttonAction = 'Delete';
+      this.modalTitle = 'Delete partner';
+      this.onSubmit = this.deletePartner;
     } else if (this.data.type === 'deleteTypeModal') {
       this.confirmString1 = 'Are you sure want to delete this type ?';
       this.buttonAction = 'Delete';

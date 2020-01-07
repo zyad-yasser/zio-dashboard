@@ -28,6 +28,12 @@ import { ClientsDataComponent } from '../../modals/client-data/client-data.compo
 import { urls } from 'src/app/statics/urls';
 import { ProjectsService } from 'src/app/services/projects/projects.service';
 import { TypesService } from 'src/app/services/types/types.service';
+import { CategoryDataComponent } from '../../modals/category-data/category-data.component';
+import { CategoriesService } from 'src/app/services/categories/categories.service';
+import { PartnersService } from 'src/app/services/partners/partners.service';
+import { AgentsService } from 'src/app/services/agents/agents.service';
+import { PartnerDataComponent } from '../../modals/partner-data/partner-data.component';
+import { AgentDataComponent } from '../../modals/agent-data/agent-data.component';
 
 @Component({
   selector: 'app-data-table',
@@ -65,6 +71,9 @@ export class DataTableComponent implements OnInit, OnChanges {
     private sanitizer: DomSanitizer,
     private projectService: ProjectsService,
     private typesService: TypesService,
+    private categoriesService: CategoriesService,
+    private partnersService: PartnersService,
+    private agentsService: AgentsService
   ) {}
 
   public dataInit(data = this.data): void {
@@ -167,6 +176,136 @@ export class DataTableComponent implements OnInit, OnChanges {
         },
         (err) => {
           this.toastrService.error('Error toggling client visibility', null, toastrConfig);
+        }
+      );
+  }
+
+
+
+
+  public editAgent(id: number, index: number): void {
+    const client = { ...this.data[index].defaultData };
+    const config = { ...modalConfig, data: { client, id, type: 'editAgentModal' } };
+    const cb = (res: any) => {
+      if (res) {
+        this.data[index]['Agent name'] = res.name;
+        this.data[index]['Photo'] = res.image;
+        this.data[index]['Email'] = res.image;
+        this.data[index].defaultData.name = res.name;
+        this.data[index].defaultData.image = res.image;
+        this.data[index].defaultData.email = res.email;
+        this.data[index].defaultData.mobile = res.mobile;
+        this.data[index].defaultData.title = res.title;
+        this.data[index].defaultData.city = res.city;
+        this.dataInit();
+      }
+    };
+    this.modalService.init(this, AgentDataComponent, cb, config);
+  }
+
+  public deleteAgent(id: string): void {
+    const type = 'deleteAgentModal';
+    const cb = (res: any) => {
+      if (res === 'deleted') {
+        this.data = this.dataSource.data.filter(item => item.id !== id);
+        this.dataInit();
+      }
+    };
+    const config = { ...modalConfig, data: { id, type } };
+    this.modalService.init(this, ConfirmationComponent, cb, config);
+  }
+
+  public toggleAgentVisibility(id: string, index: number): void {
+    this.clientsService.toggleVisibility(id)
+      .subscribe(
+        (res) => {
+          this.data[index]['Visibility'] = this.data[index]['Visibility'] === 'Visible' ? 'Not visible' : 'Visible';
+          this.dataInit();
+          this.toastrService.success('Agent visibility toggled successfully', null, toastrConfig);
+        },
+        (err) => {
+          this.toastrService.error('Error toggling agent visibility', null, toastrConfig);
+        }
+      );
+  }
+
+  public editPartner(id: number, index: number): void {
+    const client = { ...this.data[index].defaultData };
+    const config = { ...modalConfig, data: { client, id, type: 'editPartnerModal' } };
+    const cb = (res: any) => {
+      if (res) {
+        this.data[index]['Partner name'] = res.name;
+        this.data[index]['Logo'] = res.image;
+        this.data[index].defaultData.name = res.name;
+        this.data[index].defaultData.image = res.image;
+        this.dataInit();
+      }
+    };
+    this.modalService.init(this, PartnerDataComponent, cb, config);
+  }
+
+  public deletePartner(id: string): void {
+    const type = 'deletePartnerModal';
+    const cb = (res: any) => {
+      if (res === 'deleted') {
+        this.data = this.dataSource.data.filter(item => item.id !== id);
+        this.dataInit();
+      }
+    };
+    const config = { ...modalConfig, data: { id, type } };
+    this.modalService.init(this, ConfirmationComponent, cb, config);
+  }
+
+  public togglePartnerVisibility(id: string, index: number): void {
+    this.partnersService.toggleVisibility(id)
+      .subscribe(
+        (res) => {
+          this.data[index]['Visibility'] = this.data[index]['Visibility'] === 'Visible' ? 'Not visible' : 'Visible';
+          this.dataInit();
+          this.toastrService.success('Partner visibility toggled successfully', null, toastrConfig);
+        },
+        (err) => {
+          this.toastrService.error('Error toggling partner visibility', null, toastrConfig);
+        }
+      );
+  }
+
+
+  public editCategory(id: number, index: number): void {
+    const category = { ...this.data[index].defaultData };
+    const config = { ...modalConfig, data: { category, id, type: 'editCategoryModal' } };
+    const cb = (res: any) => {
+      if (res) {
+        this.data[index]['Category name'] = res.name;
+        this.data[index].defaultData.name = res.name;
+        this.dataInit();
+      }
+    };
+    this.modalService.init(this, CategoryDataComponent, cb, config);
+  }
+
+  public deleteCategory(id: string): void {
+    const type = 'deleteCategoryModal';
+    const cb = (res: any) => {
+      if (res === 'deleted') {
+        this.data = this.dataSource.data.filter(item => item.id !== id);
+        this.dataInit();
+      }
+    };
+    const config = { ...modalConfig, data: { id, type } };
+    this.modalService.init(this, ConfirmationComponent, cb, config);
+  }
+
+  public toggleCategoryVisibility(id: string, index: number): void {
+    this.categoriesService.toggleVisibility(id)
+      .subscribe(
+        (res) => {
+          this.data[index]['Visibility'] = this.data[index]['Visibility'] === 'Visible' ? 'Not visible' : 'Visible';
+          this.dataInit();
+          this.toastrService.success('Category visibility toggled successfully', null, toastrConfig);
+        },
+        (err) => {
+          this.toastrService.error('Error toggling category visibility', null, toastrConfig);
         }
       );
   }

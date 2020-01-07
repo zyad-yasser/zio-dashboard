@@ -62,6 +62,78 @@ export class MapperService {
     return [];
   }
 
+  public agents(data) {
+    if (data && data.length) {
+      return data
+      .sort((b, a) => {
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+        if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+        return 0;
+      })
+      .map((item, index) => {
+        const mappedItem: any = {};
+        mappedItem['#'] = index + 1;
+        mappedItem['Photo'] = item.image;
+        mappedItem['Agent name'] = item.name || '-';
+        mappedItem['Email'] = item.email || '-';
+        mappedItem['Creation date'] = item.createdAt ? moment(item.createdAt).format(tableDateFormat) : '-';
+        mappedItem['Visibility'] = item.visibility ? 'Visible' : 'Not visible';
+        mappedItem['Actions'] = 'action:editAgent';
+        mappedItem['id'] = item._id;
+        mappedItem.defaultData = item;
+        return mappedItem;
+      });
+    }
+    return [];
+  }
+
+  public partners(data) {
+    if (data && data.length) {
+      return data
+      .sort((b, a) => {
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+        if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+        return 0;
+      })
+      .map((item, index) => {
+        const mappedItem: any = {};
+        mappedItem['#'] = index + 1;
+        mappedItem['Logo'] = item.image;
+        mappedItem['Partner name'] = item.name || '-';
+        mappedItem['Creation date'] = item.createdAt ? moment(item.createdAt).format(tableDateFormat) : '-';
+        mappedItem['Visibility'] = item.visibility ? 'Visible' : 'Not visible';
+        mappedItem['Actions'] = 'action:editPartner';
+        mappedItem['id'] = item._id;
+        mappedItem.defaultData = item;
+        return mappedItem;
+      });
+    }
+    return [];
+  }
+
+  public categories(data) {
+    if (data && data.length) {
+      return data
+      .sort((b, a) => {
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+        if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+        return 0;
+      })
+      .map((item, index) => {
+        const mappedItem: any = {};
+        mappedItem['#'] = index + 1;
+        mappedItem['Category name'] = item.name || '-';
+        mappedItem['Creation date'] = item.createdAt ? moment(item.createdAt).format(tableDateFormat) : '-';
+        mappedItem['Visibility'] = item.visibility ? 'Visible' : 'Not visible';
+        mappedItem['Actions'] = 'action:editCategory';
+        mappedItem['id'] = item._id;
+        mappedItem.defaultData = item;
+        return mappedItem;
+      });
+    }
+    return [];
+  }
+
   public projectTypes(data) {
     if (data && data.length) {
       return data

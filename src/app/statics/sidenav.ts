@@ -80,6 +80,12 @@ export const sidenavItems: Sidenav[] = [
     iconGroup: 'lni-'
   },
   {
+    name: 'Categories',
+    icon: 'list',
+    link: 'categories',
+    iconGroup: 'lni-'
+  },
+  {
     name: 'Requests',
     icon: 'radio-button',
     link: 'requests',

@@ -1,0 +1,68 @@
+<div class="mat-dialog-title-container">
+  <h1 mat-dialog-title>
+    {{ modalTitle }}
+    <button class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </h1>
+</div>
+<div mat-dialog-content>
+  <form
+    class="category-data-form"
+    [formGroup]="categoryForm"
+    (keyup.enter)="onSubmit()"
+  >
+    <div class="one-input-wrapper text-center">
+      <div
+        class="d-flex one-input justify-content-start"
+        [class.invalid]="
+          categoryForm.get('name').errors &&
+          categoryForm.get('name').touched &&
+          categoryForm.get('name').dirty
+        "
+      >
+        <div
+          class="form-ico mr-2 d-flex align-items-center justify-content-center"
+        >
+          <i class="lni-user"></i>
+        </div>
+        <input
+          (input)="emailExistError = false"
+          id="name"
+          name="name"
+          placeholder="Category name"
+          formControlName="name"
+          class="flex-grow-1"
+          required
+        />
+      </div>
+      <div
+        class="message"
+        *ngIf="
+          categoryForm.get('name').errors?.required &&
+          categoryForm.get('name').touched &&
+          categoryForm.get('name').dirty
+        "
+      >
+        This field can't be empty
+      </div>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-center">
+  <button
+    mat-button
+    class="one-button one-grey"
+    (click)="close()"
+  >
+    Cancel
+  </button>
+  <button
+    mat-raised-button
+    (click)="onSubmit()"
+    class="one-button"
+    [disabled]="categoryForm.invalid || isSaving"
+  >
+    {{ modalAction }}
+  </button>
+</div>

@@ -24,6 +24,7 @@ import { ProjectComponent } from './pages/project/project.component';
 import { ProjectTypesComponent } from './pages/project-types/project-types.component';
 import { ProjectTypeComponent } from './pages/project-type/project-type.component';
 import { SectionComponent } from './pages/section/section.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 const routes: Routes = [
   {
@@ -126,6 +127,15 @@ const routes: Routes = [
         data: {
           path: 'accounts',
           title: 'Accounts',
+          layout: 'dashboard'
+        },
+      },
+      {
+        path: 'categories',
+        component: CategoriesComponent,
+        data: {
+          path: 'categories',
+          title: 'Categories',
           layout: 'dashboard'
         },
       },

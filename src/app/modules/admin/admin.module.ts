@@ -54,9 +54,17 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import { ProjectTypesComponent } from './pages/project-types/project-types.component';
 import { ProjectTypeComponent } from './pages/project-type/project-type.component';
 import { SectionComponent } from './pages/section/section.component';
+import { ArticleComponent } from './pages/article/article.component';
+import { CategoryDataComponent } from './modals/category-data/category-data.component';
+import { AgentDataComponent } from './modals/agent-data/agent-data.component';
+import { PartnerDataComponent } from './modals/partner-data/partner-data.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 @NgModule({
   declarations: [
+    CategoryDataComponent,
+    AgentDataComponent,
+    PartnerDataComponent,
     UserDataComponent,
     ClientsDataComponent,
     ValidatorComponent,
@@ -104,7 +112,9 @@ import { SectionComponent } from './pages/section/section.component';
     ProjectComponent,
     ProjectTypesComponent,
     ProjectTypeComponent,
-    SectionComponent
+    SectionComponent,
+    ArticleComponent,
+    CategoriesComponent
   ],
   imports: [
     CoreModule,
@@ -119,7 +129,10 @@ import { SectionComponent } from './pages/section/section.component';
     ClientsDataComponent,
     ConfirmationComponent,
     ChangePasswordComponent,
-    MediaChooseComponent
+    MediaChooseComponent,
+    CategoryDataComponent,
+    AgentDataComponent,
+    PartnerDataComponent
   ]
 })
 export class AdminModule { }

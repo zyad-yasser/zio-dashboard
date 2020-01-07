@@ -24,6 +24,33 @@ export const urls = {
     update: 'client',
     toggleVisibility: 'client/visibility',
   },
+  categories: {
+    delete: 'category',
+    list: 'category/',
+    create: 'category',
+    update: 'category',
+    toggleVisibility: 'category/visibility',
+  },
+  cities: {
+    delete: 'city',
+    list: 'city/',
+    create: 'city',
+    update: 'city',
+  },
+  agents: {
+    delete: 'agent',
+    list: 'agent/',
+    create: 'agent',
+    update: 'agent',
+    toggleVisibility: 'agent/visibility',
+  },
+  partners: {
+    delete: 'partner',
+    list: 'partner/',
+    create: 'partner',
+    update: 'partner',
+    toggleVisibility: 'partner/visibility',
+  },
   types: {
     delete: 'type',
     oneId: 'type',
@@ -63,9 +90,5 @@ export const urls = {
     getOneBySlug: 'project/slug',
     slugCheck: 'project/slug/check',
     getOneById: 'project/id',
-  },
-  agents: {
-    contactAgent: '',
-    becomeAgent: '',
   }
 };

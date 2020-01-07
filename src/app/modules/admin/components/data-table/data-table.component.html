@@ -180,6 +180,96 @@
                 </button>
               </div>
 
+              <div class="d-flex" *ngSwitchCase="'action:editCategory'">
+                <button
+                  mat-mini-fab
+                  class="action-button one-button mr-2"
+                  [matMenuTriggerFor]="menu"
+                >
+                  <i class="lni-pencil"></i>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button (click)="editCategory(element?.id)" mat-menu-item>
+                    <i class="lni-pencil-alt mr-2"></i>
+                    Edit data
+                  </button>
+                  <button
+                    (click)="toggleCategoryVisibility(element?.id, i)"
+                    mat-menu-item
+                  >
+                    <i class="lni-eye mr-2"></i>
+                    Toggle visibility
+                  </button>
+                </mat-menu>
+                <button
+                  (click)="deleteCategory(element?.id)"
+                  mat-mini-fab
+                  class="action-button one-button one-background-red"
+                >
+                  <i class="lni-close"></i>
+                </button>
+              </div>
+
+              <div class="d-flex" *ngSwitchCase="'action:editPartner'">
+                <button
+                  mat-mini-fab
+                  class="action-button one-button mr-2"
+                  [matMenuTriggerFor]="menu"
+                >
+                  <i class="lni-pencil"></i>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button (click)="editPartner(element?.id)" mat-menu-item>
+                    <i class="lni-pencil-alt mr-2"></i>
+                    Edit data
+                  </button>
+                  <button
+                    (click)="togglePartnerVisibility(element?.id, i)"
+                    mat-menu-item
+                  >
+                    <i class="lni-eye mr-2"></i>
+                    Toggle visibility
+                  </button>
+                </mat-menu>
+                <button
+                  (click)="deletePartner(element?.id)"
+                  mat-mini-fab
+                  class="action-button one-button one-background-red"
+                >
+                  <i class="lni-close"></i>
+                </button>
+              </div>
+
+              <div class="d-flex" *ngSwitchCase="'action:editAgent'">
+                <button
+                  mat-mini-fab
+                  class="action-button one-button mr-2"
+                  [matMenuTriggerFor]="menu"
+                >
+                  <i class="lni-pencil"></i>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button (click)="editAgent(element?.id)" mat-menu-item>
+                    <i class="lni-pencil-alt mr-2"></i>
+                    Edit data
+                  </button>
+                  <button
+                    (click)="toggleAgentVisibility(element?.id, i)"
+                    mat-menu-item
+                  >
+                    <i class="lni-eye mr-2"></i>
+                    Toggle visibility
+                  </button>
+                </mat-menu>
+                <button
+                  (click)="deleteAgent(element?.id)"
+                  mat-mini-fab
+                  class="action-button one-button one-background-red"
+                >
+                  <i class="lni-close"></i>
+                </button>
+              </div>
+
               <div class="d-flex" *ngSwitchCase="'action:editType'">
                 <button
                   mat-mini-fab
